@@ -52,6 +52,7 @@ def show_full_contents(url):
 
     return full_url
 
+
 def get_next_chapter(url):
     #for multi chapter works, get next chapter link.
     req = urllib2.Request(url)
@@ -74,6 +75,7 @@ def get_download_link(url):
             download_link = 'http://archiveofourown.org' + link.get('href')
     return download_link
 
+
 def get_contents(url):
     #get work metadata and contents from the work page.
 #     print 'Reading url:', url
@@ -92,7 +94,9 @@ def get_contents(url):
 def write_header(outfile):
     f = open(outfile, 'a')
     writer = csv.writer(f, delimiter=',')
-    keys = ['AdditionalTags', 'ArchiveWarning', 'Author', 'Category', 'Characters', 'Fandoms', 'Language', 'Notes', 'Rating', 'Relationship', 'Stats', 'Summary', 'Text', 'Title']
+    keys = ['AdditionalTags', 'ArchiveWarnings','Author','Bookmarks','Category','Chapters','Characters','Comments',\
+            'CompleteDate','Fandoms','Hits','Kudos','Language','Notes','PublishDate','Rating','Relationship',\
+            'Summary','Text','Title','Words']
     writer.writerow(keys)
     f.close()
 
@@ -113,9 +117,9 @@ def create_work_dict(url, contents):
 #     print 'Getting work information from:', url
     try:
         work = {}
-
+        
         work['Rating'] = re.findall('Rating:(.*?)<br />',contents)[0]
-        work['Archive_Warnings'] = re.findall('Warnings:(.*?)<br />',contents)[0]         
+        work['ArchiveWarnings'] = re.findall('Warnings:(.*?)<br />',contents)[0]         
         work['Fandoms'] = [i for i in re.findall('Fandoms:A          AAA(.*?)AAAA|Fandom:A          AAA(.*?)AAAA',contents)[0] if i != ''][0]
 
         category = re.findall('Category:A          AAA(.*?)AAAA',contents)#|Category:A          AAAF/M|Category:A          AAAGen|Category:A          AAAM/M|Category:A          AAAMulti|Category:A          AAAOther',contents)
@@ -124,7 +128,6 @@ def create_work_dict(url, contents):
         else:
             work['Category'] = category[0].strip()
 
-#         relationship = re.findall('Relationship:A          AAA(.*?)AAAA',contents)
         relationship = re.findall('Relationships:(.*?)<br />',contents)
         if relationship == []:
             work['Relationship'] = ''
@@ -139,9 +142,9 @@ def create_work_dict(url, contents):
 
         additional = re.findall('Additional Tags:(.*?)<br />',contents)
         if additional == []:
-            work['Additional_Tags'] = ''
+            work['AdditionalTags'] = ''
         else:
-            work['Additional_Tags'] = additional[0]
+            work['AdditionalTags'] = additional[0]
 
         language = re.findall('Language:A      AA(.*?)A      A',contents)
         if language == []:
@@ -149,12 +152,54 @@ def create_work_dict(url, contents):
         else:
             work['Language'] = language[0].strip()
 
-        stats = re.findall('Stats:AAA(.*?)AAAAAAAA',contents)
-        if stats == []:
-            work['Stats'] = ''
+        publishdate = re.findall('Published:([0-9]*-[0-9]*-[0-9]*)',contents)
+        if publishdate == []:
+            work['PublishDate'] = ''
         else:
-            work['Stats'] = stats[0].strip()
-
+            work['PublishDate'] = publishdate[0].strip()
+            
+        completedate = re.findall('Completed:([0-9]*-[0-9]*-[0-9]*)',contents)
+        if completedate == []:
+            work['CompleteDate'] = ''
+        else:
+            work['CompleteDate'] = completedate[0].strip()
+        
+        words = re.findall('Words:([0-9]*)',contents)
+        if words == []:
+            work['Words'] = ''
+        else:
+            work['Words'] = words[0].strip()
+        
+        chapters = re.findall('Chapters:([0-9]*/[0-9]*)',contents)
+        if chapters == []:
+            work['Chapters'] = ''
+        else:
+            work['Chapters'] = chapters[0].strip()
+        
+        comments = re.findall('Comments:([0-9]*)',contents)
+        if comments == []:
+            work['Comments'] = ''
+        else:
+            work['Comments'] = comments[0].strip()
+            
+        kudos = re.findall('Kudos:([0-9]*)',contents)
+        if publishdate == []:
+            work['Kudos'] = ''
+        else:
+            work['Kudos'] = kudos[0].strip()
+            
+        bookmarks = re.findall('Bookmarks:([0-9]*)',contents)
+        if bookmarks == []:
+            work['Bookmarks'] = ''
+        else:
+            work['Bookmarks'] = bookmarks[0].strip()
+        
+        hits = re.findall('Hits:([0-9]*)',contents)
+        if hits == []:
+            work['Hits'] = ''
+        else:
+            work['Hits'] = hits[0].strip()
+        
         author = re.findall('A    AA(.*?)AAA',contents)
         if author == []:
             work['Author'] = ''
@@ -178,7 +223,6 @@ def create_work_dict(url, contents):
             work['Summary'] = ''
         else:
             work['Summary'] = summary[0].strip()
-
 
         notes = re.findall('Notes:AA(.*?)AA',contents)
         if notes == []:
@@ -208,11 +252,11 @@ def get_chapters(url):
 
 if __name__ == "__main__":
 
-    cookie_file = '/Users/jingy/Desktop/cookie'
+    cookie_file = './cookie'
     cookie = load_cookie(cookie_file)
 
     start = 'http://archiveofourown.org/tags/Sherlock%20(TV)/works'
-    outfile = '/Users/jingy/Desktop/ao3/ao3_work_sherlock_test.csv'
+    outfile = './ao3_work_sherlock_test.csv'
     max_page = 3944
 
     write_header(outfile)

@@ -35,7 +35,6 @@ def find_works(page):
                 links.append('http://archiveofourown.org'+link.get('href'))
     return links
 
-
 def show_full_contents(url):
     #go through adult contents filtering.
     base = bs(urllib2.urlopen(url))
