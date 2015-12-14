@@ -1,6 +1,6 @@
 """ Computes the Fleiss' Kappa value as described in (Fleiss, 1971) """
 
-DEBUG = True
+DEBUG = False
 
 def computeKappa(mat):
     """ Computes the Kappa value
