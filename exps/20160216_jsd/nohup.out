@@ -1,0 +1,4 @@
+  File "20160409_jsd_on_lda.py", line 67
+    for month in [timelist.index('2012-01'):]:
+                                           ^
+SyntaxError: invalid syntax

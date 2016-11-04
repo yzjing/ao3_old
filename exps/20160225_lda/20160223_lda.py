@@ -5,7 +5,6 @@
 
 import pandas as pd
 from gensim import corpora, models, similarities
-from nltk.corpus import stopwords
 import re
 
 
@@ -69,20 +68,20 @@ st = [line.strip() for line in open('nltk_stopwords', 'r') ]
 
 # In[ ]:
 
-text = preprocess(df_text, st)
+text = preprocess(df, st)
 text = filter_length(text, 500)
 id2word = corpora.dictionary.Dictionary(text)
 corpus = [id2word.doc2bow(t) for t in text]
-lda = models.LdaMulticore(corpus=corpus,id2word=id2word,num_topics=20)
+lda = models.LdaModel(corpus=corpus,id2word=id2word,num_topics=40)
 
 
 # In[52]:
 
 for month in timelist:
     df_ts = create_df_time(df,month)
-    text = preprocess(df_text, st)
+    text = preprocess(df_ts, st)
     text = filter_length(text, 500)
-    with open('/lda_results/lda_topics_%s' %month, 'w') as g:
+    with open('lda_results/topic40/lda_topic40_%s' %month, 'w') as g:
         for i in range(len(text)):
             g.write(str(lda.get_document_topics(id2word.doc2bow(text[i]), minimum_probability = 0)))
             g.write('\n')

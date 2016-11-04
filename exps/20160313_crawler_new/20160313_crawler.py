@@ -10,23 +10,22 @@ import csv
 from collections import OrderedDict, Counter
 import cookielib
 import time
-import cProfile
 
 
-# In[44]:
+# In[2]:
 
 start = 'http://archiveofourown.org/tags/Sherlock%20(TV)/works'
-outfile = './sherlock_max100.csv'
-start_page = 1
-max_page = 100
+outfile = './sherlock_0_1000.csv'
+start_page = 0
+max_page = 1000
 
 
-# In[45]:
+# In[3]:
 
 cookie_file = './cookie'
 
 
-# In[46]:
+# In[77]:
 
 def save_cookie(cookie_file):
     cookie = cookielib.MozillaCookieJar(cookie_file)
@@ -35,7 +34,7 @@ def save_cookie(cookie_file):
     cookie.save(ignore_discard=True, ignore_expires=True)
 
 
-# In[47]:
+# In[78]:
 
 def load_cookie(cookie_file):
     cookie = cookielib.MozillaCookieJar()
@@ -43,21 +42,21 @@ def load_cookie(cookie_file):
     return cookie
 
 
-# In[48]:
+# In[79]:
 
 # save_cookie(cookie_file)
 cookie = load_cookie(cookie_file)
 opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookie))
 
 
-# In[49]:
+# In[80]:
 
 def find_page(base_url, page_number):
     #go to any page number.
     return base_url+'?page=' +str(page_number)
 
 
-# In[50]:
+# In[81]:
 
 def find_works(page):
     #Find all works from a works list page.
@@ -74,7 +73,7 @@ def find_works(page):
     return links
 
 
-# In[51]:
+# In[82]:
 
 def show_full_contents(url):
     #go through adult contents filtering.
@@ -86,7 +85,7 @@ def show_full_contents(url):
     return full_url
 
 
-# In[52]:
+# In[83]:
 
 def get_contents(url, opener=opener):
 #     get work metadata and contents from the work page.
@@ -100,11 +99,9 @@ def get_contents(url, opener=opener):
     return url, contents
 
 
-# In[53]:
+# In[84]:
 
 def get_comments_time(url, opener=opener):
-    #go to the comments page of the work and find the timestamps for the comments
-    #returns a dict of {month:# of comments in the month}
     req = urllib2.Request(url)
     page = bs(opener.open(req))
     times = []
@@ -119,12 +116,9 @@ def get_comments_time(url, opener=opener):
     return times_dict
 
 
-# In[54]:
+# In[85]:
 
 def get_bookmarks_time(url, opener=opener):
-    #go to the bookmarks page of the work and find the timestamps for the bookmarks
-    #returns a dict of {month:# of bookmarks in the month}
-
     req = urllib2.Request(url)
     page = bs(opener.open(req))
     page_list = [i for i in re.findall('<a href="(.*?)>', str(page)) if 'bookmarks?' in i]
@@ -140,15 +134,15 @@ def get_bookmarks_time(url, opener=opener):
         for page in page_list:
             times += get_bookmarks_time_subpages('http://archiveofourown.org'+page, opener=opener)
         
+        
     c = Counter(times)
     times_dict = {time:c[time] for time in times}
     return times_dict
 
 
-# In[55]:
+# In[86]:
 
 def get_bookmarks_time_subpages(url, opener=opener):
-    #A work's bookmarks can take up multiple pages. In this case, all timestamp information is add to the first page.
     req = urllib2.Request(url)
     page = bs(opener.open(req))
     dt = re.findall('<p class="datetime">(.*?)</p>', str(page))
@@ -160,27 +154,30 @@ def get_bookmarks_time_subpages(url, opener=opener):
     return times
 
 
-# In[56]:
+# In[87]:
 
 def write_header(outfile):
     f = open(outfile, 'a')
     writer = csv.writer(f, delimiter=',')
-    keys = ['AdditionalTags', 'ArchiveWarnings', 'Author', 'Bookmarks', 'Category', 'ChapterIndex', 'Chapters', 'Characters',             'Comments', 'CompleteDate', 'Fandoms', 'Hits', 'Kudos', 'Language', 'Notes', 'PublishDate', 'Rating',             'Relationship', 'Summary', 'Text', 'Title', 'UpdateDate', 'Words']
+    keys = ['Additional_Tags', 'Archive_Warnings', 'Author', 'Bookmarks', 'Category', 'Chapters', 'Characters',             'Comments', 'CompleteDate', 'Fandoms', 'Hits', 'Kudos', 'Language', 'Notes', 'PublishDate', 'Rating',             'Relationship', 'Summary', 'Text', 'Title', 'UpdateDate', 'Words']
     writer.writerow(keys)
     f.close()
 
 
-# In[57]:
+# In[88]:
 
 def write_work_content(work_dict,outfile):
     #write work metadata and contents as values of a sorted dictionary.
     f = open(outfile, 'a')
     writer = csv.writer(f, delimiter=',')
-    writer.writerow(OrderedDict(sorted(work_dict.items())).values())
+    try:
+        writer.writerow(OrderedDict(sorted(work_dict.items())).values())
+    except:
+        pass
     f.close()
 
 
-# In[58]:
+# In[89]:
 
 #creates dictionary for information in a single work.
 def create_work_dict(url, contents):
@@ -215,12 +212,12 @@ def create_work_dict(url, contents):
 
 
         work['Rating'] = rating[0] if rating != [] else ''
-        work['ArchiveWarnings'] = warning[0] if warning != [] else ''
+        work['Archive_Warnings'] = warning[0] if warning != [] else ''
         work['Fandoms'] = [i for i in fandom[0] if i != ''][0] if fandom != [] else ''
         work['Category'] = [i for i in category[0] if i != ''][0] if category != [] else ''
         work['Relationship'] = relationship[0] if relationship != [] else '' 
         work['Characters'] = characters[0] if characters != [] else ''
-        work['AdditionalTags'] = additional[0] if additional != [] else ''
+        work['Additional_Tags'] = additional[0] if additional != [] else ''
         work['Language'] = language[0] if language != [] else ''
         work['Author'] = author
         work['Text']= text[0] if text != [] else ''
@@ -237,28 +234,25 @@ def create_work_dict(url, contents):
         work['Comments'] = comments[0] if comments != [] else ''
         work['Bookmarks'] = bookmarks[0] if bookmarks != [] else ''
 
-        #For a single-chapter work, there is no complete date. In this case, fill in with publish date.
         if len(work['Chapters']) > 2:
             if work['Chapters'][2]== '1':
                 work['CompleteDate'] = work['PublishDate']
 
-        #Find comments-timestamps for single-chapter work.
+
         if work['Comments'] > 0 and 'works' in url:
             id = [i for i in re.findall('[0-9]*', url) if i != ''][0]
             comments_url = 'http://archiveofourown.org/comments/show_comments?work_id=' + str(id) 
             work['Comments'] = get_comments_time(comments_url, opener=opener)
             if work['Comments'] == {}:
                 work['Comments'] = ''
-            
-        #Find comments-timestamps for multi-chapter work.
+
         if work['Comments'] > 0 and 'chapters' in url:
             id = [i for i in re.findall('[0-9]*', url) if i != ''][1]
             comments_url = 'http://archiveofourown.org/comments/show_comments?chapter_id=' + str(id) 
             work['Comments'] = get_comments_time(comments_url, opener=opener)
             if work['Comments'] == {}:
                 work['Comments'] = ''
-        
-        #Find bookmarks-timestamps for all works.
+
         if work['Bookmarks'] > 0:
             id = [i for i in re.findall('[0-9]*', url) if i != ''][0]        
             bookmarks_url = 'http://archiveofourown.org/works/' + id + '/bookmarks'
@@ -271,19 +265,17 @@ def create_work_dict(url, contents):
     return work
 
 
-# In[59]:
+# In[91]:
 
-# content = get_contents('http://archiveofourown.org/works/5772715/chapters/13303756')
-# w =  create_work_dict('http://archiveofourown.org/works/5772715/chapters/13303756', str(content))
-# for i in w:
-#     print i, w[i]
+content = get_contents('http://archiveofourown.org/works/6242977')
+w =  create_work_dict('http://archiveofourown.org/works/6242977', str(content))
+for i in w:
+    print i, w[i]
 
 
-# In[60]:
+# In[92]:
 
 def get_chapters_list(url,opener=opener):
-    #Find chapters urls and publish time for the chapter by going to the navigate page.
-    #Returns tuple (chapter url, time)
     url_full = show_full_contents(url)
     chapters_list = []
     navigate = ''
@@ -297,129 +289,44 @@ def get_chapters_list(url,opener=opener):
     if navigate != '':
         req2 = urllib2.Request(navigate)
         page2 = bs(opener.open(req2))
-#         print page2
-        
-        links = re.findall('<li><a href="(.*?)</span></li>', str(page2))
-        for i in links:
-            chapter_url = 'http://archiveofourown.org' + i.split('\"')[0]
-            chapter_index = re.findall('[0-9]+\.', i) [0].replace('.', '')
-            chapter_time = re.findall('<span class="datetime">\((.*?)\)', i)[0]
-            chapters_list.append((chapter_url, chapter_index, chapter_time))
-            
+        for link in page2.find_all('a'):
+            if 'chapters' in link.get('href'):
+                chapters_list.append('http://archiveofourown.org' + link.get('href'))
     return chapters_list
 
 
-# In[61]:
-
-# get_chapters_list('http://archiveofourown.org/works/5687074/')
-
-
-# In[62]:
+# In[93]:
 
 def read_single_work(url):
-    #Retrieve information from single-chapter work
     url_full = show_full_contents(url)
     c = get_contents(url_full)
     work = create_work_dict(url_full, str(c))
-    work['ChapterIndex'] = ''
     write_work_content(work,outfile)
-
-
-# In[63]:
-
-def read_chapter(url, idx, time):
-    #Retrieve information from multi-chapter work. 
-    #In this case, the publish time is replaced with the publish time for each chapter, but the complete time
-    #and update time is still for the work as a whole.
-    url_full = show_full_contents(url)
-    c = get_contents(url_full)
-    work = create_work_dict(url_full, str(c))
-    work['PublishDate'] = time
-    work['ChapterIndex'] = idx
-    write_work_content(work,outfile)
-
-
-# In[64]:
-
-# s = get_bookmarks_time('http://archiveofourown.org/works/5951704/bookmarks')
-# sum(s.values())
-
-
-# In[65]:
-
-# get_next_chapter('http://archiveofourown.org/works/3078407?view_adult=true')
-
-
-# In[66]:
-
-# s = get_contents('http://archiveofourown.org/works/5051548?view_adult=true')
-
-
-# In[67]:
-
-# d = create_work_dict('u',str(s))
-
-
-# In[68]:
-
-# d = create_work_dict('http://archiveofourown.org/works/5205566',str(c))
-
-
-# In[69]:
-
-# c = bs(urllib2.urlopen('http://archiveofourown.org/works/5051548?view_adult=true'))
-
-
-# In[70]:
-
-# req2 = urllib2.Request('http://archiveofourown.org/works/5051548/navigate')
-# page2 = bs(opener.open(req2))
-# for link in page2.find_all('a'):
-#     if 'Chapter' in link.text:
-#         print link.text, link.get('href')
-
-
-# In[71]:
-
-# ch = get_chapters_list('http://archiveofourown.org/works/5144414/')
-
-
-# In[ ]:
 
 #main loop
-def run_scraper():
-    write_header(outfile)
-    start_time = time.time()
-    count = 0
-    try:
-        for i in range(start_page, max_page+1):
-            # print 'start crawling page:', i
-            page = find_page(start, i)
-            worklist = find_works(page)
-            for w in worklist:
-                ch_list_time = get_chapters_list(w)
-                if ch_list_time != []:
-                    for ch in ch_list_time:
-                        ch_url = ch[0]
-                        ch_idx = ch[1]
-                        ch_time = ch[2]
-                        read_chapter(ch_url, ch_idx, ch_time)
-                else:
-                    read_single_work(w)
-                count += 1
+write_header(outfile)
+start_time = time.clock()
+count = 0
 
-            # print 'finished crawling page:', i
-            with open('./log.txt', 'a') as g:
-                g.write('finished crawling page:', i)
+for i in range(start_page, max_page+1):
+    try:
+        page = find_page(start, i)
+        worklist = find_works(page)
+        for w in worklist:
+            ch_list = get_chapters_list(w)
+            if ch_list != []:
+                read_single_work(w)
+                for ch in ch_list:
+                    read_single_work(ch)
+            else:
+                read_single_work(w)
+            count += 1
+        # print 'crawling page:', i
     except:
-        time.sleep(5)
         pass
 
-    # print 'Saved %s works from %s pages of tag %s in %s seconds .' %(count, i, 'Sherlock Holmes', str(time.time() - start_time))        
+print 'Saved %s works from %s pages of tag %s in %s seconds .' %(count, i, 'Sherlock Holmes', str(time.clock() - start_time))        
 
 
-# In[ ]:
-if __name == "__main__":
-    run_scraper()
 
 
