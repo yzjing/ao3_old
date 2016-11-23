@@ -8,7 +8,7 @@ import numpy as np
 from time import time
 import pandas as pd
 import re
-
+from scipy import sparse
 
 # In[10]:
 
@@ -16,12 +16,12 @@ def get_distribution_matrix(corpus, ngram):
     vectorizer = CountVectorizer(stop_words='english', ngram_range = (ngram,ngram))
     f = vectorizer.fit_transform(corpus)
     l = len(vectorizer.get_feature_names())
-    return f.toarray(), l
+    return np.divide(f, l)
 
 
 # In[6]:
 
-df = pd.read_csv('../../data/shakespare_william_works_preprocessed.tsv', sep = '\t')
+df = pd.read_csv('../../data/preprocessed_data/shakespare_william_works_preprocessed.tsv', sep = '\t')
 
 
 # In[7]:
@@ -34,30 +34,12 @@ for i in df.Text.tolist():
     doc.append(i)             
 
 
-# In[8]:
-
-# vectorizer = CountVectorizer(stop_words='english', ngram_range = (2,2))
-# f = vectorizer.fit_transform(doc)
-# vectorizer.get_feature_names()[0:100]
-
-
-# In[11]:
-
 t0 = time()
-m, l = get_distribution_matrix(doc, 2)
+m = get_distribution_matrix(doc, 2)
+m_mean = sparse.csr_matrix.mean(m, axis = 0)
+print m_mean[0]
 print("done in %0.3fs." % (time() - t0))
 
-
-# In[7]:
-
-m.shape
-
-
-# In[ ]:
-
-m_d = np.divide(m, l)
-
-print('process completed')
 
 
 
