@@ -1,7 +1,4 @@
-
-# coding: utf-8
-
-# In[1]:
+import multiprocessing
 
 from sklearn.feature_extraction.text import CountVectorizer
 import numpy as np
@@ -13,10 +10,6 @@ sys.path.append('../../util/')
 import sgt
 from collections import Counter
 from nltk.stem.snowball import EnglishStemmer
-
-
-# In[2]:
-
 st = EnglishStemmer()
 
 
@@ -93,14 +86,13 @@ def calc_sgt(line_dict, voc):
 def calc_kl(p, q):
     return sum([p[i]*(np.log2(p[i]/q[i])) for i in range(len(p))])
 
-
 def main(fandom):
     print('working on fandom: ', fandom)
     df = pd.read_csv('../../data/preprocessed_data/' + fandom+'_preprocessed.tsv', sep = '\t')
-    df = df.head(200)
     kl_all = []
     t0 = time()
     min_df = 2
+        
     timelist = create_timelist(df)
 
     for t in timelist:
@@ -134,13 +126,11 @@ def main(fandom):
     with open(fandom, 'w') as g:
         for i in kl_all:
             g.write(str(i))
+            g.write('\n')
     print("done in %0.3fs." % (time() - t0))
 
 
 fandoms = [
-'hamilton_miranda',
-'shakespare_william_works',
-'les_miserables_schonberg_boublil',
 'bishoujo_senshi_sailor_moon',
 'kuroko_no_basuke',
 'les_miserables_all_media_types',
@@ -174,9 +164,12 @@ fandoms = [
 'sherlock(TV)'
 ]
 
+jobs = []
 for fandom in fandoms:
-    main(fandom)
-    break
+    p = multiprocessing.Process(target=main, args=(fandom,))
+    jobs.append(p)
+    p.start()
+
 
 
 
