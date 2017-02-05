@@ -11,6 +11,7 @@ import sgt
 from collections import Counter
 from nltk.stem.snowball import EnglishStemmer
 st = EnglishStemmer()
+import cPickle as pickle
 
 
 # In[3]:
@@ -89,7 +90,8 @@ def calc_kl(p, q):
 def main(fandom):
     print('working on fandom: ', fandom)
     df = pd.read_csv('../../data/preprocessed_data/' + fandom+'_preprocessed.tsv', sep = '\t')
-    kl_all = []
+    # df = df.head(200)
+    kl_all = {}
     t0 = time()
     min_df = 2
         
@@ -110,8 +112,10 @@ def main(fandom):
             vocab = get_voc(corp,1,min_df)
             unigram_dict = create_unigram_freq_dict(corp, vocab)
             for i in unigram_dict:
-                sgt_list.append(calc_sgt(i, vocab))
-            
+                try:
+                    sgt_list.append(calc_sgt(i, vocab))
+                except:
+                    continue
             # calculate kl.
             # std: "standard work", average of the numpy matrix
             # calculate kl of each work - std work in each month
@@ -122,11 +126,8 @@ def main(fandom):
             for row in sgt_array:
                 kl = calc_kl(std, row)
                 kl_month.append(kl)
-            kl_all.append(np.average([i for i in kl_month if not np.isinf(i)]))
-    with open(fandom, 'w') as g:
-        for i in kl_all:
-            g.write(str(i))
-            g.write('\n')
+            kl_all[t] = np.average([i for i in kl_month if not np.isinf(i)])
+    pickle.dump(kl_all, open( fandom + '.p', "wb" ) )
     print("done in %0.3fs." % (time() - t0))
 
 
@@ -171,6 +172,10 @@ for fandom in fandoms:
     p.start()
 
 
-
+'''done:
+'hamilton_miranda',
+'shakespare_william_works',
+'les_miserables_schonberg_boublil',
+'''
 
 
