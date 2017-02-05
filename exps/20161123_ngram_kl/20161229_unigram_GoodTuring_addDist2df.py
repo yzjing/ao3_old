@@ -1,4 +1,7 @@
-import multiprocessing
+
+# coding: utf-8
+
+# In[1]:
 
 from sklearn.feature_extraction.text import CountVectorizer
 import numpy as np
@@ -10,6 +13,10 @@ sys.path.append('../../util/')
 import sgt
 from collections import Counter
 from nltk.stem.snowball import EnglishStemmer
+
+
+# In[2]:
+
 st = EnglishStemmer()
 
 
@@ -39,12 +46,15 @@ def get_voc(corpus, ngram, mindf):
 # In[5]:
 
 # compute unigram-frequency dict using the same preprocessing, using only words from the vocabulary
-def create_unigram_freq_dict(doc, voc):
-    text = []
-    for line in doc:
-        line = re.findall(u'(?u)\\b\\w\\w+\\b', line)
-        line = [st.stem(word) for word in line if word in voc]
-        text.append(dict(Counter(line)))
+def create_unigram_freq_dict(df, voc):
+    text = {}
+    df_text = df.Text.tolist()
+    for line in df_text:
+        line_f = re.sub(r'aA|aa', 'a', line)
+        line_f = re.sub(r'\\xe2........|\\xc|\\xa|\\n|[0123456789*_]', '', line_f).lower()
+        line_f = re.findall(u'(?u)\\b\\w\\w+\\b', line_f)
+        line_f = [st.stem(word) for word in line_f if word in voc]
+        text[line] = dict(Counter(line_f))
     return text
 
 
@@ -62,7 +72,7 @@ def create_df_time(df, time):
     return df[df.PublishDate.str[:7] == time]
 
 
-# In[49]:
+# In[8]:
 
 # calculate unigram probabilities by simple Good Turing smoothing.
 # imput: unigram-freq dict
@@ -86,53 +96,81 @@ def calc_sgt(line_dict, voc):
 def calc_kl(p, q):
     return sum([p[i]*(np.log2(p[i]/q[i])) for i in range(len(p))])
 
+
+# In[13]:
+
+def get_dist(row):
+    return calc_sgt(unigram_dict[row['Text']], vocab)
+
+
+# In[14]:
+
+# tune this for filtering?
+
+min_df = 2
+if len(df) > min_df*10:
+    
+    # Add a column of smoothed unigram probablities to df
+    corp = create_corpus_for_voc(df)
+    vocab = get_voc(corp,1,min_df)
+    unigram_dict = create_unigram_freq_dict(df, vocab)
+df['Dist'] = df.apply(lambda row: get_dist(row), axis=1)
+
+
+# In[44]:
+
+# Take average of distributions of the month
+def calc_monthly_std(df, month):
+    df_t = create_df_time(df, month)
+    sgt_array = np.asarray(df_t.Dist.tolist())
+    std = np.mean(sgt_array, axis=0)
+    return std
+
+
+# In[56]:
+
+# kl between a distribution and std of the month
+def calc_kl2std(dist, std_month):
+    try:
+        return calc_kl(dist, std_month)
+    except:
+        return float('nan')
+
+def date_today(cell):
+    try:
+        y, m, d = cell.split('-')
+        return abs(date.today() - date(int(y), int(m), int(d))).days
+    except:
+        return 0
+
+
 def main(fandom):
     print('working on fandom: ', fandom)
     df = pd.read_csv('../../data/preprocessed_data/' + fandom+'_preprocessed.tsv', sep = '\t')
-    kl_all = []
-    t0 = time()
-    min_df = 2
-        
-    timelist = create_timelist(df)
 
-    for t in timelist:
-        sgt_list = []
-        df_t = create_df_time(df, t)
-        
-        # len(df_t) must > min_df
-        # tune this for filtering?
-        if len(df_t) > min_df*10:
-            
-            # output of the following pipeline:
-            # a list of lists, each list containing sgt word probablity
-            # word order is supposed to be the same
-            corp = create_corpus_for_voc(df_t)
-            vocab = get_voc(corp,1,min_df)
-            unigram_dict = create_unigram_freq_dict(corp, vocab)
-            for i in unigram_dict:
-                try:
-                    sgt_list.append(calc_sgt(i, vocab))
-                except:
-                    continue
-            # calculate kl.
-            # std: "standard work", average of the numpy matrix
-            # calculate kl of each work - std work in each month
-            # then use the average as kl of the month
-            sgt_array = np.asarray(sgt_list)
-            std = np.mean(sgt_array, axis=0)
-            kl_month = []
-            for row in sgt_array:
-                kl = calc_kl(std, row)
-                kl_month.append(kl)
-            kl_all.append(np.average([i for i in kl_month if not np.isinf(i)]))
-    with open(fandom, 'w') as g:
-        for i in kl_all:
-            g.write(str(i))
-            g.write('\n')
-    print("done in %0.3fs." % (time() - t0))
+    # make a dict of std to reduce calculation
+    timelist = create_timelist(df)
+    std_all = {}
+    for time in timelist:
+        std_all[time] = calc_monthly_std(df_t, time)
+
+    df['KL'] = df.apply(lambda row: calc_kl2std(row['Dist'], std_all.get(str(row['PublishDate'])[:7])), axis = 1)
+
+    df['PublishDate'] = df.apply(lambda row: date_today(row['PublishDate']), axis = 1)
+    df['CompleteDate'] = df.apply(lambda row: date_today(row['CompleteDate']), axis = 1)
+
+    df = df.groupby(['AdditionalTags', 'ArchiveWarnings', 'Author', 'Bookmarks',\
+       'Category',  'Chapters', 'Characters', 'Fandoms', 'Hits', 'Kudos', 'Rating', \
+        'Relationship', 'Title', 'UpdateDate', 'Words'])\
+        .agg({'PublishDate': np.max, 'CompleteDate': np.min, 'Comments': np.sum, 'KL': [np.mean]}).reset_index()
+
+    df.to_csv('../../data/' + fandom + '.processed3.tsv', index = False, sep = '\t')
 
 
 fandoms = [
+'hamilton_miranda',
+'shakespare_william_works',
+'les_miserables_schonberg_boublil',
 'bishoujo_senshi_sailor_moon',
 'kuroko_no_basuke',
 'les_miserables_all_media_types',
@@ -166,11 +204,12 @@ fandoms = [
 'sherlock(TV)'
 ]
 
-jobs = []
 for fandom in fandoms:
-    p = multiprocessing.Process(target=main, args=(fandom,))
-    jobs.append(p)
-    p.start()
+    main(fandom)
+    break
+
+
+
 
 
 
