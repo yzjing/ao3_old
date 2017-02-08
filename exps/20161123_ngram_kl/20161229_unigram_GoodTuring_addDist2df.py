@@ -99,22 +99,8 @@ def calc_kl(p, q):
 
 # In[13]:
 
-def get_dist(row):
-    return calc_sgt(unigram_dict[row['Text']], vocab)
-
-
-# In[14]:
-
-# tune this for filtering?
-
-min_df = 2
-if len(df) > min_df*10:
-    
-    # Add a column of smoothed unigram probablities to df
-    corp = create_corpus_for_voc(df)
-    vocab = get_voc(corp,1,min_df)
-    unigram_dict = create_unigram_freq_dict(df, vocab)
-df['Dist'] = df.apply(lambda row: get_dist(row), axis=1)
+def get_dist(row, di, vocab):
+    return calc_sgt(di[row['Text']], vocab)
 
 
 # In[44]:
@@ -131,10 +117,8 @@ def calc_monthly_std(df, month):
 
 # kl between a distribution and std of the month
 def calc_kl2std(dist, std_month):
-    try:
-        return calc_kl(dist, std_month)
-    except:
-        return float('nan')
+    return calc_kl(dist, std_month)
+
 
 def date_today(cell):
     try:
@@ -148,28 +132,40 @@ def main(fandom):
     print('working on fandom: ', fandom)
     df = pd.read_csv('../../data/preprocessed_data/' + fandom+'_preprocessed.tsv', sep = '\t')
 
+    # tune this for filtering?
+    min_df = 4
+
+    # Add a column of smoothed unigram probablities to df
+    corp = create_corpus_for_voc(df)
+    vocab = get_voc(corp,1,min_df)
+    unigram_dict = create_unigram_freq_dict(df, vocab)
+    df['Dist'] = df.apply(lambda row: get_dist(row, unigram_dict, vocab), axis=1)
+
     # make a dict of std to reduce calculation
     timelist = create_timelist(df)
     std_all = {}
     for time in timelist:
-        std_all[time] = calc_monthly_std(df_t, time)
+        std_all[time] = calc_monthly_std(df, time)
 
     df['KL'] = df.apply(lambda row: calc_kl2std(row['Dist'], std_all.get(str(row['PublishDate'])[:7])), axis = 1)
 
     df['PublishDate'] = df.apply(lambda row: date_today(row['PublishDate']), axis = 1)
     df['CompleteDate'] = df.apply(lambda row: date_today(row['CompleteDate']), axis = 1)
 
+    df = df.fillna(0)
+    
+    
     df = df.groupby(['AdditionalTags', 'ArchiveWarnings', 'Author', 'Bookmarks',\
        'Category',  'Chapters', 'Characters', 'Fandoms', 'Hits', 'Kudos', 'Rating', \
         'Relationship', 'Title', 'UpdateDate', 'Words'])\
         .agg({'PublishDate': np.max, 'CompleteDate': np.min, 'Comments': np.sum, 'KL': [np.mean]}).reset_index()
 
-    df.to_csv('../../data/' + fandom + '.processed3.tsv', index = False, sep = '\t')
+    df.to_csv('../../data/' + fandom + '_processed3.tsv', index = False, sep = '\t')
 
 
 fandoms = [
-'hamilton_miranda',
 'shakespare_william_works',
+'hamilton_miranda',
 'les_miserables_schonberg_boublil',
 'bishoujo_senshi_sailor_moon',
 'kuroko_no_basuke',
