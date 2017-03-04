@@ -1,0 +1,76 @@
+% $ biblatex auxiliary file $
+% $ biblatex version 2.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\entry{wiki:transf_work}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Fanlore}{F.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{F1}
+  \strng{fullhash}{F1}
+  \field{sortinit}{F}
+  \field{note}{[Online; accessed 14-December-2015]}
+  \field{title}{Transformative Work}
+  \verb{url}
+  \verb http://fanlore.org/wiki/Transformative_Work
+  \endverb
+  \field{year}{2015}
+\endentry
+
+\entry{gales1995good}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Gales}{G.}%
+     {William~A}{W.~A.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{GWA1}
+  \strng{fullhash}{GWA1}
+  \field{sortinit}{G}
+  \field{title}{Good-Turing smoothing without tears}
+  \field{journaltitle}{Journal of Quantitative Linguistics}
+  \field{year}{1995}
+\endentry
+
+\entry{wiki:fandom}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Wikipedia}{W.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{W1}
+  \strng{fullhash}{W1}
+  \field{sortinit}{W}
+  \field{note}{[Online; accessed 14-December-2015]}
+  \field{title}{Fandom--- {W}ikipedia{,} The Free Encyclopedia}
+  \verb{url}
+  \verb https://en.wikipedia.org/wiki/Fandom
+  \endverb
+  \field{year}{2015}
+\endentry
+
+\lossort
+\endlossort
+
+\endinput
