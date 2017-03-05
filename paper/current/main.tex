@@ -8,6 +8,7 @@
 \definecolor{light-gray}{gray}{0.8}
 \def \del #1{ {\color{light-gray}{#1}} }
 \def\yy#1{\footnote{\color{red}\textbf{#1 -YY}} }
+\def\ej#1{\footnote{\color{blue}\textbf{#1 -EJ}} }
 \usepackage{hyperref}
 
 
@@ -16,7 +17,7 @@
 \graphicspath{ {./figs} }
 
 \usepackage{array}
-
+\usepackage{subcaption}
 %}}}
 
 \begin{document} %{{{
@@ -31,12 +32,12 @@
 
 \paragraph{}Transformative works, or in a more common term, fan works, are one typical kind of production from fandoms\cite{wiki:transf_work}. These are creative works made by fans based on one or more original works, and are often centered around certain characters or story lines. For example, a story written by a contemporary fan about Sherlock Holmes in his retirement is considered a fan fiction in the Sherlock Holmes fandom. Although fan works contain multiple media types such as art, music and games, one of the most common type is creative writing--fanfictions.
 
-\paragraph{} This project studies the evolution of fanfictions in fandoms. Data for the study comes from Archive of Our Own (AO3). This site hosts fan works --- mainly fanfictions --- that users upload and their metadata, and categorizes them based on fandoms. Established in 2010, it has become one of the most popular transformative work archives. We collected fanfictions from 42 fandoms according to AO3's list of most popular fandoms as of March 2016 \footnote{from this list: \url{http://archiveofourown.org/media}}. We only kept the fictions written in English, which leaves us with 3,726,307 fictions. The number of fictions in each fandom is shown in Figure \ref{fig: fandom_size}.
-
+\paragraph{} This project studies the evolution of fanfictions in fandoms. Data for the study comes from Archive of Our Own (AO3). This site hosts fan works --- mainly fanfictions --- that users upload and their metadata, and categorizes them based on fandoms. Established in 2010, it has become one of the most popular transformative work archives. We collected fanfictions from 42 fandoms according to AO3's list of most popular fandoms as of March 2016 \footnote{from this list: \url{http://archiveofourown.org/media}}. \ej{The page lists 50 fandoms, 5 for each category; there are some overlappings, after removing which 42 are left. Still some of these can have heavy overlappings (eg. ``Marvel" and ``Marvel movies". I might remove these as well.}
+We only kept the fictions written in English, which leaves us with 3,726,307 fictions. The number of fictions in each fandom is shown in Figure \ref{fig:fandom_size}.
 
 \begin{figure}[htbp]
 \begin{center}
-\includegraphics[width=0.8\textwidth]{/fandom_size.png}
+\includegraphics[width=0.9\textwidth]{/fandom_size.png}
 \caption{Number of fanfictions in each fandom}
 \label{fig:fandom_size}
 \end{center}
@@ -55,40 +56,61 @@
 \hline
 Additional Tags, Characters, Relationship, Summary, Text, Title
  & Fandoms,  Archive Warnings, Category, Rating
-& Author, Notes
-& Bookmarks, Chapter Index, Chapters, Comments, Complete Date, Hits, Kudos, Language, Publish Date, Update Date, Word Count\\
+&  Notes
+& Author, Bookmarks, Chapter Index, Chapters, Comments, Complete Date, Hits, Kudos, Language, Publish Date, Update Date, Word Count\\
 \hline
 \end{tabular}
 \end{center}
 \label{tab:metadata}
 \end{table}%
 
-\paragraph{} Among the metadata fields, we're especially interested in the Kudos field, which shows how many times a fiction has been ``liked" by readers. This is a useful proxy for the popularity of a piece of work in a specific fandom.
+\paragraph{} Among the metadata fields, we're especially interested in the fields ``Hits" and ``Kudos", which shows how many times a fiction has been clicked or liked by readers. These are useful proxies for the popularity of a piece of work in a specific fandom.
 
-\paragraph{} We model the fictions with a unigram language model. The Good-Turing smoothing\cite{gales1995good} is applied to assign non-zero probabilities to previously unseen unigrams. When creating the unigram list, we also remove the rare unigrams that only appear once.
+\paragraph{} We model the fictions with a unigram language model. The Good-Turing smoothing\cite{gales1995good} is applied to assign non-zero probabilities to previously unseen unigrams. When creating the unigram list, we also remove the rare unigrams that appear in less than 5 documents.
 
-\paragraph{} This transformation allows us to apply many text analysis methods. We choose to use the Kullback--Leibler divergence to measure the distance between texts. Under this measurement, fictions from the same author are more similar and have a smaller KL divergence between each other, compared to fictions from different authors, as shown in Figure \ref{fig:kl_comp}.
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=0.6\textwidth]{/kl_validation.png}
+\caption{KL divergence between fictions from the same author and fictions from different authors in the Shakespeare fandom. The blue point: the author with highest number of fictions in this fandom. The average KL divergence between each pair of his/her fictions is computed with error bar generated by bootstrap resampling. The green point: The computation repeated on a random example with the same size.}
+\label{fig:kl_validation}
+\end{center}
+\end{figure}
+
+\paragraph{} This transformation allows us to apply many text analysis methods. We choose to use the Kullback--Leibler divergence to measure the distance between texts. Under this measurement, fictions from the same author are more similar and have a smaller KL divergence between each other, compared to fictions from different authors, \ej{The leave-one-out comparison is too computationally demanding. May need to wait until I figure out how to run my script on Big Red 2..} as shown in Figure \ref{fig:kl_validation}.
+
+\paragraph{} We further define the concept of a \emph{typical} fiction. A typical fiction of a time period is the average of probability distributions of all fictions in that time period. This allows us to calculate the KL divergence between any fiction and the typical fiction. We then attempt to analyze the relation between a fiction's distance to the typical fiction and the Kudos or Hits that it receive. Because the general distribution of Kudos and Hits follow long-tail distributions (see Figure \ref{fig:long_tail}), log-transformation is applied to balance out this effect. 
+
+\paragraph{} Figure \ref{fig:kl_fields} shows a overall descending pattern in Kudos and Hits when KL divergence increases, with the exception of two fandoms ``original work" and ``shakespeare works". It is also interesting to consider ``original work", because as s specific category in AO3, it contains original stories instead of fanfictions. Its standing out indicated that the other fandoms may indeed have some behavior in common. 
 
 
 \begin{figure}[htbp]
 \begin{center}
-\includegraphics[width=\textwidth]{/kl_comparison.png}
-\caption{KL divergence between fictions from the same author and fictions from different authors in the Shakespeare fandom. In each time slice, an author with 5 or more fictions is selected. The average KL divergence between each pair of his/her fictions is them computed. The computation is then repeated on a random example with the same size. }
-\label{fig:kl_comp}
+\includegraphics[width=0.6\textwidth]{/long_tail.png}
+\caption{Distribution of Kudos and Hits}
+\label{fig:long_tail}
 \end{center}
 \end{figure}
 
-\paragraph{} We further define the concept of a \emph{standard work}. A standard work of a time period is the average of probability distributions of all works in that time period. This allows us to calculate the KL divergence between a work and the standard work. We then attempt to analyze the relation between a fiction's distance to the stand work and the kudos that it receive. Figure \ref{fig:kl_kudos} shows that the kudos peak with the KL divergence slightly below a z-score of 0, that is, when the fiction is a little more similar to the standard work than average. However, besides this there seems not to be a consistent pattern across fandoms.
 
-\begin{figure}[htbp]
-\begin{center}
-\includegraphics[width=\textwidth]{/kl_kudos_4fandoms.png}
-\caption{Relation between fictions' KL divergence to standard work and their kudos in 4 fandoms. Both statistics are turned into z-scores. Highest kudos show up with z-score of the KL divergence slightly below zero.}
-\label{fig:kl_kudos}
-\end{center}
-\end{figure}
+\begin{figure*}[t!]
+    \centering
+    \begin{subfigure}[t]{0.7\textwidth}
+        \centering
+        \includegraphics[height=7in]{/kl_kudos.png}
+        \caption{Kudos}
+    \end{subfigure}%
+    ~ 
+    \begin{subfigure}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[height=7in]{/kl_hits.png}
+        \caption{Hits}
+    \end{subfigure}
+    \caption{Relation between fictions' KL divergence to standard work and their Kudos or Hits in 8 fandoms. The KL divergence is turned into z-score; both Kudos and Hits are log-transformed. }
+    \label{fig:kl_fields}
+\end{figure*}
 
 %}}}
+
 
 
 
