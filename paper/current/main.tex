@@ -82,9 +82,11 @@ We model the fictions with a unigram language model. The Good-Turing smoothing\c
 \end{center}
 \end{figure}
 
-\paragraph{} This transformation allows us to apply many text analysis methods. We choose to use the Kullback--Leibler divergence to measure the distance between texts. Under this measurement, fictions from the same author are more similar and have a smaller KL divergence between each other, compared to fictions from different authors, \ej{The leave-one-out comparison is too computationally demanding. May need to wait until I figure out how to run my script on Big Red 2..} as shown in Figure \ref{fig:kl_validation}.
+This transformation allows us to apply many text analysis methods. We choose to use the Kullback--Leibler divergence to measure the distance between texts. Under this measurement, fictions from the same author are more similar and have a smaller KL divergence between each other, compared to fictions from different authors, as shown in Figure \ref{fig:kl_validation}.
 
 \paragraph{} We further define the concept of a \emph{typical} fiction. A typical fiction of a time period is the average of probability distributions of all fictions in that time period. This allows us to calculate the KL divergence between any fiction and the typical fiction. We then attempt to analyze the relation between a fiction's distance to the typical fiction and the Kudos or Hits that it receive. Because the general distribution of Kudos and Hits follow long-tail distributions (see Figure \ref{fig:long_tail}), log-transformation is applied to balance out this effect. 
+
+% Reorganize and discuss on kudos/hits/distribution
 
 \paragraph{} Figure \ref{fig:kl_fields} shows a overall descending pattern in Kudos and Hits when KL divergence increases, with the exception of two fandoms ``original work" and ``shakespeare works". It is also interesting to consider ``original work", because as s specific category in AO3, it contains original stories instead of fanfictions. Its standing out indicated that the other fandoms may indeed have some behavior in common. 
 
@@ -92,7 +94,8 @@ We model the fictions with a unigram language model. The Good-Turing smoothing\c
 \begin{figure}[htbp]
 \begin{center}
 \includegraphics[width=0.6\textwidth]{/long_tail.png}
-\caption{Distribution of Kudos and Hits}
+\caption{Log-log CCDF of the distribution of Kudos and Hits. Both follows long-tail distributions, meanwhile, the curve of 
+Kudos is steeper, indicating there are more fictions that receive little or no Kudos, while the curve of Hits is smoother. }
 \label{fig:long_tail}
 \end{center}
 \end{figure}
