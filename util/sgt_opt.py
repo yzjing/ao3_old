@@ -47,6 +47,7 @@ __version__ = "0.3"
 
 from scipy import linalg
 from numpy import c_, exp, log, inf, NaN, sqrt
+from collections import Counter
 
 def countOfCountsTable(counts, sparse=True):
     """
@@ -61,12 +62,7 @@ def countOfCountsTable(counts, sparse=True):
     else:
         cs = xrange(1, max(counts.values())+1)
 
-    countsOfCounts = {}
-    for c in cs:
-        countsOfCounts[c] = 0
-        for species, speciesCount in counts.items():
-            if speciesCount == c:
-                countsOfCounts[c] += 1
+    countsOfCounts = dict(Counter(cs))
 
     return countsOfCounts
 
