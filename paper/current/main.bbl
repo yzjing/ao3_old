@@ -51,6 +51,13 @@
   \field{year}{1995}
 \endentry
 
+\entry{littlered}{misc}{}
+  \field{sortinit}{L}
+  \field{title}{{Little Red Riding Hood}, howpublished = {\url{
+  https://en.wikipedia.org/wiki/Little_Red_Riding_Hood}}, note = {Accessed:
+  2017-06-11}}
+\endentry
+
 \entry{wiki:fandom}{misc}{}
   \name{author}{1}{}{%
     {{}%

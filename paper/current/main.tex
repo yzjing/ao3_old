@@ -28,14 +28,30 @@
 
 \section{Introduction} %{{{
 \label{sec:introduction}
-Many creative cultural products in human history are centered around a common topic and developed into different versions through time and interaction between creators. Myths and folktales in oral traditions of civilizations around the world often follow this pattern, for example, the tale of the Little Red Riding Hood or Mahabharata. 
+Many creative cultural products in human history are centered around a common topic and developed into different versions through time and interaction between creators. Myths and folktales in oral traditions of civilizations around the world often follow this pattern, for example, the tale of the \emph{Little Red Riding Hood} originated in the 10th century, and has developed multiple variations\cite{littlered}. The legends like \emph{Mahabharata} and \emph{Iliad} also fit with this pattern.
 
-In the contemporary pop culture, this tradition is sometimes found in a new form --- fan works. Sometimes defined more formally as transformative works, they are creative works made by fans based on one or more original works, and are often centered around certain characters or story lines\cite{wiki:transf_work}. For example, a story written by a contemporary fan about Sherlock Holmes in his retirement is considered a fan work. Although fan works contain multiple media types such as art, music and games, one of the most common type is creative writing---fanfictions. People interested in such activities often 
-connect and interact with each other, forming communities known as fandoms\cite{wiki:fandom}.
+In the contemporary pop culture, this tradition is sometimes found in a new form --- fan works. Sometimes defined more formally as transformative works, they are creative works made by fans based on one or more original works, and are often centered around certain characters or story lines\cite{wiki:transf_work}. For example, a story written by a contemporary fan about Sherlock Holmes in his retirement is considered a fan work. Although fan works contain multiple media types such as art, music and games, one of the most common type is creative writing---fanfictions. People interested in such activities often connect and interact with each other, forming communities known as fandoms\cite{wiki:fandom}.
 
 Similar to other creative works, fanfictions are constantly under selection and evaluation of their readers. The most successful fanfictions may be published and even adapted into other media forms (for example, \emph{Fifty Shades of Grey} was originally a fanfiction of \emph{Twilight}). Meanwhile, the majority of them remain mostly unknown.
 
-This project tries to study what makes fanfictions popular in fandoms. Data for the study comes from Archive of Our Own (AO3). This site hosts fan works --- mainly fanfictions --- that users upload and their metadata, and categorizes them based on fandoms. Established in 2010, it has become one of the most popular transformative work archives. We collected fanfictions from 50 fandoms according to AO3's list of most popular fandoms as of March 2016 \footnote{from this list: \url{http://archiveofourown.org/media}}. To avoid duplication, we remove fandoms with heavy overlapping (e.g.: we keep \emph{Marvel} and removed \emph{Marvel movies}). Fandoms that cover diverse topics (e.g.\emph{k-pop}) are also removed. Finally, we only kept the fictions written in English. This leaves us with 904,760 fictions from 25 fandoms. The number of fictions in each fandom is shown in Figure \ref{fig:fandom_size}.
+We study the creativity and popularity of fanfictions in fandoms using data from Archive of Our Own (AO3). This site hosts fan works --- mainly fanfictions --- that users upload and their metadata, and categorizes them based on fandoms. Established in 2010, it has become one of the most popular transformative work archives. We first show that the creativity of fanfictions has a negative effect on their popularity -- the more a fiction is different from other fictions, the less it is liked by its readers. Then we show that this negative relation influences how authors create fictions: over time, the average distance between fictions become smaller. (Do we really have this result?)
+
+%}}}
+
+\section{Results} %{{{
+\label{sec:results}
+
+%}}}
+
+
+
+\section{Methods} %{{{
+\label{sec:methods}
+
+%}}}
+
+\subsection{Data}
+We collected fanfictions from 50 fandoms according to AO3's list of most popular fandoms as of March 2016 \footnote{from this list: \url{http://archiveofourown.org/media}}. To avoid duplication, we remove fandoms with heavy overlapping (e.g.: we keep \emph{Marvel} and removed \emph{Marvel movies}). Fandoms that cover diverse topics (e.g.\emph{k-pop}) are also removed. Finally, we only kept the fictions written in English. This leaves us with 904,760 fictions from 25 fandoms. The number of fictions in each fandom is shown in Figure \ref{fig:fandom_size}.
 
 \begin{figure}[htbp]
 \begin{center}
@@ -80,6 +96,7 @@ Kudos is steeper, indicating there are more fictions that receive little or no K
 \end{center}
 \end{figure}
 
+\subsection{Language model}
 We model the fictions with a unigram language model. The Good-Turing smoothing\cite{gales1995good} is applied to assign non-zero probabilities to previously unseen unigrams. When creating the unigram list, we also remove the rare unigrams that appear in less than 5 documents.
 
 This transformation allows us to apply many text analysis methods. We choose to use the Kullback--Leibler divergence to measure the distance between texts. Under this measurement, fictions from the same author are more similar and have a smaller KL divergence between each other, compared to fictions from different authors, as shown in Figure \ref{fig:kl_validation}.
@@ -97,6 +114,7 @@ We further define the concept of a \emph{typical} fiction. A typical fiction of 
  
 Figure \ref{fig:kl_fields} shows a overall descending pattern in Kudos and Hits when KL divergence increases, with the exception of two fandoms ``original work" and ``shakespeare works". It is also interesting to consider ``original work", because as s specific category in AO3, it contains original stories instead of fanfictions. Its standing out indicated that the other fandoms may indeed have some behavior in common. 
 
+\subsection{Regression}
 
 
 
@@ -118,22 +136,14 @@ Figure \ref{fig:kl_fields} shows a overall descending pattern in Kudos and Hits 
     \label{fig:kl_fields}
 \end{figure*}
 
-%}}}
 
 
 
 
 
 
-\section{Results} %{{{
-\label{sec:results}
 
-%}}}
 
-\section{Methods} %{{{
-\label{sec:methods}
-
-%}}}
 
 \printbibliography
     
