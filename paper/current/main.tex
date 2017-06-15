@@ -40,6 +40,41 @@ We study the creativity and popularity of fanfictions in fandoms using data from
 
 \section{Results} %{{{
 \label{sec:results}
+\subsection{Creativity doesn't make fictions popular}
+We operationalize creativity as the cosine distance between a fiction and the typical fiction in its fandom. In the correlation matrix shown in figure \ref{fig:corr_heatmap}, we found that the cosine distance has a negative correlation with the hits/kudos that fictions receive. In other words, the more creative a fiction is, the less kudos it will receive.
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{/corr_heatmap_agg_1000.png}
+\caption{Pairwise correlation between some important fields }
+\label{fig:corr_heatmap}
+\end{center}
+\end{figure}
+
+We further investigate this relation by fitting a negative binomial regression model. The result of the regression is summarized in figure \ref{regression_screenshot}. It can be observed that the cosine distance has a significant negative effect on Kudos.
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{/regression_screenshot.png}
+\caption{Negative binomial regresion results}
+\label{fig:regression}
+\end{center}
+\end{figure}
+
+A closer look into cosine distance and Kudos is shown in figure \ref{fig:cos_kudos}. Because of the long-tailed distribution of Kudos, we choose to look at the log of Kudos. Except for the Shakespeare fandom, other fandoms has the pattern that Kudos decrease when the cosine distance increases.
+
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=\textwidth]{/cos_log_kudos_agg.png}
+\caption{Cosine distance and the log of kudos.}
+\label{fig:cos_kudos}
+\end{center}
+\end{figure}
+
+
+\subsection{The fandoms grow less creative?}
+
 
 %}}}
 
@@ -67,17 +102,20 @@ Besides the work texts, we also collected metadata including 23 fields. We only 
 \begin{table}[htp]
 \caption{Metadata of the writings}
 \begin{center}
-\begin{tabular}[width=0.8\textwidth]{p{2cm}|p{3cm}|p{5cm}}
+\begin{tabular}[width=0.8\textwidth]{p{2cm}|p{4cm}|p{5cm}}
   \hline			
  Fields & Description & Usage\\ 
    \hline			
-Text & The fiction texts. & All text analysis are carried out on these texts.\\
-Title & Titles of the fictions. & Used to identify the fictions. \\
-Fandoms & Describes which fandom(s) the fiction belongs to. & Used to categorize the fictions.\\
-Author & The author of the fiction. & Used for identifying the fictions and for text analysis. \\
-Hits & The number of times a fiction is clicked on. & A metric for evaluating the fiction's popularity. \\
-Kudos & The number of times that readers "like" the fiction. &  A metric for evaluating the fiction's popularity.\\
-Publish Date & The date the fiction was published. & Used to determine the time period that the fiction belongs to.\\
+Text & The fiction texts. & All text analysis are carried out on these texts.\\\hline
+Title & Titles of the fictions. & Used to identify the fictions. \\\hline
+Fandoms & Describes which fandom(s) the fiction belongs to. & Used to categorize the fictions.\\\hline
+Author & The author of the fiction. & Used for identifying the fictions and for text analysis. \\\hline
+% Hits & The number of times a fiction is clicked on. & A metric for evaluating the fiction's popularity. \\\hline
+Kudos & The number of times that readers "like" the fiction. &  A metric for evaluating the fiction's popularity.\\\hline
+Publish Date & The date the fiction was published. & We use this to determine what time period a fiction belongs to. We also use the time between publish and now to evaluate the ``age" of a fiction.\\\hline
+Chapters & The number of chapters that a fiction has. \\\hline
+Words & The number of words in a fiction.\\\hline
+
 \hline
 \end{tabular}
 \end{center}
@@ -110,32 +148,10 @@ Left: The average cosine distance between fictions from same authors. In a 10-au
 \end{center}
 \end{figure}
 
-We further define the concept of a \emph{typical} fiction. A typical fiction of a time period is the average of probability distributions of all fictions in that time period (a month in this study). This allows us to calculate the distance between any fiction and the typical fiction. We then analyze the relation between a fiction's distance to the typical fiction and the Kudos or Hits that it receives. Because of the long-tailed distribution of Kudos and Hits as described above, log-transformation is applied to the two statistics to balance out this effect. 
-% Reorganize and discuss on kudos/hits/distribution
- 
-Figure \ref{fig:kl_fields} shows a overall descending pattern in Kudos and Hits when KL divergence increases, with the exception of two fandoms ``original work" and ``shakespeare works". It is also interesting to consider ``original work", because as s specific category in AO3, it contains original stories instead of fanfictions. Its standing out indicated that the other fandoms may indeed have some behavior in common. 
+We further define the concept of a \emph{typical} fiction. A typical fiction of a fandom is the average of probability distributions of all fictions in the fandom. This allows us to calculate the distance between any fiction and the typical fiction. 
 
 \subsection{Regression}
-
-
-
-
-\begin{figure*}[t!]
-    \centering
-    \begin{subfigure}[t]{0.7\textwidth}
-        \centering
-        \includegraphics[height=7in]{/kl_kudos.png}
-        \caption{Kudos}
-    \end{subfigure}%
-    ~ 
-    \begin{subfigure}[t]{0.3\textwidth}
-        \centering
-        \includegraphics[height=7in]{/kl_hits.png}
-        \caption{Hits}
-    \end{subfigure}
-    \caption{Relation between fictions' KL divergence to standard work and their Kudos or Hits in 8 fandoms. The KL divergence is turned into z-score; both Kudos and Hits are log-transformed. }
-    \label{fig:kl_fields}
-\end{figure*}
+We apply a negative binomial regression using R's MASS library. 
 
 
 
