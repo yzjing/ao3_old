@@ -97,19 +97,20 @@ Kudos is steeper, indicating there are more fictions that receive little or no K
 \end{figure}
 
 \subsection{Language model}
-We model the fictions with a unigram language model. The Good-Turing smoothing\cite{gales1995good} is applied to assign non-zero probabilities to previously unseen unigrams. When creating the unigram list, we also remove the rare unigrams that appear in less than 5 documents.
+We model the fictions with a unigram language model. The Good-Turing smoothing\cite{gales1995good} is applied to improve the model, and to assign non-zero probabilities to previously unseen unigrams. When creating the set of unigrams, we also remove the rare unigrams that appear in less than 5 documents and left out fictions with less than 500 words.
 
-This transformation allows us to apply many text analysis methods. We choose to use the Kullback--Leibler divergence to measure the distance between texts. Under this measurement, fictions from the same author are more similar and have a smaller KL divergence between each other, compared to fictions from different authors, as shown in Figure \ref{fig:kl_validation}.
+We verify that this model successfully captures the semantic and stylometrical contents of fictions. Using this model, the fictions from the same author are more close to each other compared to fictions from different authors, measuring by cosine distance, as shown in Figure \ref{fig:comparison_unigram_sgt}.
 
 \begin{figure}[htbp]
 \begin{center}
-\includegraphics[width=0.6\textwidth]{/kl_validation.png}
-\caption{KL divergence between fictions from the same author and fictions from different authors in the Shakespeare fandom. The blue point: The average KL divergence of fictions from same authors. KL divergence of fictions from each author is calculated as the average KL divergence between each pair of her fictions. The green point: The computation repeated on random examples with the same size. The error bars are computed with the bootstrap resampling method. }
-\label{fig:kl_validation}
+\includegraphics[width=0.6\textwidth]{/comparison_unigram_sgt.pdf}
+\caption{Cosine distances between fictions from the same author and fictions from different authors in the Shakespeare fandom.
+Left: The average cosine distance between fictions from same authors. In a 10-author dataset, average pairwise cosine distances between fictions from each author is calculated, and the overall distance is the average of the 10 groups. Right: The computation repeated on 10 random groups with the same size. The error bars are computed with the bootstrap resampling method. }
+\label{fig:comparison_unigram_sgt}
 \end{center}
 \end{figure}
 
-We further define the concept of a \emph{typical} fiction. A typical fiction of a time period is the average of probability distributions of all fictions in that time period (a month in this study). This allows us to calculate the KL divergence between any fiction and the typical fiction. We then attempt to analyze the relation between a fiction's distance to the typical fiction and the Kudos or Hits that it receives. Because of the long-tailed distribution of Kudos and Hits as described above, log-transformation is applied to the two statistics to balance out this effect. 
+We further define the concept of a \emph{typical} fiction. A typical fiction of a time period is the average of probability distributions of all fictions in that time period (a month in this study). This allows us to calculate the distance between any fiction and the typical fiction. We then analyze the relation between a fiction's distance to the typical fiction and the Kudos or Hits that it receives. Because of the long-tailed distribution of Kudos and Hits as described above, log-transformation is applied to the two statistics to balance out this effect. 
 % Reorganize and discuss on kudos/hits/distribution
  
 Figure \ref{fig:kl_fields} shows a overall descending pattern in Kudos and Hits when KL divergence increases, with the exception of two fandoms ``original work" and ``shakespeare works". It is also interesting to consider ``original work", because as s specific category in AO3, it contains original stories instead of fanfictions. Its standing out indicated that the other fandoms may indeed have some behavior in common. 
