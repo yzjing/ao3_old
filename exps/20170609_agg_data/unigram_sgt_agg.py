@@ -8,8 +8,7 @@ import pandas as pd
 import re
 import sgt_opt as sgt
 from collections import Counter
-from memory_profiler import profile
-import gc
+# from memory_profiler import profile
 
 # In[3]:
 
@@ -49,16 +48,16 @@ def create_unigram_freq_dict(df, voc):
     return text
 
 
-# In[6]:
-def create_timelist(df):
-    timelist = df.PublishDate.drop_duplicates().tolist()
-    timelist = [str(i)[:7] for i in timelist]
-    return sorted(list(set(timelist)))
+# # In[6]:
+# def create_timelist(df):
+#     timelist = df.PublishDate.drop_duplicates().tolist()
+#     timelist = [str(i)[:7] for i in timelist]
+#     return sorted(list(set(timelist)))
 
 
-# In[7]:
-def create_df_time(df, time):
-    return df[df.PublishDate.str[:7] == time]
+# # In[7]:
+# def create_df_time(df, time):
+#     return df[df.PublishDate.str[:7] == time]
 
 
 # In[8]:
@@ -100,14 +99,13 @@ def get_dist(text, di, vocab):
         return [0]
 
 
-@profile
 def main(fandom):
     print('working on fandom: ', fandom)
-    df = pd.read_csv(fandom + '_agg.tsv', sep = '\t')
+    df = pd.read_csv(fandom + '_agg_1000.tsv', sep = '\t')
 
     # exclude works with less than 500 words
     df = df[df.Words >= 500]
-    df = df.sample(1000)
+    # df = df.sample(1000, replace=True)
       
     # tune this for filtering?
     min_df = 4
@@ -124,6 +122,7 @@ def main(fandom):
     print('Done with: ', fandom)
 
 fandoms = [
+'homestuck',
 'bishoujo_senshi_sailor_moon',
 'haikyuu',
 'hamilton_miranda',
@@ -137,7 +136,6 @@ fandoms = [
 'buffy_the_vampire_slayer',
 'arthurian_mythology_&_related_fandoms',
 'ms_paint_adventures',
-'homestuck',
 'one_direction',
 'attack_on_titan',
 'doctor_who_&_related_fandoms',
@@ -152,12 +150,19 @@ fandoms = [
 ]
 
 for fandom in fandoms:
+    # try:
     main(fandom)
-
+    # except:
+    #     print('failed with: ',fandom)
+    #     continue
+        
 # profile.run('main("shakespare_william_works")')
 
 '''
 done:
 
 ''' 
+
+'''
+'''
 
