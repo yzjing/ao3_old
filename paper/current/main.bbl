@@ -1,83 +1,43 @@
-% $ biblatex auxiliary file $
-% $ biblatex version 2.3 $
-% Do not modify the above lines!
-%
-% This is an auxiliary file used by the 'biblatex' package.
-% This file may safely be deleted. It will be recreated as
-% required.
-%
-\begingroup
-\makeatletter
-\@ifundefined{ver@biblatex.sty}
-  {\@latex@error
-     {Missing 'biblatex' package}
-     {The bibliography requires the 'biblatex' package.}
-      \aftergroup\endinput}
-  {}
-\endgroup
+\begin{thebibliography}{1}
 
-\entry{wiki:transf_work}{misc}{}
-  \name{author}{1}{}{%
-    {{}%
-     {Fanlore}{F.}%
-     {}{}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{F1}
-  \strng{fullhash}{F1}
-  \field{sortinit}{F}
-  \field{note}{[Online; accessed 14-December-2015]}
-  \field{title}{Transformative Work}
-  \verb{url}
-  \verb http://fanlore.org/wiki/Transformative_Work
-  \endverb
-  \field{year}{2015}
-\endentry
+\bibitem{littlered}
+{Little Red Riding Hood}, howpublished = {\url{
+  https://en.wikipedia.org/wiki/little_red_riding_hood}}, note = {Accessed:
+  2017-06-11}.
 
-\entry{gales1995good}{article}{}
-  \name{author}{1}{}{%
-    {{}%
-     {Gales}{G.}%
-     {William~A}{W.~A.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{GWA1}
-  \strng{fullhash}{GWA1}
-  \field{sortinit}{G}
-  \field{title}{Good-Turing smoothing without tears}
-  \field{journaltitle}{Journal of Quantitative Linguistics}
-  \field{year}{1995}
-\endentry
+\bibitem{campbell2008hero}
+{\sc Campbell, J.}
+\newblock {\em The hero with a thousand faces}, vol.~17.
+\newblock New World Library, 2008.
 
-\entry{littlered}{misc}{}
-  \field{sortinit}{L}
-  \field{title}{{Little Red Riding Hood}, howpublished = {\url{
-  https://en.wikipedia.org/wiki/Little_Red_Riding_Hood}}, note = {Accessed:
-  2017-06-11}}
-\endentry
+\bibitem{wiki:transf_work}
+{\sc Fanlore}.
+\newblock Transformative work, 2015.
+\newblock [Online; accessed 14-December-2015].
 
-\entry{wiki:fandom}{misc}{}
-  \name{author}{1}{}{%
-    {{}%
-     {Wikipedia}{W.}%
-     {}{}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{W1}
-  \strng{fullhash}{W1}
-  \field{sortinit}{W}
-  \field{note}{[Online; accessed 14-December-2015]}
-  \field{title}{Fandom--- {W}ikipedia{,} The Free Encyclopedia}
-  \verb{url}
-  \verb https://en.wikipedia.org/wiki/Fandom
-  \endverb
-  \field{year}{2015}
-\endentry
+\bibitem{gales1995good}
+{\sc Gales, W.~A.}
+\newblock Good-turing smoothing without tears.
+\newblock {\em Journal of Quantitative Linguistics\/} (1995).
 
-\lossort
-\endlossort
+\bibitem{gottschall2012storytelling}
+{\sc Gottschall, J.}
+\newblock {\em The storytelling animal: How stories make us human}.
+\newblock Houghton Mifflin Harcourt, 2012.
 
-\endinput
+\bibitem{levi1955structural}
+{\sc L{\'e}vi-Strauss, C.}
+\newblock The structural study of myth.
+\newblock {\em The journal of American folklore 68}, 270 (1955), 428--444.
+
+\bibitem{van2011mahabharata}
+{\sc van Buitenen, J.~A.}
+\newblock {\em The Mahabharata, volume 1: Book 1: The book of the beginning}.
+\newblock University of Chicago Press, 2011.
+
+\bibitem{wiki:fandom}
+{\sc Wikipedia}.
+\newblock Fandom--- {W}ikipedia{,} the free encyclopedia, 2015.
+\newblock [Online; accessed 14-December-2015].
+
+\end{thebibliography}
