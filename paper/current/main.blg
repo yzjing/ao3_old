@@ -3,46 +3,57 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: main.aux
 The style file: acm.bst
 Database file #1: main.bib
+Warning--entry type for "marvelmultiverse" isn't style-file defined
+--line 37 of file main.bib
+Warning--entry type for "spiderman" isn't style-file defined
+--line 52 of file main.bib
+Warning--entry type for "2016film" isn't style-file defined
+--line 60 of file main.bib
+Warning--entry type for "ao3stats" isn't style-file defined
+--line 69 of file main.bib
+Warning--entry type for "fanfiction.net" isn't style-file defined
+--line 77 of file main.bib
 Warning--to sort, need author or key in littlered
-You've used 8 entries,
+Warning--empty journal in zhaopredicting
+You've used 19 entries,
             2253 wiz_defined-function locations,
-            566 strings with 4727 characters,
-and the built_in function-call counts, 1763 in all, are:
-= -- 158
-> -- 50
+            613 strings with 5957 characters,
+and the built_in function-call counts, 4393 in all, are:
+= -- 407
+> -- 137
 < -- 0
-+ -- 26
-- -- 14
-* -- 92
-:= -- 288
-add.period$ -- 22
-call.type$ -- 8
-change.case$ -- 28
++ -- 65
+- -- 40
+* -- 255
+:= -- 717
+add.period$ -- 50
+call.type$ -- 19
+change.case$ -- 73
 chr.to.int$ -- 0
-cite$ -- 9
-duplicate$ -- 79
-empty$ -- 185
-format.name$ -- 14
-if$ -- 374
+cite$ -- 21
+duplicate$ -- 176
+empty$ -- 441
+format.name$ -- 40
+if$ -- 922
 int.to.chr$ -- 0
-int.to.str$ -- 8
-missing$ -- 8
-newline$ -- 41
-num.names$ -- 14
-pop$ -- 54
+int.to.str$ -- 19
+missing$ -- 15
+newline$ -- 91
+num.names$ -- 36
+pop$ -- 121
 preamble$ -- 1
-purify$ -- 23
+purify$ -- 58
 quote$ -- 0
-skip$ -- 54
+skip$ -- 123
 stack$ -- 0
-substring$ -- 69
-swap$ -- 15
+substring$ -- 217
+swap$ -- 36
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 26
-warning$ -- 1
-while$ -- 16
-width$ -- 9
-write$ -- 77
-(There was 1 warning)
+type$ -- 68
+warning$ -- 2
+while$ -- 46
+width$ -- 21
+write$ -- 176
+(There were 7 warnings)

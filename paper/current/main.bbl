@@ -1,14 +1,30 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{littlered}
 {Little Red Riding Hood}, howpublished = {\url{
   https://en.wikipedia.org/wiki/little_red_riding_hood}}, note = {Accessed:
   2017-06-11}.
 
+\bibitem{black2006language}
+{\sc Black, R.~W.}
+\newblock Language, culture, and identity in online fanfiction.
+\newblock {\em E-learning and Digital Media 3}, 2 (2006), 170--184.
+
 \bibitem{campbell2008hero}
 {\sc Campbell, J.}
 \newblock {\em The hero with a thousand faces}, vol.~17.
 \newblock New World Library, 2008.
+
+\bibitem{marvelmultiverse}
+{\sc Database, M.}
+\newblock Multiverse/universe listing, 2017.
+
+\bibitem{doyle2007new}
+{\sc Doyle, A.~C.}
+\newblock {\em The New Annotated Sherlock Holmes: The Complete Short Stories:
+  The Adventures of Sherlock Holmes and The Memoirs of Sherlock Holmes
+  (Non-slipcased edition)(Vol. 1)(The Annotated Books)}.
+\newblock WW Norton \& Company, 2007.
 
 \bibitem{wiki:transf_work}
 {\sc Fanlore}.
@@ -25,10 +41,33 @@
 \newblock {\em The storytelling animal: How stories make us human}.
 \newblock Houghton Mifflin Harcourt, 2012.
 
+\bibitem{hills2015expertise}
+{\sc Hills, M.}
+\newblock The expertise of digital fandom as a ‘community of practice’
+  exploring the narrative universe of doctor who.
+\newblock {\em Convergence 21}, 3 (2015), 360--374.
+
 \bibitem{levi1955structural}
 {\sc L{\'e}vi-Strauss, C.}
 \newblock The structural study of myth.
 \newblock {\em The journal of American folklore 68}, 270 (1955), 428--444.
+
+\bibitem{LIT:LIT12061}
+{\sc Magnifico, A.~M., Curwood, J.~S., and Lammers, J.~C.}
+\newblock Words on the screen: broadening analyses of interactions among
+  fanfiction writers and reviewers.
+\newblock {\em Literacy 49}, 3 (2015), 158--166.
+\newblock LIT-OA-2015-003.R1.
+
+\bibitem{ao3stats}
+{\sc of~Our~Own, A.}
+\newblock Archive of our own, 2017.
+
+\bibitem{thomas2011fanfiction}
+{\sc Thomas, B.}
+\newblock What is fanfiction and why are people saying such nice things about
+  it?
+\newblock {\em Storyworlds: A Journal of Narrative Studies 3}, 1 (2011), 1--24.
 
 \bibitem{van2011mahabharata}
 {\sc van Buitenen, J.~A.}
@@ -39,5 +78,22 @@
 {\sc Wikipedia}.
 \newblock Fandom--- {W}ikipedia{,} the free encyclopedia, 2015.
 \newblock [Online; accessed 14-December-2015].
+
+\bibitem{2016film}
+{\sc Wikipedia}.
+\newblock 2016 in film, 2017.
+
+\bibitem{fanfiction.net}
+{\sc Wikipedia}.
+\newblock Fanfiction.net, 2017.
+
+\bibitem{spiderman}
+{\sc Wikipedia}.
+\newblock Spider-man in film, 2017.
+
+\bibitem{zhaopredicting}
+{\sc Zhao, A.}
+\newblock Predicting popularity of fanfiction stories based on title and
+  summary.
 
 \end{thebibliography}
