@@ -4,56 +4,56 @@ The top-level auxiliary file: main.aux
 The style file: acm.bst
 Database file #1: main.bib
 Warning--entry type for "marvelmultiverse" isn't style-file defined
---line 37 of file main.bib
+--line 91 of file main.bib
 Warning--entry type for "spiderman" isn't style-file defined
---line 52 of file main.bib
+--line 106 of file main.bib
 Warning--entry type for "2016film" isn't style-file defined
---line 60 of file main.bib
+--line 114 of file main.bib
 Warning--entry type for "ao3stats" isn't style-file defined
---line 69 of file main.bib
+--line 123 of file main.bib
 Warning--entry type for "fanfiction.net" isn't style-file defined
---line 77 of file main.bib
-Warning--to sort, need author or key in littlered
+--line 131 of file main.bib
+Warning--empty journal in yung2013market
 Warning--empty journal in zhaopredicting
 You've used 19 entries,
             2253 wiz_defined-function locations,
-            613 strings with 5957 characters,
-and the built_in function-call counts, 4393 in all, are:
-= -- 407
-> -- 137
+            621 strings with 6086 characters,
+and the built_in function-call counts, 4626 in all, are:
+= -- 443
+> -- 153
 < -- 0
-+ -- 65
-- -- 40
-* -- 255
-:= -- 717
-add.period$ -- 50
++ -- 68
+- -- 46
+* -- 301
+:= -- 766
+add.period$ -- 51
 call.type$ -- 19
-change.case$ -- 73
+change.case$ -- 79
 chr.to.int$ -- 0
 cite$ -- 21
-duplicate$ -- 176
-empty$ -- 441
-format.name$ -- 40
-if$ -- 922
+duplicate$ -- 166
+empty$ -- 438
+format.name$ -- 46
+if$ -- 956
 int.to.chr$ -- 0
 int.to.str$ -- 19
-missing$ -- 15
-newline$ -- 91
-num.names$ -- 36
-pop$ -- 121
+missing$ -- 13
+newline$ -- 92
+num.names$ -- 38
+pop$ -- 102
 preamble$ -- 1
-purify$ -- 58
+purify$ -- 61
 quote$ -- 0
-skip$ -- 123
+skip$ -- 114
 stack$ -- 0
-substring$ -- 217
+substring$ -- 270
 swap$ -- 36
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 68
+type$ -- 74
 warning$ -- 2
-while$ -- 46
+while$ -- 53
 width$ -- 21
-write$ -- 176
+write$ -- 177
 (There were 7 warnings)
