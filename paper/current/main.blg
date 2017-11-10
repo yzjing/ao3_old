@@ -4,56 +4,56 @@ The top-level auxiliary file: main.aux
 The style file: acm.bst
 Database file #1: main.bib
 Warning--entry type for "marvelmultiverse" isn't style-file defined
---line 91 of file main.bib
+--line 83 of file main.bib
 Warning--entry type for "spiderman" isn't style-file defined
---line 106 of file main.bib
+--line 98 of file main.bib
 Warning--entry type for "2016film" isn't style-file defined
---line 114 of file main.bib
+--line 106 of file main.bib
 Warning--entry type for "ao3stats" isn't style-file defined
---line 123 of file main.bib
+--line 115 of file main.bib
 Warning--entry type for "fanfiction.net" isn't style-file defined
---line 131 of file main.bib
+--line 123 of file main.bib
 Warning--empty journal in yung2013market
 Warning--empty journal in zhaopredicting
-You've used 19 entries,
+You've used 25 entries,
             2253 wiz_defined-function locations,
-            621 strings with 6086 characters,
-and the built_in function-call counts, 4626 in all, are:
-= -- 443
-> -- 153
+            658 strings with 7125 characters,
+and the built_in function-call counts, 6370 in all, are:
+= -- 611
+> -- 225
 < -- 0
-+ -- 68
-- -- 46
-* -- 301
-:= -- 766
-add.period$ -- 51
-call.type$ -- 19
-change.case$ -- 79
++ -- 99
+- -- 70
+* -- 427
+:= -- 1049
+add.period$ -- 69
+call.type$ -- 25
+change.case$ -- 108
 chr.to.int$ -- 0
-cite$ -- 21
-duplicate$ -- 166
-empty$ -- 438
-format.name$ -- 46
-if$ -- 956
+cite$ -- 27
+duplicate$ -- 239
+empty$ -- 587
+format.name$ -- 70
+if$ -- 1323
 int.to.chr$ -- 0
-int.to.str$ -- 19
-missing$ -- 13
-newline$ -- 92
-num.names$ -- 38
-pop$ -- 102
+int.to.str$ -- 25
+missing$ -- 20
+newline$ -- 122
+num.names$ -- 50
+pop$ -- 132
 preamble$ -- 1
-purify$ -- 61
+purify$ -- 85
 quote$ -- 0
-skip$ -- 114
+skip$ -- 161
 stack$ -- 0
-substring$ -- 270
-swap$ -- 36
+substring$ -- 358
+swap$ -- 56
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 74
+type$ -- 96
 warning$ -- 2
-while$ -- 53
-width$ -- 21
-write$ -- 177
+while$ -- 70
+width$ -- 27
+write$ -- 236
 (There were 7 warnings)

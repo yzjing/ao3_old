@@ -21,6 +21,11 @@
   (Non-slipcased edition)(Vol. 1)(The Annotated Books)}.
 \newblock WW Norton \& Company, 2007.
 
+\bibitem{elgammal2015quantifying}
+{\sc Elgammal, A., and Saleh, B.}
+\newblock Quantifying creativity in art networks.
+\newblock {\em arXiv preprint arXiv:1506.00711\/} (2015).
+
 \bibitem{wiki:transf_work}
 {\sc Fanlore}.
 \newblock Transformative work, 2015.
@@ -42,6 +47,16 @@
   exploring the narrative universe of doctor who.
 \newblock {\em Convergence 21}, 3 (2015), 360--374.
 
+\bibitem{2017arXiv170704239I}
+{\sc {Iacopini}, I., {Milojevi{\'c}}, S., and {Latora}, V.}
+\newblock {Network dynamics of innovation processes}.
+\newblock {\em ArXiv e-prints\/} (July 2017).
+
+\bibitem{jurafsky2000speech}
+{\sc Jurafsky, D.}
+\newblock {\em Speech \& language processing}.
+\newblock Pearson Education India, 2000.
+
 \bibitem{LIT:LIT12061}
 {\sc Magnifico, A.~M., Curwood, J.~S., and Lammers, J.~C.}
 \newblock Words on the screen: broadening analyses of interactions among
@@ -58,17 +73,35 @@
 {\sc of~Our~Own, A.}
 \newblock Archive of our own, 2017.
 
+\bibitem{Ponte:1998:LMA:290941.291008}
+{\sc Ponte, J.~M., and Croft, W.~B.}
+\newblock A language modeling approach to information retrieval.
+\newblock In {\em Proceedings of the 21st Annual International ACM SIGIR
+  Conference on Research and Development in Information Retrieval\/} (New York,
+  NY, USA, 1998), SIGIR '98, ACM, pp.~275--281.
+
 \bibitem{sluckin1980liking}
 {\sc Sluckin, W., Colman, A.~M., and Hargreaves, D.~J.}
 \newblock Liking words as a function of the experienced frequency of their
   occurrence.
 \newblock {\em British Journal of Psychology 71}, 1 (1980), 163--169.
 
+\bibitem{sreenivasan2013quantitative}
+{\sc Sreenivasan, S.}
+\newblock Quantitative analysis of the evolution of novelty in cinema through
+  crowdsourced keywords.
+\newblock {\em Scientific reports 3\/} (2013).
+
 \bibitem{thomas2011fanfiction}
 {\sc Thomas, B.}
 \newblock What is fanfiction and why are people saying such nice things about
   it?
 \newblock {\em Storyworlds: A Journal of Narrative Studies 3}, 1 (2011), 1--24.
+
+\bibitem{wang2013quantifying}
+{\sc Wang, D., Song, C., and Barab{\'a}si, A.-L.}
+\newblock Quantifying long-term scientific impact.
+\newblock {\em Science 342}, 6154 (2013), 127--132.
 
 \bibitem{wiki:fandom}
 {\sc Wikipedia}.
