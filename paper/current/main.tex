@@ -37,7 +37,7 @@ Fanfictions as a unique cultural phenomena has drawn attention from media studie
 
 The authors and readers' passion about fanfictions also alludes to a balance between novelty and familiarity: they desire to see familiar characters and elements, but in novel stories. By analyzing people's perception of fanfictions, we may gain a better understanding of this balance. The hedonic value of readers when reading fanfictions can be evaluated by how much they like a specific fanfiction:  In our dataset, the readers can click ``Kudos" (an equivalent of ``likes") if they enjoy reading a fiction, thus the number of Kudos can be used as a metric for hedonic value.
 
-Researches are only starting towards a quantitative definition of novelty. Many have employed a networks research, defining a creative work's novelty by looking at how they reference previous works \cite{elgammal2015quantifying}\cite{wang2013quantifying}\cite{2017arXiv170704239I}. In some cases, tags of a work can be used to evaluate its novelty\cite{sreenivasan2013quantitative}. To quantify the novelty of fictions, we take an approach based on language modeling. Used widely in natural language processing and information retrieval\cite{jurafsky2000speech}\cite{Ponte:1998:LMA:290941.291008}, it represents documents as distributions over words. We can then compare documents by calculating the distance between these distributions. Thus we define novelty as ``the distance to average": more specifically, a fiction is more novel if it has a large distance from the average of previous fictions, and vice versa. Besides the language modeling approach, we also ran a separate analysis on the tag set of our fanfiction data. With our analysis, we show a negative relationship between novelty and success, indicating that fanfiction readers prefer more familiarity in general, discouraging novelty.
+Researches are only starting towards a quantitative definition of novelty. Many have employed a network approach, defining a creative work's novelty by looking at how they reference previous works \cite{elgammal2015quantifying}\cite{wang2013quantifying}\cite{2017arXiv170704239I}. In some cases, tags of a work can be used to evaluate its novelty\cite{sreenivasan2013quantitative}. To quantify the novelty of fictions, we take an approach based on language modeling. Used widely in natural language processing and information retrieval\cite{jurafsky2000speech}\cite{Ponte:1998:LMA:290941.291008}, it represents documents as distributions over words. We can then compare documents by calculating the distance between these distributions. Thus we define novelty as ``the distance to average": more specifically, a fiction is more novel if it has a large distance from the average of previous fictions, and vice versa. Besides the language modeling approach, we also ran a separate analysis on the tag set of our fanfiction data. With our analysis, we show a negative relationship between novelty and success, indicating that fanfiction readers prefer more familiarity in general, discouraging novelty.
 
 
 %Story telling is one of human beings' basic needs and abilities\cite{gottschall2012storytelling}. Despite having endless forms, most stories can be considered as variations of one of the basic archetypes. In mythology studies, Campbell deduced a fundamental structure, \emph{the hero's journey}, from all major myths around the world \cite{campbell2008hero}. Levi-Strauss broke down different versions of a myth to identify common mythemes \cite{levi1955structural}. In oral legends and tales, many stories had a certain origin and developed into different versions through time and interaction between creators. Myths and folktales in oral traditions of civilizations around the world often follow this pattern, for example, the tale of the \emph{Little Red Riding Hood} originated approximately in the 10th century, and has developed multiple variations\cite{littlered}. Some elements of the legend \emph{Mahabharata} can be traced back to the Vedic period (15--6 century B.C.) as oral tales told by bards, and was textualized into many versions\cite{van2011mahabharata}.
@@ -68,51 +68,58 @@ We first present some descriptive statistics of our data. Figure \ref{fig:fandom
         \caption{Number of fanfictions published each month}
         \label{fig:fic_time_dist}
     \end{subfigure}
-    \caption{Statistics of our fanfiction dataset}\label{fig:animals}
+    \caption{Statistics of the size and temporal distribution of our fanfiction dataset}\label{fig:stats_size_time}
 \end{figure}
 
+Figure \ref{fig:length_dist} shows the length distribution of the fanfictions. Since many fictions have multiple chapters, we consider length as the average number of words in each chapter. A great variation of average length can be observed. The variation of length in documents can have a significant effect on the distance between documents, biasing towards shorter distance between longer documents. A similar issue has been noticed in vector space models very early on \cite{singhal2017pivoted}, where many normalization methods have been proposed to correct it. Here instead of applying a normalization, we sample a fixed length (1,000 words) from each document. 
+
+Figure \ref{fig:fic_time_dist} shows the logged cumulative distribution of Kudos. The majority of Kudos are given to a small number of fictions, showing a long-tail distribution. Because of this, we use the log of Kudos to evaluate the success of fictions.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{/fic_len_dist.pdf}
+        \caption{Length distribution of fictions. For multi-chapter fictions, we show the average length of each chapter.}
+        \label{fig:length_dist}
+    \end{subfigure}
+    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+      %(or a blank line to force the subfigure onto a new line)
+    \begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{/kudos_dist.pdf}
+        \caption{Log-log cumulative distribution of Kudos. For multi-chapter fictions, we use the average number of Kudos per chapter.}
+        \label{fig:kudos_dist}
+    \end{subfigure}
+    \caption{Statistics on the length and Kudos of fictions}\label{fig:stats_len_kudos}
+\end{figure}
+
+\subsection{Novelty doesn't make fictions successful}
+We found a negative correlation between the novelty of fanfictions and the number of Kudos that they receive, which is consistent across 3 distinct measurements that we use.
 
 
-\label{sec:results}
-\subsection{Novelty doesn't make fictions popular}
-We define novelty as the cosine distance between a fiction and the typical fiction in its fandom. In the correlation matrix shown in figure \ref{fig:corr_heatmap}, we found that the cosine distance has a negative correlation with the hits/kudos that fictions receive. That is, the more creative a fiction is, the less kudos it will receive.
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{/unigram_cos_kudos_z_toprev_samplew.pdf}
+        \caption{Negative correlation between novelty and Kudos, using the unigram model. As the cosine distance between a fiction and the ``average" of previous fictions increase, the average z-score of Kudos decrease.}
+        \label{fig:unigram_cos}
+    \end{subfigure}
+    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+      %(or a blank line to force the subfigure onto a new line)
+    \begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{/lda_cos_kudos_z_toprev.pdf}
+        \caption{Negative correlation between novelty and Kudos, using topic modeling. The cosine distance is calculated between the topic distribution of a fiction and the average of topic distribution of previous fictions. As cosine distance increases, the average z-score of Kudos decrease.}
+        \label{fig:lda_cos}
+    \end{subfigure}
+    \caption{Relation between novelty and Kudos on a document level}\label{fig:novelty_kudos_doc}
+\end{figure}
 
 \begin{figure}[htbp]
 \begin{center}
-\includegraphics[width=0.8\textwidth]{/corr_heatmap_agg_1000.png}
-\caption{Pairwise correlation between some important fields }
-\label{fig:corr_heatmap}
+\includegraphics[width=0.5\textwidth]{/tag_novelty_kudos.pdf}
+\caption{Tag novelty and Kudos}
+\label{fig:tag_novelty}
 \end{center}
 \end{figure}
-
-We further investigate this relation by fitting a negative binomial regression model. The result of the regression is summarized in figure \ref{regression_screenshot}. It can be observed that the cosine distance has a significant negative effect on Kudos.
-
-\begin{figure}[htbp]
-\begin{center}
-\includegraphics[width=0.8\textwidth]{/regression_screenshot.png}
-\caption{Negative binomial regresion results}
-\label{fig:regression}
-\end{center}
-\end{figure}
-
-A closer look into cosine distance and Kudos is shown in figure \ref{fig:cos_kudos}. Because of the long-tailed distribution of Kudos, we choose to look at the log of Kudos. In general, the fandoms show the pattern that the average Kudos decrease when the cosine distance increases.
-
-
-\begin{figure}[htbp]
-\begin{center}
-\includegraphics[width=\textwidth]{/cos_log_kudos_agg.pdf}
-\caption{Cosine distance and the log of kudos.}
-\label{fig:cos_kudos}
-\end{center}
-\end{figure}
-
-
-%\subsection{The fandoms grow less creative?}
-
-
-%}}}
-
-
 
 \section{Methods} %{{{
 \label{sec:methods}
@@ -152,27 +159,10 @@ Words & The number of words in a fiction.\\\hline
 Among the metadata fields, we're especially interested in the fields ``Hits" and ``Kudos", which shows how many times a fiction has been clicked or liked by readers. These are useful proxies for the popularity of a piece of work in a specific fandom.
 Both statistics have power-law-like distribution, as shown in  Figure \ref{fig:long_tail}, proving our conception that the popularity of fictions is very imbalanced: most fictions are rarely read and receive little Kudos, while very few get the majority of views and Kudos.
 
-\begin{figure}[htbp]
-\begin{center}
-\includegraphics[width=\textwidth]{/kudos_hits_dist.png}
-\caption{Log-log CCDF of the distribution of Kudos and Hits.}
-\label{fig:long_tail}
-\end{center}
-\end{figure}
 
 \subsection{Language model}
 We model the fictions with a unigram language model. The Simple Good-Turing smoothing\cite{gales1995good} is applied to improve the model, and to assign non-zero probabilities to previously unseen unigrams. When creating the set of unigrams, we also remove the rare unigrams that appear in less than 5 documents and left out fictions with less than 500 words.
 
-We verify that this model successfully captures the semantic and stylometrical contents of fictions. Using this model, the fictions from the same author are more close to each other compared to fictions from different authors, measuring by cosine distance, as shown in Figure \ref{fig:comparison_unigram_sgt}.
-
-\begin{figure}[htbp]
-\begin{center}
-\includegraphics[width=0.6\textwidth]{/comparison_unigram_sgt.pdf}
-\caption{Cosine distances between fictions from the same author and fictions from different authors in the Shakespeare fandom.
-Left: The average cosine distance between fictions from same authors. In a 10-author dataset, average pairwise cosine distances between fictions from each author is calculated, and the overall distance is the average of the 10 groups. Right: The computation repeated on 10 random groups with the same size. The error bars are computed with the bootstrap resampling method. }
-\label{fig:comparison_unigram_sgt}
-\end{center}
-\end{figure}
 
 We further define the concept of a \emph{typical} fiction. A typical fiction of a fandom is the average of probability distributions of all fictions in the fandom. This allows us to calculate the distance between any fiction and the typical fiction. 
 

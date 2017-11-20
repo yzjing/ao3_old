@@ -45,31 +45,36 @@
 \citation{sreenivasan2013quantitative}
 \citation{jurafsky2000speech}
 \citation{Ponte:1998:LMA:290941.291008}
+\citation{singhal2017pivoted}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:fandom_size}{{1a}{2}{Number of fanfictions in each fandom\relax }{figure.caption.1}{}}
 \newlabel{sub@fig:fandom_size}{{a}{2}{Number of fanfictions in each fandom\relax }{figure.caption.1}{}}
 \newlabel{fig:fic_time_dist}{{1b}{2}{Number of fanfictions published each month\relax }{figure.caption.1}{}}
 \newlabel{sub@fig:fic_time_dist}{{b}{2}{Number of fanfictions published each month\relax }{figure.caption.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Statistics of our fanfiction dataset\relax }}{2}{figure.caption.1}}
-\newlabel{fig:animals}{{1}{2}{Statistics of our fanfiction dataset\relax }{figure.caption.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Statistics of the size and temporal distribution of our fanfiction dataset\relax }}{2}{figure.caption.1}}
+\newlabel{fig:stats_size_time}{{1}{2}{Statistics of the size and temporal distribution of our fanfiction dataset\relax }{figure.caption.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Results}{2}{section.2}}
-\newlabel{sec:results}{{2}{2}{Results}{figure.caption.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Novelty doesn't make fictions popular}{2}{subsection.2.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Pairwise correlation between some important fields \relax }}{3}{figure.caption.2}}
-\newlabel{fig:corr_heatmap}{{2}{3}{Pairwise correlation between some important fields \relax }{figure.caption.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Negative binomial regresion results\relax }}{3}{figure.caption.3}}
-\newlabel{fig:regression}{{3}{3}{Negative binomial regresion results\relax }{figure.caption.3}{}}
+\newlabel{fig:length_dist}{{2a}{3}{Length distribution of fictions. For multi-chapter fictions, we show the average length of each chapter.\relax }{figure.caption.2}{}}
+\newlabel{sub@fig:length_dist}{{a}{3}{Length distribution of fictions. For multi-chapter fictions, we show the average length of each chapter.\relax }{figure.caption.2}{}}
+\newlabel{fig:kudos_dist}{{2b}{3}{Log-log cumulative distribution of Kudos. For multi-chapter fictions, we use the average number of Kudos per chapter.\relax }{figure.caption.2}{}}
+\newlabel{sub@fig:kudos_dist}{{b}{3}{Log-log cumulative distribution of Kudos. For multi-chapter fictions, we use the average number of Kudos per chapter.\relax }{figure.caption.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Statistics on the length and Kudos of fictions\relax }}{3}{figure.caption.2}}
+\newlabel{fig:stats_len_kudos}{{2}{3}{Statistics on the length and Kudos of fictions\relax }{figure.caption.2}{}}
+\newlabel{fig:unigram_cos}{{3a}{3}{Negative correlation between novelty and Kudos, using the unigram model. As the cosine distance between a fiction and the ``average" of previous fictions increase, the average z-score of Kudos decrease.\relax }{figure.caption.3}{}}
+\newlabel{sub@fig:unigram_cos}{{a}{3}{Negative correlation between novelty and Kudos, using the unigram model. As the cosine distance between a fiction and the ``average" of previous fictions increase, the average z-score of Kudos decrease.\relax }{figure.caption.3}{}}
+\newlabel{fig:lda_cos}{{3b}{3}{Negative correlation between novelty and Kudos, using topic modeling. The cosine distance is calculated between the topic distribution of a fiction and the average of topic distribution of previous fictions. As cosine distance increases, the average z-score of Kudos decrease.\relax }{figure.caption.3}{}}
+\newlabel{sub@fig:lda_cos}{{b}{3}{Negative correlation between novelty and Kudos, using topic modeling. The cosine distance is calculated between the topic distribution of a fiction and the average of topic distribution of previous fictions. As cosine distance increases, the average z-score of Kudos decrease.\relax }{figure.caption.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Relation between novelty and Kudos on a document level\relax }}{3}{figure.caption.3}}
+\newlabel{fig:novelty_kudos_doc}{{3}{3}{Relation between novelty and Kudos on a document level\relax }{figure.caption.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Novelty doesn't make fictions successful}{3}{subsection.2.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Methods}{3}{section.3}}
+\newlabel{sec:methods}{{3}{3}{Methods}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Data}{3}{subsection.3.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Tag novelty and Kudos\relax }}{4}{figure.caption.4}}
+\newlabel{fig:tag_novelty}{{4}{4}{Tag novelty and Kudos\relax }{figure.caption.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Metadata of the writings\relax }}{4}{table.caption.5}}
+\newlabel{tab:metadata}{{1}{4}{Metadata of the writings\relax }{table.caption.5}{}}
 \citation{gales1995good}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Cosine distance and the log of kudos.\relax }}{4}{figure.caption.4}}
-\newlabel{fig:cos_kudos}{{4}{4}{Cosine distance and the log of kudos.\relax }{figure.caption.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Methods}{4}{section.3}}
-\newlabel{sec:methods}{{3}{4}{Methods}{section.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Data}{4}{subsection.3.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Language model}{4}{subsection.3.2}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Metadata of the writings\relax }}{5}{table.caption.5}}
-\newlabel{tab:metadata}{{1}{5}{Metadata of the writings\relax }{table.caption.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Log-log CCDF of the distribution of Kudos and Hits.\relax }}{5}{figure.caption.6}}
-\newlabel{fig:long_tail}{{5}{5}{Log-log CCDF of the distribution of Kudos and Hits.\relax }{figure.caption.6}{}}
 \bibstyle{acm}
 \bibdata{main}
 \bibcite{berlyne1970novelty}{1}
@@ -79,14 +84,13 @@
 \bibcite{elgammal2015quantifying}{5}
 \bibcite{wiki:transf_work}{6}
 \bibcite{gales1995good}{7}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Cosine distances between fictions from the same author and fictions from different authors in the Shakespeare fandom. Left: The average cosine distance between fictions from same authors. In a 10-author dataset, average pairwise cosine distances between fictions from each author is calculated, and the overall distance is the average of the 10 groups. Right: The computation repeated on 10 random groups with the same size. The error bars are computed with the bootstrap resampling method. \relax }}{6}{figure.caption.7}}
-\newlabel{fig:comparison_unigram_sgt}{{6}{6}{Cosine distances between fictions from the same author and fictions from different authors in the Shakespeare fandom. Left: The average cosine distance between fictions from same authors. In a 10-author dataset, average pairwise cosine distances between fictions from each author is calculated, and the overall distance is the average of the 10 groups. Right: The computation repeated on 10 random groups with the same size. The error bars are computed with the bootstrap resampling method. \relax }{figure.caption.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Regression}{6}{subsection.3.3}}
 \bibcite{hargreaves1984effects}{8}
 \bibcite{hills2015expertise}{9}
 \bibcite{2017arXiv170704239I}{10}
 \bibcite{jurafsky2000speech}{11}
 \bibcite{LIT:LIT12061}{12}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Language model}{5}{subsection.3.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Regression}{5}{subsection.3.3}}
 \bibcite{manovich2007comes}{13}
 \bibcite{ao3stats}{14}
 \bibcite{Ponte:1998:LMA:290941.291008}{15}
