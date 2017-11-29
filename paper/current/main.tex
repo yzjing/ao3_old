@@ -93,13 +93,19 @@ Figure \ref{fig:fic_time_dist} shows the logged cumulative distribution of Kudos
 \end{figure}
 
 \subsection{Novelty doesn't make fictions successful}
-We found a negative correlation between the novelty of fanfictions and the number of Kudos that they receive, which is consistent across three distinct measurements that we use. Figure \ref{fig:unigram_cos} shows the result from the unigram language model. Under this model, a fixed number of words (1,000 in our experiment) is sampled from each document in a bag-of-words way, that is, the ordering of words is not preserved. We then calculate the probability distribution over the unigrams. To account for unseen unigrams, we apply the Simple Good-Turing smoothing method \cite{gales1995good}, which assigns a small non-zero probability to those unigrams. 
+We found a negative correlation between the novelty of fanfictions and the number of Kudos that they receive, which is consistent across three distinct measurements that we use.  Figure \ref{fig:unigram_cos}shows the result from the unigram language model. Under this model, a fixed number of words (1,000 in our experiment) is sampled from each document in a bag-of-words approach, that is, the ordering of words is not preserved. We then calculate the probability distribution over the unigrams. To account for unseen unigrams, we apply the Simple Good-Turing smoothing method \cite{gales1995good}, which assigns a small non-zero probability to those unigrams. 
 
 The novelty score of each fiction is computed by comparing it to an ``average" fiction. To define the ``average" fiction, we take a set of fictions consisting of all fiction published within the past 6 months before the target fiction is published. Then we calculate the average probability distribution of the fictions in this set. We compute the novelty score of the fiction as the cosine distance between the target fiction and the average fiction:
 
 \begin{equation}
-n = 1-\frac{\sum{A_iB_i}}{}
+n = 1-\frac{\sum_{i=1}^{n}{A_iB_i}}{\sqrt{\sum_{i=1}^{n}{A_i^2}}\sqrt{\sum_{i=1}^{n}{B_i^2}}}
 \end{equation}
+
+From Figure \ref{fig:unigram_cos}, we observe that as the cosine distance increase from 0 to 1, the z-score of Kudos steadily decrease from 0.1 to -0.3: that is, from above average to below average. 
+
+Besides the language model, we also present the results of running a topic modeling algorithm to detect the topics of fanfictions. A standard implementation of \emph{Latent Dirichlet Allocation}\cite{blei2003latent} is used with topic number $n=40$.
+
+
 
 
 
