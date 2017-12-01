@@ -24,8 +24,6 @@
 \date{\today}
 \maketitle %}}}
 
-\section{Introduction} %{{{
-\label{sec:introduction}
 
 It is widely believed that successful creative works strike a balance between novelty and familiarity. The classical inverted-U theory, also known as the Wundt-Berlyne curve, proposes that the perceiver's hedonic value first increases with novelty, until a certain threshold; afterwards, further increasing novelty will lead to a drop in hedonic value \cite{berlyne1970novelty}. Many experiments have been performed in seeking for empirical evidence for this theory \cite{hargreaves1984effects} \cite{sluckin1980liking}. However, it is still not clear where this assumed ``maximum novelty'' lies in the novelty -- familiarity continuum.
 
@@ -54,20 +52,25 @@ With our analysis, we show a negative relationship between novelty and success, 
 
 
 
-\section{Results} 
-We first present some descriptive statistics of our data. Figure \ref{fig:fandom_size} shows the number of fictions in each of the 25 fandoms that we study. Figure \ref{fig:fic_time_dist}  shows the time distribution of fictions. As AO3 was established in December 2009, the fictions earlier than this time might be migrated from other platforms, thus may not correctly reflect the online community. We therefore only run our analysis using the fictions published in January 2010 and later. 
+\section*{Results} 
+We first present some descriptive statistics of our data. 
+
+
+\subsection*{Statistics of the fanfiction dataset}
+
+Figure \ref{fig:fandom_size} shows the number of fictions in each of the 25 fandoms that we study. Figure \ref{fig:fic_time_dist}  shows the time distribution of fictions. As AO3 was established in December 2009, the fictions earlier than this time might be migrated from other platforms, thus may not correctly reflect the online community. We therefore only run our analysis using the fictions published in January 2010 and later. 
 
 
 \begin{figure}
     \centering
-    \begin{subfigure}[b]{0.4\textwidth}
+    \begin{subfigure}[b]{0.7\textwidth}
         \includegraphics[width=\textwidth]{/fandom_size.png}
         \caption{Number of fanfictions in each fandom}
         \label{fig:fandom_size}
     \end{subfigure}
     ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
       %(or a blank line to force the subfigure onto a new line)
-    \begin{subfigure}[b]{0.4\textwidth}
+    \begin{subfigure}[b]{0.7\textwidth}
         \includegraphics[width=\textwidth]{/fic_time_dist.pdf}
         \caption{Number of fanfictions published each month}
         \label{fig:fic_time_dist}
@@ -81,14 +84,14 @@ Figure \ref{fig:fic_time_dist} shows the logged cumulative distribution of Kudos
 
 \begin{figure}
     \centering
-    \begin{subfigure}[b]{0.4\textwidth}
+    \begin{subfigure}[b]{0.7\textwidth}
         \includegraphics[width=\textwidth]{/fic_len_dist.pdf}
         \caption{Length distribution of fictions. For multi-chapter fictions, we show the average length of each chapter.}
         \label{fig:length_dist}
     \end{subfigure}
     ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
       %(or a blank line to force the subfigure onto a new line)
-    \begin{subfigure}[b]{0.4\textwidth}
+    \begin{subfigure}[b]{0.7\textwidth}
         \includegraphics[width=\textwidth]{/kudos_dist.pdf}
         \caption{Log-log cumulative distribution of Kudos. For multi-chapter fictions, we use the average number of Kudos per chapter.}
         \label{fig:kudos_dist}
@@ -97,7 +100,7 @@ Figure \ref{fig:fic_time_dist} shows the logged cumulative distribution of Kudos
 \end{figure}
 
 \subsection*{Document novelty and success}
-We found a negative correlation between the novelty of fanfictions and the number of Kudos that they receive, which is consistent across three distinct measurements that we use.  Figure \ref{fig:unigram_cos}shows the result from the unigram language model. Under this model, a fixed number of words (1,000 in our experiment) is sampled from each document in a bag-of-words approach, that is, the ordering of words is not preserved. We then calculate the probability distribution over the unigrams. To account for unseen unigrams, we apply the Simple Good-Turing smoothing method \cite{gales1995good}, which assigns a small non-zero probability to those unigrams. 
+We found a negative correlation between the novelty of fanfictions and the number of Kudos that they receive, which is consistent across three distinct measurements that we use.  Figure \ref{fig:unigram_cos} shows the result from the unigram language model. Under this model, a fixed number of words (1,000 in our experiment) is sampled from each document in a bag-of-words approach, that is, the ordering of words is not preserved. We then calculate the probability distribution over the unigrams. To account for unseen unigrams, we apply the Simple Good-Turing smoothing method \cite{gales1995good}, which assigns a small non-zero probability to those unigrams. 
 
 The novelty score of each fiction is computed by comparing it to an ``average" fiction. To define the ``average" fiction, we take a set of fictions consisting of all fiction published within the past 6 months before the target fiction is published. Then we calculate the average probability distribution of the fictions in this set. We compute the novelty score of the fiction as the cosine distance between the target fiction and the average fiction:
 
@@ -110,22 +113,21 @@ From Figure \ref{fig:unigram_cos}, we observe that as the novelty score increase
 Besides the language model, we also present the results of running a topic modeling algorithm to detect the topics of fanfictions. 
 The  \emph{Latent Dirichlet Allocation} (LDA) \cite{blei2003latent} has been widely used for such tasks. As an unsupervised learning algorithm, it models a topic as a probabilistic distribution over a set of words, and a document as a probabilistic distribution over a set of topics. We are thus able to compute the distance between documents by comparing their topic compositions. Similar to the unigram model, we construct an ``average" fiction as the average topic distribution of fictions in a set consisting of fictions published during a given time period, and define the novelty score as the cosine distance between a fiction and the average fiction. Figure \ref{fig:lda_cos} shows the results of the LDA model. Consistent with the result of the unigram model, as novelty scores increase, the z-score of Kudos decrease from positive (above average) to negative (below average).
 
-\subsection{Tag novelty and success}
-Figure \ref{fig:tag_novelty} presents the results related to tag novelty.
-
-
+\subsection*{Tag novelty and success}
+We adapt the method from \cite{sreenivasan2013quantitative} to compute a novelty score for each tag. This method considers the ``surprise" of observing a tag, given a set of tags from all fictions of a past time period (see Methods). Higher surprise of a tag indicates more novelty. The novelty score of a fiction is then defined as the average novelty score of all its tags. In Figure \ref{fig:tag_novelty}, we observe once again that as 
+novelty increase, the z-score of Kudos experiences a fluctuating but overall steady decline.
 
 
 \begin{figure}
     \centering
-    \begin{subfigure}[b]{0.4\textwidth}
+    \begin{subfigure}[b]{0.7\textwidth}
         \includegraphics[width=\textwidth]{/unigram_cos_kudos_z_toprev_samplew.pdf}
         \caption{Negative correlation between novelty and Kudos, using the unigram model. As the cosine distance between a fiction and the ``average" of previous fictions increase, the average z-score of Kudos decrease.}
         \label{fig:unigram_cos}
     \end{subfigure}
     ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
       %(or a blank line to force the subfigure onto a new line)
-    \begin{subfigure}[b]{0.4\textwidth}
+    \begin{subfigure}[b]{0.7\textwidth}
         \includegraphics[width=\textwidth]{/lda_cos_kudos_z_toprev.pdf}
         \caption{Negative correlation between novelty and Kudos, using topic modeling. The cosine distance is calculated between the topic distribution of a fiction and the average of topic distribution of previous fictions. As cosine distance increases, the average z-score of Kudos decrease.}
         \label{fig:lda_cos}
@@ -135,26 +137,23 @@ Figure \ref{fig:tag_novelty} presents the results related to tag novelty.
 
 \begin{figure}[htbp]
 \begin{center}
-\includegraphics[width=0.5\textwidth]{/tag_novelty_kudos.pdf}
-\caption{Tag novelty and Kudos}
+\includegraphics[width=0.7\textwidth]{/tag_novelty_kudos.pdf}
+\caption{Tag novelty and Kudos. }
 \label{fig:tag_novelty}
 \end{center}
 \end{figure}
 
-\section{Methods} %{{{
-\label{sec:methods}
+\section*{Discussion}
 
-%}}}
+\section*{Methods}
 
-\subsection{Data}
-We collected fanfictions from 50 fandoms according to AO3's list of most popular fandoms as of March 2016 \footnote{from this list: \url{http://archiveofourown.org/media}}. To avoid duplication, we remove fandoms with heavy overlapping (e.g.: we keep \emph{Marvel} and removed \emph{Marvel movies}). Fandoms that cover diverse topics (e.g.\emph{k-pop}) are also removed. Finally, we only kept the fictions written in English. This leaves us with 904,760 fictions from 25 fandoms. The number of fictions in each fandom is shown in .
-
-
+\subsection*{Data collection}
+We collected fanfictions from 50 fandoms on AO3, according to its list of most popular fandoms as of March 2016 \footnote{from this list: \url{http://archiveofourown.org/media}}. To avoid duplication, we remove fandoms with heavy overlapping (e.g.: we keep \emph{Marvel} and removed \emph{Marvel movies}). Fandoms that cover diverse topics (e.g.\emph{k-pop}) are also removed. Finally, we only kept the fictions written in English. This leaves us with 904,760 fictions from 25 fandoms. In our analysis, samples of the data are used. 
 
 Besides the work texts, we also collected metadata including 23 fields. We only used information contained in some of these fields. Table \ref{tab:metadata} gives the names and descriptions of these fields. 
 
 \begin{table}[htp]
-\caption{Metadata of the writings}
+\caption{Metadata of the fictions}
 \begin{center}
 \begin{tabular}[width=0.8\textwidth]{p{2cm}|p{4cm}|p{5cm}}
   \hline			
@@ -165,10 +164,8 @@ Title & Titles of the fictions. & Used to identify the fictions. \\\hline
 Fandoms & Describes which fandom(s) the fiction belongs to. & Used to categorize the fictions.\\\hline
 Author & The author of the fiction. & Used for identifying the fictions and for text analysis. \\\hline
 % Hits & The number of times a fiction is clicked on. & A metric for evaluating the fiction's popularity. \\\hline
-Kudos & The number of times that readers "like" the fiction. &  A metric for evaluating the fiction's popularity.\\\hline
-Publish Date & The date the fiction was published. & We use this to determine what time period a fiction belongs to. We also use the time between publish and now to evaluate the ``age" of a fiction.\\\hline
-Chapters & The number of chapters that a fiction has. \\\hline
-Words & The number of words in a fiction.\\\hline
+Kudos & The number of ``likes" that the fiction receives. &  Used for evaluating the fiction's success.\\\hline
+Publish Date & The date the fiction was published. & Used for temporal analysis.\\\hline
 
 \hline
 \end{tabular}
@@ -176,19 +173,15 @@ Words & The number of words in a fiction.\\\hline
 \label{tab:metadata}
 \end{table}%
 
-Among the metadata fields, we're especially interested in the fields ``Hits" and ``Kudos", which shows how many times a fiction has been clicked or liked by readers. These are useful proxies for the popularity of a piece of work in a specific fandom.
-Both statistics have power-law-like distribution, as shown in  Figure \ref{fig:long_tail}, proving our conception that the popularity of fictions is very imbalanced: most fictions are rarely read and receive little Kudos, while very few get the majority of views and Kudos.
-
-
-\subsection{Language model}
+\subsection*{Language model}
 We model the fictions with a unigram language model. The Simple Good-Turing smoothing\cite{gales1995good} is applied to improve the model, and to assign non-zero probabilities to previously unseen unigrams. When creating the set of unigrams, we also remove the rare unigrams that appear in less than 5 documents and left out fictions with less than 500 words.
 
 
 We further define the concept of a \emph{typical} fiction. A typical fiction of a fandom is the average of probability distributions of all fictions in the fandom. This allows us to calculate the distance between any fiction and the typical fiction. 
 
-\subsection{Regression}
-We apply a negative binomial regression using R's MASS library. 
+\subsection*{Topic modeling}
 
+\subsection*{Computing tag novelty}
 
 % https://academic.oup.com/chemse/article/24/2/191/312277 familarity & hedonic value of odors
 % http://rsos.royalsocietypublishing.org/content/4/7/170433  Significance and popularity in music production
@@ -201,4 +194,4 @@ We apply a negative binomial regression using R's MASS library.
 
 
     
-\end{document} %}}}
+\end{document} 
