@@ -24,18 +24,17 @@
 \date{\today}
 \maketitle %}}}
 
+It has been believed that successful creative works strike a balance between novelty and familiarity (citation needed). The classical inverted-U theory, also known as the Wundt-Berlyne curve, proposes that the perceiver's hedonic value first increases with novelty, until a certain threshold; afterwards, further increasing novelty will lead to a drop in hedonic value \cite{berlyne1970novelty}. Many experiments have been performed in seeking for empirical evidence for this theory \cite{hargreaves1984effects} \cite{sluckin1980liking}. However, it is still not clear where this assumed ``maximum novelty'' lies in the novelty -- familiarity continuum.
 
-It is widely believed that successful creative works strike a balance between novelty and familiarity. The classical inverted-U theory, also known as the Wundt-Berlyne curve, proposes that the perceiver's hedonic value first increases with novelty, until a certain threshold; afterwards, further increasing novelty will lead to a drop in hedonic value \cite{berlyne1970novelty}. Many experiments have been performed in seeking for empirical evidence for this theory \cite{hargreaves1984effects} \cite{sluckin1980liking}. However, it is still not clear where this assumed ``maximum novelty'' lies in the novelty -- familiarity continuum.
-
-The contemporary popular culture has nurtured many creative works that are adaptations, remakes, and ``remixes" \cite{manovich2007comes} of previous works. In particular, the movies and TV industries have produced many stories that are variations of previously successful stories. For example, the stories of Sherlock Holmes has had more than 25,000 adaptations \cite{doyle2007new}. The DC Universe has ``rebooted" at least 3 times, and the Marvel Universe has more than 1,000 parallel universes \cite{marvelmultiverse}, each telling a slightly different story with the same set of characters. As an extreme example, the origin story of the Spider-man has been re-played in three movies since 2002 \cite{spiderman}. Market reception indicates that audience welcome this kind of stories: out of the 10 highest-grossing movies of 2016, 8 are sequels, remakes, or part of a movie universe \cite{2016film}.
+The contemporary popular culture has nurtured many creative works that are adaptations, remakes, and ``remixes" \cite{manovich2007comes} of previous works. In particular, the movies and TV industries have produced many stories that are variations of previously successful stories. For example, the stories of Sherlock Holmes has had more than 25,000 adaptations \cite{doyle2007new}. The DC Universe has ``rebooted" at least 3 times, and the Marvel Universe has more than 1,000 parallel universes \cite{marvelmultiverse}, each telling a somewhat different story with a similar set of characters. As an extreme example, the origin story of the Spider-man has been re-played in three movies since 2002 \cite{spiderman}. Market reception indicates that audience welcome this kind of stories: out of the 10 highest-grossing movies of 2016, 8 are sequels, remakes, or part of a movie universe \cite{2016film}.
 
 This trend is also reflected in a new type of creative works --- fan works. Known formally as transformative works, they are creative works made by fans based on one or more original works (``canons''), and are often centered around certain characters or story lines\cite{wiki:transf_work}. For example, a story written by a contemporary fan about Sherlock Holmes in his retirement is considered a fan work. Although fan works contain multiple media types such as art, music and games, one of the most common type is creative writing---fanfictions. People interested in such activities often connect and interact with each other, forming communities known as fandoms\cite{wiki:fandom}. Fandoms have developed into very large communities, especially in the Internet. The data source of our study, ArchiveOfOurOwn.org, is an online fanfiction archive that allows users to upload their fictions, and categorizes them based on fandoms. Established in 2009, it has 1,313,000 users and 3,423,000 pieces of fanfictions by November 2017 \cite{ao3stats}.
 
-Fanfictions as a unique cultural phenomena has drawn attention from media studies and cultural studies \cite{thomas2011fanfiction}. However, most of the studies focus on the identity of fanfiction writers\cite{black2006language}, the practice of fanfiction writing \cite{LIT:LIT12061}, and the interaction between fans \cite{hills2015expertise}. Relatively less studies have focused on fanfictions themselves as creative works, especially using quantitative methods\cite{zhaopredicting} \cite{yung2013market}.
+Fanfictions as a unique cultural phenomena has drawn attention from media studies and cultural studies \cite{thomas2011fanfiction}. However, most of the studies focus on the identity of fanfiction writers\cite{black2006language}, the practice of fanfiction writing \cite{LIT:LIT12061}, and the interaction between fans \cite{hills2015expertise}. Relatively less studies have focused on fanfictions themselves as creative works, especially using quantitative methods.
 
 The authors and readers' passion about fanfictions also alludes to a balance between novelty and familiarity: they desire to see familiar characters and elements, but in novel stories. By analyzing people's perception of fanfictions, we may gain a better understanding of this balance. The hedonic value of readers when reading fanfictions can be evaluated by how much they like a specific fanfiction:  In our dataset, the readers can click ``Kudos" (an equivalent of ``likes") if they enjoy reading a fiction, thus the number of Kudos can be used as a metric for hedonic value.
 
-Researches are only starting towards a quantitative definition of novelty. Many have employed a network approach, defining a creative work's novelty by looking at how they reference previous works \cite{elgammal2015quantifying}\cite{wang2013quantifying}\cite{2017arXiv170704239I}. In some cases, tags of a work can be used to evaluate its novelty\cite{sreenivasan2013quantitative}. To quantify the novelty of fictions, we take an approach based on language modeling. Used widely in natural language processing and information retrieval\cite{jurafsky2000speech}\cite{Ponte:1998:LMA:290941.291008}, it represents documents as distributions over words. We can then compare documents by calculating the distance between these distributions. Thus we define novelty as ``the distance to average": more specifically, a fiction is more novel if it has a large distance from the average of previous fictions, and vice versa. 
+Researches are only starting towards a quantitative definition of novelty. Many have employed a network approach, defining a creative work's novelty by looking at how they reference previous works \cite{elgammal2015quantifying}\cite{wang2013quantifying}\cite{2017arXiv170704239I}. In some cases, tags of a work can be used to evaluate its novelty\cite{sreenivasan2013quantitative}. To quantify the novelty of fictions, we employ three methods based on language modeling, topic modeling and tag analysis. Used widely in natural language processing and information retrieval\cite{jurafsky2000speech}\cite{Ponte:1998:LMA:290941.291008}, a language model represents documents as distributions over words. We can then compare documents by calculating the distance between these distributions. Topic models, on the other hand, represents a document as a distribution over topics. Thus we construct an ``average" fiction as the average of these probability distributions, and define novelty as ``the distance to average": more specifically, a fiction is more novel if it has a large distance from the average of previous fictions, and vice versa. 
 
 While the text of fanfictions directly capture their contents, the tags generated by authors (see Methods) provides a summary of the fictions. Authors often use tags to describe the genre and plot of their fictions, for example, ``Angst" or ``Alternative Universe". Although a user is free to use any tag, when she starts to enter a tag, the website will prompt with tag suggestions, thus avoiding multiple synonyms. The tag set of a fiction provides an abstraction of its content. Besides the language modeling approach, we also ran a separate analysis on the tag set.
 
@@ -50,15 +49,13 @@ With our analysis, we show a negative relationship between novelty and success, 
 
 
 
-
-
 \section*{Results} 
 We first present some descriptive statistics of our data. 
 
 
 \subsection*{Statistics of the fanfiction dataset}
 
-Figure \ref{fig:fandom_size} shows the number of fictions in each of the 25 fandoms that we study. Figure \ref{fig:fic_time_dist}  shows the time distribution of fictions. As AO3 was established in December 2009, the fictions earlier than this time might be migrated from other platforms, thus may not correctly reflect the online community. We therefore only run our analysis using the fictions published in January 2010 and later. 
+Figure \ref{fig:fandom_size} shows the number of fictions in each of the 25 fandoms that we study. Our data collection includes fandoms in each of the broad category based on medium: movies, TV shows, books, anime \& manga, and musicals (see Methods). The fandoms with the most fictions are \emph{Marvel}, \emph{Supernatural}, and \emph{Harry Potter}. Figure \ref{fig:fic_time_dist}  shows the time distribution of fictions published. As AO3 was established in December 2009, the fictions earlier than this time might be migrated from other platforms, thus may not correctly reflect the online community. We therefore only run our analysis using the fictions published in January 2010 and later. After the establishment, the site first experienced a slow growth until around 2012, when the number of fictions published begin to rise radically. At its peak in early 2016, more than 70,000 fictions were published in a month.
 
 
 \begin{figure}
@@ -93,10 +90,16 @@ Figure \ref{fig:fic_time_dist} shows the logged cumulative distribution of Kudos
       %(or a blank line to force the subfigure onto a new line)
     \begin{subfigure}[b]{0.7\textwidth}
         \includegraphics[width=\textwidth]{/kudos_dist.pdf}
-        \caption{Log-log cumulative distribution of Kudos. For multi-chapter fictions, we use the average number of Kudos per chapter.}
+        \caption{Linear-log cumulative distribution of Kudos. For multi-chapter fictions, we use the average number of Kudos per chapter. A long-tail distribution is observed, where a small portion of fictions receive the majority of Kudos.}
         \label{fig:kudos_dist}
     \end{subfigure}
-    \caption{Statistics on the length and Kudos of fictions}\label{fig:stats_len_kudos}
+\begin{subfigure}[b]{0.7\textwidth}
+        \includegraphics[width=\textwidth]{/tag_len_dist.pdf}
+        \caption{Linear-log cumulative distribution of tag set length. }
+        \label{fig:tag_set_len}
+    \end{subfigure}
+    \caption{Statistics on the length and Kudos of fictions}\label{fig:stats_len_kudos_tags}
+
 \end{figure}
 
 \subsection*{Document novelty and success}
