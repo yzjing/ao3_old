@@ -24,19 +24,19 @@
 \date{\today}
 \maketitle %}}}
 
-It has been believed that successful creative works strike a balance between novelty and familiarity (citation needed). The classical inverted-U theory, also known as the Wundt-Berlyne curve, proposes that the perceiver's hedonic value first increases with novelty, until a certain threshold; afterwards, further increasing novelty will lead to a drop in hedonic value \cite{berlyne1970novelty}. Many experiments have been performed in seeking for empirical evidence for this theory \cite{hargreaves1984effects} \cite{sluckin1980liking}. However, it is still not clear where this assumed ``maximum novelty'' lies in the novelty -- familiarity continuum.
+It has been believed that successful creative works strike a balance between novelty and familiarity. The classical inverted-U theory, also known as the Wundt-Berlyne curve, proposes that the perceiver's hedonic value first increases with novelty, until a certain threshold; afterwards, further increasing novelty will lead to a drop in hedonic value \cite{berlyne1970novelty}. Many experiments have been performed in seeking for empirical evidence for this theory \cite{hargreaves1984effects} \cite{sluckin1980liking}. However, it is still not clear where this assumed ``maximum novelty'' lies in the novelty -- familiarity continuum.
 
-The contemporary popular culture has nurtured many creative works that are adaptations, remakes, and ``remixes" \cite{manovich2007comes} of previous works. In particular, the movies and TV industries have produced many stories that are variations of previously successful stories. For example, the stories of Sherlock Holmes has had more than 25,000 adaptations \cite{doyle2007new}. The DC Universe has ``rebooted" at least 3 times, and the Marvel Universe has more than 1,000 parallel universes \cite{marvelmultiverse}, each telling a somewhat different story with a similar set of characters. As an extreme example, the origin story of the Spider-man has been re-played in three movies since 2002 \cite{spiderman}. Market reception indicates that audience welcome this kind of stories: out of the 10 highest-grossing movies of 2016, 8 are sequels, remakes, or part of a movie universe \cite{2016film}.
+The contemporary popular culture has nurtured many creative works that are adaptations, remakes, and ``remixes'' \cite{manovich2007comes} of existing works. In particular, the movies and TV industries have produced many stories that are variations of previously successful stories. For example, the stories of Sherlock Holmes has had more than 25,000 adaptations \cite{doyle2007new}. The DC Universe has ``rebooted'' at least 3 times, and the Marvel Universe has more than 1,000 parallel universes \cite{marvelmultiverse}, each telling a somewhat different story with a similar set of characters. As an extreme example, the origin story of the Spider-man has been re-played in three movies since 2002 \cite{spiderman}. Market reception indicates that audience welcome this kind of stories: out of the 10 highest-grossing movies of 2016, 8 are sequels, remakes, or part of a movie universe \cite{2016film}.
 
 This trend is also reflected in a new type of creative works --- fan works. Known formally as transformative works, they are creative works made by fans based on one or more original works (``canons''), and are often centered around certain characters or story lines\cite{wiki:transf_work}. For example, a story written by a contemporary fan about Sherlock Holmes in his retirement is considered a fan work. Although fan works contain multiple media types such as art, music and games, one of the most common type is creative writing---fanfictions. People interested in such activities often connect and interact with each other, forming communities known as fandoms\cite{wiki:fandom}. Fandoms have developed into very large communities, especially in the Internet. The data source of our study, ArchiveOfOurOwn.org, is an online fanfiction archive that allows users to upload their fictions, and categorizes them based on fandoms. Established in 2009, it has 1,313,000 users and 3,423,000 pieces of fanfictions by November 2017 \cite{ao3stats}.
 
-Fanfictions as a unique cultural phenomena has drawn attention from media studies and cultural studies \cite{thomas2011fanfiction}. However, most of the studies focus on the identity of fanfiction writers\cite{black2006language}, the practice of fanfiction writing \cite{LIT:LIT12061}, and the interaction between fans \cite{hills2015expertise}. Relatively less studies have focused on fanfictions themselves as creative works, especially using quantitative methods.
+Fanfictions as a unique cultural phenomena has drawn attention from media studies and cultural studies \cite{thomas2011fanfiction}. However, most of the existing studies focus on the identity of fanfiction writers\cite{black2006language}, the practice of fanfiction writing \cite{LIT:LIT12061}, and the interaction between fans \cite{hills2015expertise}. Relatively less studies have focused on fanfictions themselves as creative works, especially using quantitative methods.
 
-The authors and readers' passion about fanfictions also alludes to a balance between novelty and familiarity: they desire to see familiar characters and elements, but in novel stories. By analyzing people's perception of fanfictions, we may gain a better understanding of this balance. The hedonic value of readers when reading fanfictions can be evaluated by how much they like a specific fanfiction:  In our dataset, the readers can click ``Kudos" (an equivalent of ``likes") if they enjoy reading a fiction, thus the number of Kudos can be used as a metric for hedonic value.
+The authors and readers' passion about fanfictions alludes to a balance between novelty and familiarity: they desire to see familiar characters and elements, but in novel stories. By analyzing people's perception of fanfictions, we may gain a better understanding of this balance. The hedonic value of readers when reading fanfictions can be evaluated by how much they like a specific fanfiction. In our dataset, the readers can click ``Kudos'' (an equivalent of ``likes'') if they enjoy reading a fiction, thus the number of Kudos can be used as a metric for hedonic value.
 
-Researches are only starting towards a quantitative definition of novelty. Many have employed a network approach, defining a creative work's novelty by looking at how they reference previous works \cite{elgammal2015quantifying}\cite{wang2013quantifying}\cite{2017arXiv170704239I}. In some cases, tags of a work can be used to evaluate its novelty\cite{sreenivasan2013quantitative}. To quantify the novelty of fictions, we employ three methods based on language modeling, topic modeling and tag analysis. Used widely in natural language processing and information retrieval\cite{jurafsky2000speech}\cite{Ponte:1998:LMA:290941.291008}, a language model represents documents as distributions over words. We can then compare documents by calculating the distance between these distributions. Topic models, on the other hand, represents a document as a distribution over topics. Thus we construct an ``average" fiction as the average of these probability distributions, and define novelty as ``the distance to average": more specifically, a fiction is more novel if it has a large distance from the average of previous fictions, and vice versa. 
+Researches are only starting towards a quantitative definition of novelty. Many have employed a network approach, defining a creative work's novelty by looking at how they reference previous works \cite{elgammal2015quantifying}\cite{wang2013quantifying}\cite{2017arXiv170704239I}. In some cases, tags of a work can be used to evaluate its novelty\cite{sreenivasan2013quantitative}. To quantify the novelty of fictions, we employ three methods based on language modeling, topic modeling and tag analysis. Used widely in natural language processing and information retrieval\cite{jurafsky2000speech}\cite{Ponte:1998:LMA:290941.291008}, a language model represents documents as distributions over words. We can then compare documents by calculating the distance between these distributions. Topic models, on the other hand, represents a document as a distribution over topics. Therefore we construct an ``average'' fiction as the average of these probability distributions, and define novelty as ``the distance to average'': more specifically, a fiction is more novel if it has a large distance from the average of previous fictions, and vice versa. 
 
-While the text of fanfictions directly capture their contents, the tags generated by authors (see Methods) provides a summary of the fictions. Authors often use tags to describe the genre and plot of their fictions, for example, ``Angst" or ``Alternative Universe". Although a user is free to use any tag, when she starts to enter a tag, the website will prompt with tag suggestions, thus avoiding multiple synonyms. The tag set of a fiction provides an abstraction of its content. Besides the language modeling approach, we also ran a separate analysis on the tag set.
+While the text of fanfictions directly capture their contents, the tags generated by authors (see Methods) provides a summary of the fictions. Authors often use tags to describe the genre and plot of their fictions, for example, ``Angst'' or ``Alternative Universe''. Although a user is free to use any tag, when she starts to enter a tag, the website will prompt with tag suggestions, avoiding multiple synonyms. The tag set of a fiction provides an abstraction of its content. Besides the language modeling approach, we also ran a separate analysis on the tag set.
 
 With our analysis, we show a negative relationship between novelty and success, indicating that fanfiction readers prefer more familiarity in general, discouraging novelty.
 
@@ -55,7 +55,7 @@ We first present some descriptive statistics of our data.
 
 \subsection*{Statistics of the fanfiction dataset}
 
-Figure \ref{fig:fandom_size} shows the number of fictions in each of the 25 fandoms that we study. Our data collection includes fandoms in each of the broad category based on medium: movies, TV shows, books, anime \& manga, and musicals (see Methods). The fandoms with the most fictions are \emph{Marvel}, \emph{Supernatural}, and \emph{Harry Potter}. Figure \ref{fig:fic_time_dist}  shows the time distribution of fictions published. As AO3 was established in December 2009, the fictions earlier than this time might be migrated from other platforms, thus may not correctly reflect the online community. We therefore only run our analysis using the fictions published in January 2010 and later. After the establishment, the site first experienced a slow growth until around 2012, when the number of fictions published begin to rise radically. At its peak in early 2016, more than 70,000 fictions were published in a month.
+Figure \ref{fig:fandom_size} shows the number of fictions in each of the 25 fandoms that we study. Our data collection includes fandoms in each of the broad categories based on medium: movies, TV shows, books, anime \& manga, and musicals (see Methods). The fandoms with the most fictions are \emph{Marvel}, \emph{Supernatural}, and \emph{Harry Potter}. Figure \ref{fig:fic_time_dist}  shows the time distribution of fictions published. As AO3 was established in December 2009, the fictions earlier than this time might be migrated from other platforms, thus may not correctly reflect the online community. We therefore only run our analysis using the fictions published in January 2010 and later. After the establishment, the site first experienced a slow growth until around 2012, when the number of fictions published begin to rise radically. At its peak in early 2016, more than 70,000 fictions were published in a month.
 
 
 \begin{figure}
@@ -75,9 +75,11 @@ Figure \ref{fig:fandom_size} shows the number of fictions in each of the 25 fand
     \caption{Statistics of the size and temporal distribution of our fanfiction dataset}\label{fig:stats_size_time}
 \end{figure}
 
-Figure \ref{fig:length_dist} shows the length distribution of the fanfictions. Since many fictions have multiple chapters, we consider length as the average number of words in each chapter. A great variation of average length can be observed. The variation of length in documents can have a significant effect on the distance between documents, biasing towards shorter distance between longer documents. A similar issue has been noticed in vector space models very early on \cite{singhal2017pivoted}, where many normalization methods have been proposed to correct it. Here instead of applying a normalization, we sample a fixed length (1,000 words) from each document. 
+The length distribution of the fanfictions is presented in Figure \ref{fig:length_dist} . Since many fictions have multiple chapters, we consider length as the average number of words in each chapter. A great variation of average length can be observed. The variation of length in documents can have a significant effect on the distance between documents, biasing towards shorter distance between longer documents. A similar issue has been noticed in vector space models very early on \cite{singhal2017pivoted}, where many normalization methods have been proposed to correct it. Instead of applying a normalization, in our analysis, we sample a fixed length (1,000 words) from each document. 
 
-Figure \ref{fig:fic_time_dist} shows the logged cumulative distribution of Kudos. The majority of Kudos are given to a small number of fictions, showing a long-tail distribution. Because of this, we use the log of Kudos to evaluate the success of fictions.
+Figure \ref{fig:fic_time_dist} shows the logged cumulative distribution of Kudos. Following a long-tailed distribution, a small number of fictions receive the majority of Kudos, while most fictions receive little or no Kudos. Because of this pattern, we use the log of Kudos to evaluate the success of fictions. 
+
+In Figure \ref{fig:tag_set_len}, we observe the tag set length of the fictions. The majority of fictions has under 20 tags, with a few having as many as 150 tags. Because the users have the liberty to create any tag, many of the tags will not be reused. To reduce the influence of infrequent tags, we therefore discard the tags that appear only once.
 
 \begin{figure}
     \centering
@@ -93,17 +95,19 @@ Figure \ref{fig:fic_time_dist} shows the logged cumulative distribution of Kudos
         \caption{Linear-log cumulative distribution of Kudos. For multi-chapter fictions, we use the average number of Kudos per chapter. A long-tail distribution is observed, where a small portion of fictions receive the majority of Kudos.}
         \label{fig:kudos_dist}
     \end{subfigure}
-\begin{subfigure}[b]{0.7\textwidth}
-        \includegraphics[width=\textwidth]{/tag_len_dist.pdf}
-        \caption{Linear-log cumulative distribution of tag set length. }
-        \label{fig:tag_set_len}
-    \end{subfigure}
     \caption{Statistics on the length and Kudos of fictions}\label{fig:stats_len_kudos_tags}
 
 \end{figure}
 
+\begin{figure}
+    \centering
+        \includegraphics[width=0.7\textwidth]{/tag_len_dist.pdf}
+        \caption{Linear-log cumulative distribution of tag set length. }
+        \label{fig:tag_set_len}
+\end{figure}
+
 \subsection*{Document novelty and success}
-We found a negative correlation between the novelty of fanfictions and the number of Kudos that they receive, which is consistent across three distinct measurements that we use.  Figure \ref{fig:unigram_cos} shows the result from the unigram language model. Under this model, a fixed number of words (1,000 in our experiment) is sampled from each document in a bag-of-words approach, that is, the ordering of words is not preserved. We then calculate the probability distribution over the unigrams. To account for unseen unigrams, we apply the Simple Good-Turing smoothing method \cite{gales1995good}, which assigns a small non-zero probability to those unigrams. 
+We create two distinct measurements for the novelty of fanfiction documents, and employ them to identify the relationship between novelty and the number of Kudos that they receive. A negative correlation is observed, consistent across both measurements. Figure \ref{fig:unigram_cos} shows the result from the unigram language model. Under this model, a fixed number of words (1,000 in our experiment) is sampled from each document in a bag-of-words approach, where the ordering of words is not preserved. We then calculate the probability distribution over the unigrams. To account for unseen unigrams, we apply the Simple Good-Turing smoothing method \cite{gales1995good}, which assigns a small non-zero probability to those unigrams. 
 
 The novelty score of each fiction is computed by comparing it to an ``average" fiction. To define the ``average" fiction, we take a set of fictions consisting of all fiction published within the past 6 months before the target fiction is published. Then we calculate the average probability distribution of the fictions in this set. We compute the novelty score of the fiction as the cosine distance between the target fiction and the average fiction:
 
@@ -114,11 +118,22 @@ n = 1-\frac{\sum_{i=1}^{n}{A_iB_i}}{\sqrt{\sum_{i=1}^{n}{A_i^2}}\sqrt{\sum_{i=1}
 From Figure \ref{fig:unigram_cos}, we observe that as the novelty score increases between 0 and 1, the z-score of Kudos steadily decrease from 0.1 to -0.3: that is, from above average to below average. 
 
 Besides the language model, we also present the results of running a topic modeling algorithm to detect the topics of fanfictions. 
-The  \emph{Latent Dirichlet Allocation} (LDA) \cite{blei2003latent} has been widely used for such tasks. As an unsupervised learning algorithm, it models a topic as a probabilistic distribution over a set of words, and a document as a probabilistic distribution over a set of topics. We are thus able to compute the distance between documents by comparing their topic compositions. Similar to the unigram model, we construct an ``average" fiction as the average topic distribution of fictions in a set consisting of fictions published during a given time period, and define the novelty score as the cosine distance between a fiction and the average fiction. Figure \ref{fig:lda_cos} shows the results of the LDA model. Consistent with the result of the unigram model, as novelty scores increase, the z-score of Kudos decrease from positive (above average) to negative (below average).
+The \emph{Latent Dirichlet Allocation} (LDA) \cite{blei2003latent} has been widely used for such tasks. As an unsupervised learning algorithm, it models a topic as a probabilistic distribution over a set of words, and a document as a probabilistic distribution over a set of topics. We are thus able to compute the distance between documents by comparing their topic compositions. Similar to the unigram model, we construct an ``average'' fiction as the average topic distribution of fictions in a set consisting of fictions published during a given time period, and define the novelty score as the cosine distance between a fiction and the average fiction. Figure \ref{fig:lda_cos} shows the results of the LDA model. Consistent with the result of the unigram model, as novelty scores increase, the z-score of Kudos decrease from positive (above average) to negative (below average).
 
 \subsection*{Tag novelty and success}
-We adapt the method from \cite{sreenivasan2013quantitative} to compute a novelty score for each tag. This method considers the ``surprise" of observing a tag, given a set of tags from all fictions of a past time period (see Methods). Higher surprise of a tag indicates more novelty. The novelty score of a fiction is then defined as the average novelty score of all its tags. In Figure \ref{fig:tag_novelty}, we observe once again that as 
-novelty increase, the z-score of Kudos experiences a fluctuating but overall steady decline.
+We adapt the method from \cite{sreenivasan2013quantitative} to compute a novelty score for each tag. This method considers the ``surprise" of observing a tag, given a set of tags from all fictions in the past. To control for the size of the size of this set, we use a limited length of past history, only considering the fictions published within 6 months of the target fiction. First, we compute the probability $P(t)$ of observing a tag t over a set of tags S:
+
+\begin{equation}
+P(t) = \frac{S_t}{S}
+\end{equation}
+
+Where $S_t$ is the size of the subset of fictions that includes the tag t, and S is the size of the whole set. Naturally, we can use $-logP(t)$ as a measurement of the surprise of tag t. The novelty of a fiction is then defined as the average surprise of its tags:
+
+\begin{equation}
+N = -\frac{1}{S_T}\sum_{t \in{T}} logP(t)
+\end{equation}
+
+Where $S_T$ is the number of tags of a fiction. Higher surprise of tags will therefore indicate more novelty. In Figure \ref{fig:tag_novelty}, we observe once again that as novelty increase, the z-score of Kudos experiences a fluctuating but overall steady decline.
 
 
 \begin{figure}
@@ -147,11 +162,15 @@ novelty increase, the z-score of Kudos experiences a fluctuating but overall ste
 \end{figure}
 
 \section*{Discussion}
+We have proposed three ways to quantify the novelty of fanfictions. We do this by modeling the texts of the fictions, and using document similarity measurements to calculate the distance between a fiction and the ``average'' fiction of its time and fandom; and also by considering the author-generated tags of the fictions, calculating the ``surprise'' of observing these tags. All methods have presented a negative correlation between a fanfiction's novelty and the Kudos that it receives, indicating that more novelty leads to less hedonic value.
+
+Our results show a pattern diverting from the Wundt-Berlyne curve: instead of a reversed-U shape, we observe the hedonic value consistently decreasing when novelty increases (Fig \ref{fig:unigram_cos}, \ref{fig:lda_cos}, \ref{fig:tag_novelty}). This may be explained by the nature of fan works -- because fans desire to see familiar characters and stories, it is reasonable for them to prefer fanfictions that stay close to the original works. Presumably, a similar psychology may explain the abundance of sequel and spin-off films in today's film market. A possible extension of this work is therefore to investigate if the novelty-Kudos pattern holds for pop culture products other than fanfictions. 
+
 
 \section*{Methods}
 
 \subsection*{Data collection}
-We collected fanfictions from 50 fandoms on AO3, according to its list of most popular fandoms as of March 2016 \footnote{from this list: \url{http://archiveofourown.org/media}}. To avoid duplication, we remove fandoms with heavy overlapping (e.g.: we keep \emph{Marvel} and removed \emph{Marvel movies}). Fandoms that cover diverse topics (e.g.\emph{k-pop}) are also removed. Finally, we only kept the fictions written in English. This leaves us with 904,760 fictions from 25 fandoms. In our analysis, samples of the data are used. 
+We collected fanfictions from 50 fandoms on AO3, according to its list of most popular fandoms as of March 2016 \footnote{from this list: \url{http://archiveofourown.org/media}}. To avoid duplication, we remove fandoms with heavy overlapping (e.g.: we keep \emph{Marvel} and removed \emph{Marvel movies}). Fandoms that cover diversed topics (e.g.\emph{k-pop}) are also removed. Finally, we only kept the fictions written in English. This leaves us with 904,760 fictions from 25 fandoms. In our analysis, only samples of the data are used. 
 
 Besides the work texts, we also collected metadata including 23 fields. We only used information contained in some of these fields. Table \ref{tab:metadata} gives the names and descriptions of these fields. 
 
@@ -180,19 +199,16 @@ Publish Date & The date the fiction was published. & Used for temporal analysis.
 We model the fictions with a unigram language model. The Simple Good-Turing smoothing\cite{gales1995good} is applied to improve the model, and to assign non-zero probabilities to previously unseen unigrams. When creating the set of unigrams, we also remove the rare unigrams that appear in less than 5 documents and left out fictions with less than 500 words.
 
 
-We further define the concept of a \emph{typical} fiction. A typical fiction of a fandom is the average of probability distributions of all fictions in the fandom. This allows us to calculate the distance between any fiction and the typical fiction. 
-
 \subsection*{Topic modeling}
-
+The Python library Gensim's LDA \cite{gensimlda} is used to train topic models on our data. We set the number of topics to 40 and use default values for other parameters. 
 \subsection*{Computing tag novelty}
-
-% https://academic.oup.com/chemse/article/24/2/191/312277 familarity & hedonic value of odors
-% http://rsos.royalsocietypublishing.org/content/4/7/170433  Significance and popularity in music production
 
 
 \bibliographystyle{acm}
 \bibliography{main}
 
+% https://academic.oup.com/chemse/article/24/2/191/312277 familarity & hedonic value of odors
+% http://rsos.royalsocietypublishing.org/content/4/7/170433  Significance and popularity in music production
 
 
 
