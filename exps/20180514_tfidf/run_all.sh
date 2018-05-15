@@ -1,0 +1,5 @@
+python temporal_tfidf_toprev.py
+python temporal_tfidf_tocurr_allave.py
+python temporal_tfidf_tocurr.py
+python temporal_tfidf_tocurr_allave_conlen.py
+python temporal_tfidf_tocurr_conlen.py
