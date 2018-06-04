@@ -87,14 +87,17 @@ def create_df_time(df, time):
 
 def get_dist(text, di, vocab):
     prob_line = []
-    sgt_line = sgt.simpleGoodTuringProbs(di[text])
-    num_abs_words = len(vocab - set(di[text].keys()))
-    for word in vocab:
-        if word in di[text].keys():
-            prob_line.append(sgt_line[0][word])
-        else:
-            prob_line.append(sgt_line[1]/float(num_abs_words))
-    return prob_line
+    try:
+        sgt_line = sgt.simpleGoodTuringProbs(di[text])
+        num_abs_words = len(vocab - set(di[text].keys()))
+        for word in vocab:
+            if word in di[text].keys():
+                prob_line.append(sgt_line[0][word])
+            else:
+                prob_line.append(sgt_line[1]/float(num_abs_words))
+        return prob_line
+    except:
+        return [0]
 
 
 def calc_kl(p, q):
@@ -123,11 +126,11 @@ def calc_kl2std(dist, std_month):
     except:
         return 0
 
-# @profile
+@profile
 def main(fandom):
     print('working on fandom: ', fandom)
     df = pd.read_csv(fandom + '_preprocessed.tsv', sep = '\t')
-    df = df.head(200)
+    df = df.sample(5000)
     try:
         df = df[['Author','ChapterIndex', 'Hits', 'Kudos', 'PublishDate', 'Summary', 'Text', 'Title', 'URL', 'Words']]    
     except:
@@ -180,7 +183,6 @@ def main(fandom):
     print('Done with: ', fandom)
 
 fandoms = [
-'hetalia_axis_powers',
 'naruto',
 'star_wars_all_media_types',
 'buffy_the_vampire_slayer',
@@ -209,7 +211,6 @@ fandoms = [
 
 for fandom in fandoms:
     main(fandom)
-    break
 
 # profile.run('main("shakespare_william_works")')
 
@@ -224,6 +225,6 @@ done:
 'les_miserables_all_media_types',
 'shakespare_william_works',
 'the_walking_dead_&_related_fandoms',
-
+'hetalia_axis_powers',
 ''' 
 

@@ -8,8 +8,6 @@ import pandas as pd
 import re
 import sgt_opt as sgt
 from collections import Counter
-from memory_profiler import profile
-import gc
 
 # In[3]:
 
@@ -87,99 +85,68 @@ def create_df_time(df, time):
 
 def get_dist(text, di, vocab):
     prob_line = []
-    sgt_line = sgt.simpleGoodTuringProbs(di[text])
-    num_abs_words = len(vocab - set(di[text].keys()))
-    for word in vocab:
-        if word in di[text].keys():
-            prob_line.append(sgt_line[0][word])
-        else:
-            prob_line.append(sgt_line[1]/float(num_abs_words))
-    return prob_line
-
-
-def calc_kl(p, q):
-    return sum([p[i]*(np.log2(p[i]/q[i])) for i in range(len(p))])
-
-
-# In[44]:
-
-# Take average of distributions of the month
-def calc_monthly_std(df, month):
-    df_t = create_df_time(df, month)
     try:
-        sgt_array = np.asarray(df_t.Dist.tolist())
-        std = np.mean(sgt_array, axis=0)
-        return std
+        sgt_line = sgt.simpleGoodTuringProbs(di[text])
+        num_abs_words = len(vocab - set(di[text].keys()))
+        for word in vocab:
+            if word in di[text].keys():
+                prob_line.append(sgt_line[0][word])
+            else:
+                prob_line.append(sgt_line[1]/float(num_abs_words))
+        return prob_line
     except:
-        return 0
+        return [0]
 
 
-# In[56]:
-
-# kl between a distribution and std of the month
-def calc_kl2std(dist, std_month):
-    try:
-        return calc_kl(dist, std_month)
-    except:
-        return 0
-
-# @profile
 def main(fandom):
     print('working on fandom: ', fandom)
     df = pd.read_csv(fandom + '_preprocessed.tsv', sep = '\t')
-    df = df.head(200)
-    try:
-        df = df[['Author','ChapterIndex', 'Hits', 'Kudos', 'PublishDate', 'Summary', 'Text', 'Title', 'URL', 'Words']]    
-    except:
-        df = df[['Author','ChapterIndex', 'Hits', 'Kudos', 'PublishDate', 'Summary', 'Text', 'Title', 'Words']]    
-    # tune this for filtering?
+    df = df.fillna(0)
+    
     min_df = 4
-
+    
     # filter to exclude the months with less than 10 authors or 10000 words
     tl = create_timelist(df)
     timelist = []
     for t in tl:
         df_t = create_df_time(df, t)
         try:
-            df_t = df_t.drop(['ChapterIndex', 'URL', 'Text','Summary'], axis=1)
+            df_t = df_t.drop(['ChapterIndex', 'URL', 'CompleteDate','UpdateDate','Comments','PublishDate','Notes','Bookmarks'], axis=1)
             df_t = df_t.drop_duplicates()
         except:
-            df_t = df_t.drop(['ChapterIndex', 'Text','Summary'], axis=1)
+            df_t = df_t.drop(['ChapterIndex', 'CompleteDate','UpdateDate','Comments','PublishDate','Notes','Bookmarks'], axis=1)
             df_t = df_t.drop_duplicates()
 
         words = df_t.Words.sum()
         authors = len(set(df_t.Author.tolist()))
-        if words > 10000 and authors > 10:
+        if words >= 10000 and authors >= 10:
             timelist.append(t)
-
-    df = df.fillna(0)
 
     df = df[df.PublishDate.str[:7].isin(timelist)]
     df = df[df.Words.astype(int) > 500]
     
-    df = df[['Author', 'Hits', 'Kudos', 'PublishDate', 'Text', 'Title']]    
+    df = df.sample(5000,replace=True)
 
     # Add a column of smoothed unigram probablities to df
     corp = create_corpus_for_voc(df)
     vocab = get_voc(corp,1,min_df)
-    unigram_dict = create_unigram_freq_dict(df, vocab)
-    df['Dist'] = df['Text'].map(lambda x: get_dist(x, unigram_dict, vocab))
-    del df['Text']
+    with open('vocab_size.txt', 'a') as g:
+        g.write(str(len(vocab)) + "\n")
+    # unigram_dict = create_unigram_freq_dict(df, vocab)
+    # df['Dist'] = df['Text'].map(lambda x: get_dist(x, unigram_dict, vocab))
+    # del df['Text']
 
-    std_all = {}
-    for time in timelist:
-        std_all[time] = calc_monthly_std(df, time)
-
-    df['KL'] = df.apply(lambda row: calc_kl2std(row['Dist'], std_all.get(str(row['PublishDate'])[:7])), axis = 1)
-
-    df = df.fillna(0)
-
-    df = df.groupby(['Author', 'Hits', 'Kudos', 'Title']).agg({'KL': [np.mean]}).reset_index() 
-
-    df.to_csv(fandom + '_unigram_dist_kl.tsv', index = False, sep = '\t')
+    # df.to_csv(fandom + '_unigram_dist.tsv', index = False, sep = '\t')
     print('Done with: ', fandom)
 
 fandoms = [
+'bishoujo_senshi_sailor_moon',
+'haikyuu',
+'hamilton_miranda',
+'kuroko_no_basuke',
+'les_miserables_all_media_types',
+'shakespare_william_works',
+'the_walking_dead_&_related_fandoms',
 'hetalia_axis_powers',
 'naruto',
 'star_wars_all_media_types',
@@ -209,7 +176,6 @@ fandoms = [
 
 for fandom in fandoms:
     main(fandom)
-    break
 
 # profile.run('main("shakespare_william_works")')
 
@@ -217,13 +183,6 @@ for fandom in fandoms:
 
 '''
 done:
-'bishoujo_senshi_sailor_moon',
-'haikyuu',
-'hamilton_miranda',
-'kuroko_no_basuke',
-'les_miserables_all_media_types',
-'shakespare_william_works',
-'the_walking_dead_&_related_fandoms',
 
 ''' 
 
