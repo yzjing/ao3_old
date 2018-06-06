@@ -1,59 +1,58 @@
-This is BibTeX, Version 0.99d (TeX Live 2014)
-Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+This is BibTeX, Version 0.99d (TeX Live 2017)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: main.aux
 The style file: acm.bst
 Database file #1: main.bib
-Warning--entry type for "marvelmultiverse" isn't style-file defined
---line 83 of file main.bib
 Warning--entry type for "spiderman" isn't style-file defined
 --line 98 of file main.bib
 Warning--entry type for "2016film" isn't style-file defined
 --line 106 of file main.bib
-Warning--entry type for "ao3stats" isn't style-file defined
---line 115 of file main.bib
-Warning--entry type for "fanfiction.net" isn't style-file defined
---line 123 of file main.bib
-Warning--empty journal in yung2013market
-Warning--empty journal in zhaopredicting
-You've used 25 entries,
+Warning--entry type for "gensimlda" isn't style-file defined
+--line 325 of file main.bib
+Warning--entry type for "creativeindustries" isn't style-file defined
+--line 343 of file main.bib
+Warning--entry type for "2017film" isn't style-file defined
+--line 393 of file main.bib
+Warning--can't use both volume and number fields in singhal2017pivoted
+You've used 27 entries,
             2253 wiz_defined-function locations,
-            658 strings with 7125 characters,
-and the built_in function-call counts, 6370 in all, are:
-= -- 611
-> -- 225
+            686 strings with 7559 characters,
+and the built_in function-call counts, 7348 in all, are:
+= -- 725
+> -- 244
 < -- 0
-+ -- 99
-- -- 70
-* -- 427
-:= -- 1049
-add.period$ -- 69
-call.type$ -- 25
-change.case$ -- 108
++ -- 106
+- -- 76
+* -- 547
+:= -- 1189
+add.period$ -- 77
+call.type$ -- 27
+change.case$ -- 119
 chr.to.int$ -- 0
-cite$ -- 27
-duplicate$ -- 239
-empty$ -- 587
-format.name$ -- 70
-if$ -- 1323
+cite$ -- 28
+duplicate$ -- 250
+empty$ -- 678
+format.name$ -- 76
+if$ -- 1527
 int.to.chr$ -- 0
-int.to.str$ -- 25
+int.to.str$ -- 27
 missing$ -- 20
-newline$ -- 122
-num.names$ -- 50
-pop$ -- 132
+newline$ -- 134
+num.names$ -- 54
+pop$ -- 118
 preamble$ -- 1
-purify$ -- 85
+purify$ -- 92
 quote$ -- 0
-skip$ -- 161
+skip$ -- 171
 stack$ -- 0
-substring$ -- 358
-swap$ -- 56
+substring$ -- 510
+swap$ -- 63
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 96
-warning$ -- 2
-while$ -- 70
-width$ -- 27
-write$ -- 236
-(There were 7 warnings)
+type$ -- 108
+warning$ -- 1
+while$ -- 87
+width$ -- 29
+write$ -- 264
+(There were 6 warnings)

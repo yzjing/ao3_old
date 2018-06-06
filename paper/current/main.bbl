@@ -1,5 +1,11 @@
 \begin{thebibliography}{10}
 
+\bibitem{askin2017makes}
+{\sc Askin, N., and Mauskapf, M.}
+\newblock What makes popular culture popular? product features and optimal
+  differentiation in music.
+\newblock {\em American Sociological Review 82}, 5 (2017), 910--944.
+
 \bibitem{berlyne1970novelty}
 {\sc Berlyne, D.~E.}
 \newblock Novelty, complexity, and hedonic value.
@@ -10,21 +16,16 @@
 \newblock Language, culture, and identity in online fanfiction.
 \newblock {\em E-learning and Digital Media 3}, 2 (2006), 170--184.
 
-\bibitem{marvelmultiverse}
-{\sc Database, M.}
-\newblock Multiverse/universe listing, 2017.
+\bibitem{blei2003latent}
+{\sc Blei, D.~M., Ng, A.~Y., and Jordan, M.~I.}
+\newblock Latent dirichlet allocation.
+\newblock {\em Journal of machine Learning research 3}, Jan (2003), 993--1022.
 
-\bibitem{doyle2007new}
-{\sc Doyle, A.~C.}
-\newblock {\em The New Annotated Sherlock Holmes: The Complete Short Stories:
-  The Adventures of Sherlock Holmes and The Memoirs of Sherlock Holmes
-  (Non-slipcased edition)(Vol. 1)(The Annotated Books)}.
-\newblock WW Norton \& Company, 2007.
-
-\bibitem{elgammal2015quantifying}
-{\sc Elgammal, A., and Saleh, B.}
-\newblock Quantifying creativity in art networks.
-\newblock {\em arXiv preprint arXiv:1506.00711\/} (2015).
+\bibitem{bornstein1989exposure}
+{\sc Bornstein, R.~F.}
+\newblock Exposure and affect: overview and meta-analysis of research,
+  1968--1987.
+\newblock {\em Psychological bulletin 106}, 2 (1989), 265.
 
 \bibitem{wiki:transf_work}
 {\sc Fanlore}.
@@ -47,15 +48,23 @@
   exploring the narrative universe of doctor who.
 \newblock {\em Convergence 21}, 3 (2015), 360--374.
 
-\bibitem{2017arXiv170704239I}
-{\sc {Iacopini}, I., {Milojevi{\'c}}, S., and {Latora}, V.}
-\newblock {Network dynamics of innovation processes}.
-\newblock {\em ArXiv e-prints\/} (July 2017).
+\bibitem{huron2013psychological}
+{\sc Huron, D.}
+\newblock A psychological approach to musical form: The habituation-fluency
+  theory of repetition.
+\newblock {\em Current Musicology}, 96 (2013), 7.
 
-\bibitem{jurafsky2000speech}
-{\sc Jurafsky, D.}
-\newblock {\em Speech \& language processing}.
-\newblock Pearson Education India, 2000.
+\bibitem{hutter2011infinite}
+{\sc Hutter, M.}
+\newblock Infinite surprises: on the stabilization of value in the creative
+  industries.
+\newblock {\em The worth of goods. Valuation and pricing in the economy\/}
+  (2011), 201--220.
+
+\bibitem{kunst1980affective}
+{\sc Kunst-Wilson, W.~R., and Zajonc, R.~B.}
+\newblock Affective discrimination of stimuli that cannot be recognized.
+\newblock {\em Science 207}, 4430 (1980), 557--558.
 
 \bibitem{LIT:LIT12061}
 {\sc Magnifico, A.~M., Curwood, J.~S., and Lammers, J.~C.}
@@ -69,22 +78,31 @@
 \newblock What comes after remix.
 \newblock {\em Remix Theory 10\/} (2007), 2013.
 
-\bibitem{ao3stats}
-{\sc of~Our~Own, A.}
-\newblock Archive of our own, 2017.
+\bibitem{creativeindustries}
+{\sc of~Economic~Analysis, B.}
+\newblock Spending on arts and cultural production continues to increase, 2015.
 
-\bibitem{Ponte:1998:LMA:290941.291008}
-{\sc Ponte, J.~M., and Croft, W.~B.}
-\newblock A language modeling approach to information retrieval.
-\newblock In {\em Proceedings of the 21st Annual International ACM SIGIR
-  Conference on Research and Development in Information Retrieval\/} (New York,
-  NY, USA, 1998), SIGIR '98, ACM, pp.~275--281.
+\bibitem{salganik2008leading}
+{\sc Salganik, M.~J., and Watts, D.~J.}
+\newblock Leading the herd astray: An experimental study of self-fulfilling
+  prophecies in an artificial cultural market.
+\newblock {\em Social psychology quarterly 71}, 4 (2008), 338--355.
+
+\bibitem{singhal2017pivoted}
+{\sc Singhal, A., Buckley, C., and Mitra, M.}
+\newblock Pivoted document length normalization.
+\newblock In {\em ACM SIGIR Forum\/} (2017), vol.~51, ACM, pp.~176--184.
 
 \bibitem{sluckin1980liking}
 {\sc Sluckin, W., Colman, A.~M., and Hargreaves, D.~J.}
 \newblock Liking words as a function of the experienced frequency of their
   occurrence.
 \newblock {\em British Journal of Psychology 71}, 1 (1980), 163--169.
+
+\bibitem{sorensen2007bestseller}
+{\sc Sorensen, A.~T.}
+\newblock Bestseller lists and product variety.
+\newblock {\em The journal of industrial economics 55}, 4 (2007), 715--738.
 
 \bibitem{sreenivasan2013quantitative}
 {\sc Sreenivasan, S.}
@@ -98,11 +116,6 @@
   it?
 \newblock {\em Storyworlds: A Journal of Narrative Studies 3}, 1 (2011), 1--24.
 
-\bibitem{wang2013quantifying}
-{\sc Wang, D., Song, C., and Barab{\'a}si, A.-L.}
-\newblock Quantifying long-term scientific impact.
-\newblock {\em Science 342}, 6154 (2013), 127--132.
-
 \bibitem{wiki:fandom}
 {\sc Wikipedia}.
 \newblock Fandom--- {W}ikipedia{,} the free encyclopedia, 2015.
@@ -112,22 +125,21 @@
 {\sc Wikipedia}.
 \newblock 2016 in film, 2017.
 
-\bibitem{fanfiction.net}
+\bibitem{2017film}
 {\sc Wikipedia}.
-\newblock Fanfiction.net, 2017.
+\newblock 2017 in film, 2017.
 
 \bibitem{spiderman}
 {\sc Wikipedia}.
 \newblock Spider-man in film, 2017.
 
-\bibitem{yung2013market}
-{\sc Yung, H.}
-\newblock Market transformation in transformative works: The effects of
-  introducing incentives in markets for fanfiction.
+\bibitem{zajonc1968attitudinal}
+{\sc Zajonc, R.~B.}
+\newblock Attitudinal effects of mere exposure.
+\newblock {\em Journal of personality and social psychology 9}, 2p2 (1968), 1.
 
-\bibitem{zhaopredicting}
-{\sc Zhao, A.}
-\newblock Predicting popularity of fanfiction stories based on title and
-  summary.
+\bibitem{gensimlda}
+{\sc Řehůřek, R.}
+\newblock models.ldamodel – latent dirichlet allocation, 2018.
 
 \end{thebibliography}
