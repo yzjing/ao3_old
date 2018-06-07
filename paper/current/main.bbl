@@ -27,15 +27,15 @@
   1968--1987.
 \newblock {\em Psychological bulletin 106}, 2 (1989), 265.
 
+\bibitem{de2015game}
+{\sc De~Vaan, M., Stark, D., and Vedres, B.}
+\newblock Game changer: The topology of creativity.
+\newblock {\em American Journal of Sociology 120}, 4 (2015), 1144--1194.
+
 \bibitem{wiki:transf_work}
 {\sc Fanlore}.
 \newblock Transformative work, 2015.
 \newblock [Online; accessed 14-December-2015].
-
-\bibitem{gales1995good}
-{\sc Gales, W.~A.}
-\newblock Good-turing smoothing without tears.
-\newblock {\em Journal of Quantitative Linguistics\/} (1995).
 
 \bibitem{hargreaves1984effects}
 {\sc Hargreaves, D.~J.}
@@ -82,16 +82,15 @@
 {\sc of~Economic~Analysis, B.}
 \newblock Spending on arts and cultural production continues to increase, 2015.
 
+\bibitem{ao3stats}
+{\sc of~Our~Own, A.}
+\newblock Archive of our own, 2017.
+
 \bibitem{salganik2008leading}
 {\sc Salganik, M.~J., and Watts, D.~J.}
 \newblock Leading the herd astray: An experimental study of self-fulfilling
   prophecies in an artificial cultural market.
 \newblock {\em Social psychology quarterly 71}, 4 (2008), 338--355.
-
-\bibitem{singhal2017pivoted}
-{\sc Singhal, A., Buckley, C., and Mitra, M.}
-\newblock Pivoted document length normalization.
-\newblock In {\em ACM SIGIR Forum\/} (2017), vol.~51, ACM, pp.~176--184.
 
 \bibitem{sluckin1980liking}
 {\sc Sluckin, W., Colman, A.~M., and Hargreaves, D.~J.}
@@ -115,6 +114,12 @@
 \newblock What is fanfiction and why are people saying such nice things about
   it?
 \newblock {\em Storyworlds: A Journal of Narrative Studies 3}, 1 (2011), 1--24.
+
+\bibitem{turney2010frequency}
+{\sc Turney, P.~D., and Pantel, P.}
+\newblock From frequency to meaning: Vector space models of semantics.
+\newblock {\em Journal of artificial intelligence research 37\/} (2010),
+  141--188.
 
 \bibitem{wiki:fandom}
 {\sc Wikipedia}.

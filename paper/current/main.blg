@@ -7,52 +7,53 @@ Warning--entry type for "spiderman" isn't style-file defined
 --line 98 of file main.bib
 Warning--entry type for "2016film" isn't style-file defined
 --line 106 of file main.bib
+Warning--entry type for "ao3stats" isn't style-file defined
+--line 115 of file main.bib
 Warning--entry type for "gensimlda" isn't style-file defined
 --line 325 of file main.bib
 Warning--entry type for "creativeindustries" isn't style-file defined
 --line 343 of file main.bib
 Warning--entry type for "2017film" isn't style-file defined
 --line 393 of file main.bib
-Warning--can't use both volume and number fields in singhal2017pivoted
-You've used 27 entries,
+You've used 28 entries,
             2253 wiz_defined-function locations,
-            686 strings with 7559 characters,
-and the built_in function-call counts, 7348 in all, are:
-= -- 725
-> -- 244
+            690 strings with 7701 characters,
+and the built_in function-call counts, 7552 in all, are:
+= -- 745
+> -- 256
 < -- 0
-+ -- 106
-- -- 76
-* -- 547
-:= -- 1189
-add.period$ -- 77
-call.type$ -- 27
-change.case$ -- 119
++ -- 111
+- -- 80
+* -- 568
+:= -- 1230
+add.period$ -- 79
+call.type$ -- 28
+change.case$ -- 124
 chr.to.int$ -- 0
 cite$ -- 28
-duplicate$ -- 250
-empty$ -- 678
-format.name$ -- 76
-if$ -- 1527
+duplicate$ -- 244
+empty$ -- 696
+format.name$ -- 80
+if$ -- 1559
 int.to.chr$ -- 0
-int.to.str$ -- 27
+int.to.str$ -- 28
 missing$ -- 20
-newline$ -- 134
-num.names$ -- 54
-pop$ -- 118
+newline$ -- 138
+num.names$ -- 56
+pop$ -- 124
 preamble$ -- 1
-purify$ -- 92
+purify$ -- 96
 quote$ -- 0
-skip$ -- 171
+skip$ -- 163
 stack$ -- 0
-substring$ -- 510
-swap$ -- 63
+substring$ -- 539
+swap$ -- 56
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 108
-warning$ -- 1
-while$ -- 87
-width$ -- 29
-write$ -- 264
+type$ -- 112
+warning$ -- 0
+while$ -- 90
+width$ -- 30
+write$ -- 271
 (There were 6 warnings)

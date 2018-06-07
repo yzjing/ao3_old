@@ -64,7 +64,7 @@ Figure \ref{fig:fandom_size} shows the number of fanfictions in each of the 24 f
         \caption{Number of fanfictions published each month}
         \label{fig:fic_time_dist}
     \end{subfigure}
-    \caption{Statistics of the size and temporal distribution of our fanfiction dataset}\label{fig:stats_size_time}
+    \caption{The size of fandoms and the number of fanfictions published per month.}\label{fig:stats_size_time}
 \end{figure}
 
 Besides the fanfictions' texts, we also collected metadata including 14 fields. Some of them provide information about the fanfictions, while some can be used to evaluate the success of the fanfictions. Table \ref{tab:metadata} lists the names and descriptions of these fields. 
@@ -108,51 +108,34 @@ While we are interested in how a fanfiction's novelty influences its success, th
 \end{figure}
 
 
-\subsection*{Document novelty and success}
-We create two distinct measurements for the novelty of fanfiction documents, and employ them to identify the relationship between novelty and the number of Kudos that they receive. A negative correlation is observed, consistent across both measurements. Figure \ref{fig:unigram_cos} shows the result from the unigram language model. Under this model, a fixed number of words (1,000 in our experiment) is sampled from each document in a bag-of-words approach, where the ordering of words is not preserved. We then calculate the probability distribution over the unigrams. To account for unseen unigrams, we apply the Simple Good-Turing smoothing method \cite{gales1995good}, which assigns a small non-zero probability to those unigrams. 
+\subsection*{Fanfictions' Novelty and Success}
+Following the approaches by \cite{askin2017makes} and \cite{de2015game}, we evaluate a fanfiction's novelty by comparing it to other fanfictions in the past. Intuitively, if a fanfiction is close to the center of a feature space containing all past fictions, it is less novel; reversely, a peripheral position indicates higher novelty. 
 
-The novelty score of each fiction is computed by comparing it to an ``average" fiction. To define the ``average" fiction, we take a set of fictions consisting of all fiction published within the past 6 months before the target fiction is published. Then we calculate the average probability distribution of the fictions in this set. We compute the novelty score of the fiction as the cosine distance between the target fiction and the average fiction:
-
-\begin{equation}
-n = 1-\frac{\sum_{i=1}^{n}{A_iB_i}}{\sqrt{\sum_{i=1}^{n}{A_i^2}}\sqrt{\sum_{i=1}^{n}{B_i^2}}}
-\end{equation}
-
-From Figure \ref{fig:unigram_cos}, we observe that as the novelty score increases between 0 and 1, the z-score of Kudos steadily decrease from 0.1 to -0.3: that is, from above average to below average. 
-
-Besides the language model, we also present the results of running a topic modeling algorithm to detect the topics of fanfictions. 
-The \emph{Latent Dirichlet Allocation} (LDA) \cite{blei2003latent} has been widely used for such tasks. As an unsupervised learning algorithm, it models a topic as a probabilistic distribution over a set of words, and a document as a probabilistic distribution over a set of topics. We are thus able to compute the distance between documents by comparing their topic compositions. Similar to the unigram model, we construct an ``average'' fiction as the average topic distribution of fictions in a set consisting of fictions published during a given time period, and define the novelty score as the cosine distance between a fiction and the average fiction. Figure \ref{fig:lda_cos} shows the results of the LDA model. Consistent with the result of the unigram model, as novelty scores increase, the z-score of Kudos decrease from positive (above average) to negative (below average).
-
-\subsection*{Tag novelty and success}
-We adapt the method from \cite{sreenivasan2013quantitative} to compute a novelty score for each tag. This method considers the ``surprise" of observing a tag, given a set of tags from all fictions in the past. To control for the size of the size of this set, we use a limited length of past history, only considering the fictions published within 6 months of the target fiction. First, we compute the probability $P(t)$ of observing a tag t over a set of tags S:
+We embed the fanfictions in the feature space using two methods. The first one is an vector space model as often used in information retrieval \cite{turney2010frequency}, where each fanfiction is represented as a vector, its entries being the term frequency-intersed document frequency (TFIDF) score of the unique words in the fiction. This allows us to identify the most representative terms in the documents. The feature space is created in a way that for each fanfiction, it contains all fanfictions published in the same fandom within the past 6 months before it was published. We then compute the center of the feature space as the average of all feature vectors. The novelty score of a fanfiction is defined as the cosine distance between its vector representation and the center:
 
 \begin{equation}
-P(t) = \frac{S_t}{S}
+n = 1-\frac{\sum_{i=1}^{n}{F_iC_i}}{\sqrt{\sum_{i=1}^{n}{C_i^2}}\sqrt{\sum_{i=1}^{n}{C_i^2}}}
 \end{equation}
 
-Where $S_t$ is the size of the subset of fictions that includes the tag t, and S is the size of the whole set. Naturally, we can use $-logP(t)$ as a measurement of the surprise of tag t. The novelty of a fiction is then defined as the average surprise of its tags:
+Where $F_i$ is the vector representation of a fanfiction and $C_i$ is the center of the vector space.
 
-\begin{equation}
-N = -\frac{1}{S_T}\sum_{t \in{T}} logP(t)
-\end{equation}
+The TFIDF method focus on the words used in a fanfiction. Alternatively, we also use the \emph{Latent Dirichlet Allocation} (LDA) \cite{blei2003latent} to model the topics of the fanficitions. As a widely used topic modeling method, it models a fiction as a probabilistic distribution over a set of topics. Similar as in the TFIDF method, we construct for each fanfiction a feature space consisting of the topic distributions of the fanfictions published before it, and define the novelty score as the cosine distance between the fanfiction's topic distribution and the center. 
 
-Where $S_T$ is the number of tags of a fiction. Higher surprise of tags will therefore indicate more novelty. In Figure \ref{fig:tag_novelty}, we observe once again that as novelty increase, the z-score of Kudos experiences a fluctuating but overall steady decline.
+Figure \ref{fig:tfidf_lda_kudos} plots the relationship between the fanfictions' novelty and the kudos they receive, aggregating all fandoms. Since the fandoms differ in reader base, we compute the z-score for each value of kudos based on the average number of kudos per fiction in its fandom. We observe that as the novelty score increases from 0  to 1, the z-score of Kudos steadily decrease from 0.1 to -0.1 in the vector space model, and from more than 0.1 to -0.03 in the LDA model. In both cases, the less novel fanfictions receive more than average kudos, and the highly novel fanfictions receive less than average. Similarly, Figure \ref{fig:tfidf_lda_comments} shows the relationship between novelty and the number of comments, and it can be observed that less novel fictions tend to receive more comments than highly novel fictions. The only exception is the minor peak in the left panel, with novelty score $\approx$ 0.7, but this does not change the general pattern.
 
 
 \begin{figure}
     \centering
-    \begin{subfigure}[b]{0.7\textwidth}
-        \includegraphics[width=\textwidth]{/unigram_cos_kudos_z_toprev_samplew.pdf}
-        \caption{Negative correlation between novelty and Kudos, using the unigram model. As the cosine distance between a fiction and the ``average" of previous fictions increase, the average z-score of Kudos decrease.}
-        \label{fig:unigram_cos}
-    \end{subfigure}
-    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
-      %(or a blank line to force the subfigure onto a new line)
-    \begin{subfigure}[b]{0.7\textwidth}
-        \includegraphics[width=\textwidth]{/lda_cos_kudos_z_toprev.pdf}
-        \caption{Negative correlation between novelty and Kudos, using topic modeling. The cosine distance is calculated between the topic distribution of a fiction and the average of topic distribution of previous fictions. As cosine distance increases, the average z-score of Kudos decrease.}
-        \label{fig:lda_cos}
-    \end{subfigure}
-    \caption{Relation between novelty and Kudos on a document level}\label{fig:novelty_kudos_doc}
+          \includegraphics[width=\textwidth]{/novelty_tfidf_lda.pdf}
+        \caption{The relationship between novelty and kudos. Left: the vector space model. Right: topic modeling. The x-axes are the novelty scores, and the y-axes are the corresponding average of the z-score of kudos in bins with bin size = 0.1. The confidence intervals are generated with bootstrap resampling. }
+        \label{fig:tfidf_lda_kudos}
+\end{figure}
+
+\begin{figure}
+    \centering
+          \includegraphics[width=\textwidth]{/novelty_comments_tfidf_lda.pdf}
+        \caption{The relationship between novelty and comments. Left: the vector space model. Right: topic modeling. The x-axes are the novelty scores, and the y-axes are the corresponding average of the z-score of comments in bins with bin size = 0.1. The confidence intervals are generated with bootstrap resampling. }
+        \label{fig:tfidf_lda_comments}
 \end{figure}
 
 
@@ -165,14 +148,6 @@ Our results show a pattern diverting from the Wundt-Berlyne curve: instead of a 
 \section*{Methods}
 
 \subsection*{Data collection}
-
-
-
-
-
-
-\subsection*{Language model}
-We model the fictions with a unigram language model. The Simple Good-Turing smoothing\cite{gales1995good} is applied to improve the model, and to assign non-zero probabilities to previously unseen unigrams. When creating the set of unigrams, we also remove the rare unigrams that appear in less than 5 documents and left out fictions with less than 500 words.
 
 
 \subsection*{Topic modeling}
