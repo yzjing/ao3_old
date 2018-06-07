@@ -41,7 +41,6 @@ Using fanfictions as subjects of study, we may avoid some of the complications m
 With these advantages, we investigate how a fanfiction's novelty or familiarity influences its success. We use three methods to quantify a fanfiction's novelty: one based on the word features, one on the topic features, and one based on its author-generated tags. A fanfiction is more novel if it has a large distance to other fanfictions published during the same time period in the feature space, and vice versa. Using statistical models, we found a negative relationship between a fanfiction's novelty and its success, consistent across our three metrics for novelty, suggesting that in disproval of the optimal differentiation hypothesis, fanfiction readers prefer familiarity and discourage novelty in general.
 
 
-
 \section*{Results} 
 We collect data from an online fanfiction archive, Archive of Our Own (AO3), which allows users to upload their fanfictions and categorizes them based on fandoms. Established in 2009, it has become one of the largest fan communities, with 1,313,000 users and 3,423,000 pieces of fanfictions by November 2017 \cite{ao3stats}.
 
@@ -60,7 +59,7 @@ Figure \ref{fig:fandom_size} shows the number of fanfictions in each of the 24 f
     \end{subfigure}
     ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
       %(or a blank line to force the subfigure onto a new line)
-    \begin{subfigure}[b]{0.7\textwidth}
+    \begin{subfigure}[b]{0.8\textwidth}
         \includegraphics[width=\textwidth]{/fic_time_dist.pdf}
         \caption{Number of fanfictions published each month}
         \label{fig:fic_time_dist}
@@ -68,67 +67,46 @@ Figure \ref{fig:fandom_size} shows the number of fanfictions in each of the 24 f
     \caption{Statistics of the size and temporal distribution of our fanfiction dataset}\label{fig:stats_size_time}
 \end{figure}
 
-Besides the fanfictions' texts, we also collected metadata including 16 fields. Some of them provide information about the fanfictions, while some can be used to evaluate the success of the fanfictions. Table \ref{tab:metadata} lists the names and descriptions of these fields. 
+Besides the fanfictions' texts, we also collected metadata including 14 fields. Some of them provide information about the fanfictions, while some can be used to evaluate the success of the fanfictions. Table \ref{tab:metadata} lists the names and descriptions of these fields. 
 
 
 \begin{table}
 \centering
-\begin{tabular}[width=0.8\textwidth]{p{2cm}p{10cm}}
+\begin{tabular}[width=0.8\textwidth]{p{3cm}p{10cm}}
 \toprule
 \ Fields & Description \\ 
    \hline			
-Text & The texts of the fanfictions. \\
 Title & Titles of the fanfictions.  \\
 Fandoms & The fandom(s) that the fanfiction belongs to/ \\
 Author & The author of the fanfiction.  \\
 Publish Date & The date the fiction was published \\
 Chapters & The number of chapters that a fanfiction have. \\
-Archive Warnings & The warnings that the author chooses to use. \\
+Archive Warnings & The warnings for sensitive elements in the fanfiction. \\
 Category & The type of relationships in the fanfiction. \\
 Rating & The rating of the fanfiction. \\
 Relationship & The relationship(s) between characters in the fanfiction. \\
-History & The number of days between the last update of the fanfiction and time of the analysis. \\
+History & The number of days between the last update of the fanfiction and time of the study. \\
 \hline
 Hits & The number of times a fanfiction is clicked on. \\
 Bookmarks & The number of people who bookmarked the fanfiction.\\
-Kudos & The number of ``likes" that the fanfiction receives. \\
-Comments & The number of comments that a fanfiction receives\\
-
-
+Kudos & The number of ``like'' that the fanfiction receives. \\
+Comments & The number of comments that a fanfiction receives.\\
 \bottomrule
 \end{tabular}
 \label{tab:metadata}
 \end{table}%
 
+A fanfiction's success is most directly shown by its kudos. The hits is also an indicator of popularity, correlating strongly with kudos (see Fig ). A reader may choose to bookmark a fanfiction to read later. This may depend on multiple motivations, such as the length of the fiction and the time when the reader browses the website. Moreover, we do not know if the reader returns to read the fiction later. Therefore, we exclude the number of bookmarks as an indicator for success. The number of comments shows the engagement of readers with a fanfiction, and correlates moderately with kudos. Based on these considerations, we choose to use kudos and comments as the primary indicators of success. Figure \ref{fig:kudos_dist} shows the logged cumulative distribution of kudos and comments. Following long-tailed distributions, a small number of fictions receive the majority of kudos and comments, while most fictions receive little or none. 
 
-
-Figure \ref{fig:fic_time_dist} shows the logged cumulative distribution of Kudos. Following a long-tailed distribution, a small number of fictions receive the majority of Kudos, while most fictions receive little or no Kudos. Because of this pattern, we use the log of Kudos to evaluate the success of fictions. 
-
+While we are interested in how a fanfiction's novelty influences its success, there are many other factors at play. For example, some fandoms have large fan bases than others, resulting in a high average Kudos for the fanfictions in these fandoms. The popular authors' fame may influence how their works are received. Since AO3's user base has been increasing, we may expect newer fanfictions to receive more Kudos than older ones. Multi-chapter fanfictions are also likely to receive more Kudos than single-chapter ones. Other intrinsic features, such as the ratings of the fictions and the relationships in them may also influence the readers' preference. In subsequent analysis, we use multiple methods to control for such influences.
 
 \begin{figure}
     \centering
-    \begin{subfigure}[b]{0.7\textwidth}
-        \includegraphics[width=\textwidth]{/fic_len_dist.pdf}
-        \caption{Length distribution of fictions. For multi-chapter fictions, we show the average length of each chapter.}
-        \label{fig:length_dist}
-    \end{subfigure}
-    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
-      %(or a blank line to force the subfigure onto a new line)
-    \begin{subfigure}[b]{0.7\textwidth}
-        \includegraphics[width=\textwidth]{/kudos_dist.pdf}
-        \caption{Linear-log cumulative distribution of Kudos. For multi-chapter fictions, we use the average number of Kudos per chapter. A long-tail distribution is observed, where a small portion of fictions receive the majority of Kudos.}
+        \includegraphics[width=\textwidth]{/kudos_comments_dist.pdf}
+        \caption{Linear-log cumulative distribution of kudos and comments. For multi-chapter fanfictions, we use the average number of kudos per chapter. A long-tail distribution is observed, where a small portion of fictions receive many kudos and comments, and most fictions receive view.}
         \label{fig:kudos_dist}
-    \end{subfigure}
-    \caption{Statistics on the length and Kudos of fictions}\label{fig:stats_len_kudos_tags}
-
 \end{figure}
 
-\begin{figure}
-    \centering
-        \includegraphics[width=0.7\textwidth]{/tag_len_dist.pdf}
-        \caption{Linear-log cumulative distribution of tag set length. }
-        \label{fig:tag_set_len}
-\end{figure}
 
 \subsection*{Document novelty and success}
 We create two distinct measurements for the novelty of fanfiction documents, and employ them to identify the relationship between novelty and the number of Kudos that they receive. A negative correlation is observed, consistent across both measurements. Figure \ref{fig:unigram_cos} shows the result from the unigram language model. Under this model, a fixed number of words (1,000 in our experiment) is sampled from each document in a bag-of-words approach, where the ordering of words is not preserved. We then calculate the probability distribution over the unigrams. To account for unseen unigrams, we apply the Simple Good-Turing smoothing method \cite{gales1995good}, which assigns a small non-zero probability to those unigrams. 
@@ -177,13 +155,6 @@ Where $S_T$ is the number of tags of a fiction. Higher surprise of tags will the
     \caption{Relation between novelty and Kudos on a document level}\label{fig:novelty_kudos_doc}
 \end{figure}
 
-\begin{figure}[htbp]
-\begin{center}
-\includegraphics[width=0.7\textwidth]{/tag_novelty_kudos.pdf}
-\caption{Tag novelty and Kudos. }
-\label{fig:tag_novelty}
-\end{center}
-\end{figure}
 
 \section*{Discussion}
 We have proposed three ways to quantify the novelty of fanfictions. We do this by modeling the texts of the fictions, and using document similarity measurements to calculate the distance between a fiction and the ``average'' fiction of its time and fandom; and also by considering the author-generated tags of the fictions, calculating the ``surprise'' of observing these tags. All methods have presented a negative correlation between a fanfiction's novelty and the Kudos that it receives, indicating that more novelty leads to less hedonic value.
