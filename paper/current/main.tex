@@ -16,6 +16,7 @@
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 \usepackage{booktabs}
+\usepackage[flushleft]{threeparttable}
 
 
 \graphicspath{ {./figs} }
@@ -93,12 +94,13 @@ Kudos & The number of ``like'' that the fanfiction receives. \\
 Comments & The number of comments that a fanfiction receives.\\
 \bottomrule
 \end{tabular}
+\caption{Metadata fields of the fanfictions.}
 \label{tab:metadata}
 \end{table}%
 
-A fanfiction's success is most directly shown by its kudos. The hits is also an indicator of popularity, correlating strongly with kudos (see Fig ). A reader may choose to bookmark a fanfiction to read later. This may depend on multiple motivations, such as the length of the fiction and the time when the reader browses the website. Moreover, we do not know if the reader returns to read the fiction later. Therefore, we exclude the number of bookmarks as an indicator for success. The number of comments shows the engagement of readers with a fanfiction, and correlates moderately with kudos. Based on these considerations, we choose to use kudos and comments as the primary indicators of success. Figure \ref{fig:kudos_dist} shows the logged cumulative distribution of kudos and comments. Following long-tailed distributions, a small number of fictions receive the majority of kudos and comments, while most fictions receive little or none. 
+A fanfiction's success is most directly shown by its kudos, which is a direct expression that a reader likes the fiction. The hits is also an indicator of popularity. A reader may choose to bookmark a fanfiction to read later. This may depend on multiple motivations, such as the length of the fiction and the time when the reader browses the website. Moreover, we do not know if the reader returns to read the fiction later. The number of comments shows the engagement of readers with a fanfiction, and correlates moderately with kudos. Based on these considerations, we choose to use kudos as the primary indicators of success, and hits, comments and bookmarks as secondary indicators. The correlation between these indicators can be found in Figure . Figure \ref{fig:kudos_dist} shows the logged cumulative distribution of kudos and comments. Following long-tailed distributions, a small number of fictions receive the majority of kudos and comments, while most fictions receive little or none. 
 
-While we are interested in how a fanfiction's novelty influences its success, there are many other factors at play. For example, some fandoms have large fan bases than others, resulting in a high average Kudos for the fanfictions in these fandoms. The popular authors' fame may influence how their works are received. Since AO3's user base has been increasing, we may expect newer fanfictions to receive more Kudos than older ones. Multi-chapter fanfictions are also likely to receive more Kudos than single-chapter ones. Other intrinsic features, such as the ratings of the fictions and the relationships in them may also influence the readers' preference. In subsequent analysis, we use multiple methods to control for such influences.
+While we are interested in how a fanfiction's novelty influences its success, there are many other factors at play. For example, some fandoms have large fan bases than others, resulting in a high average Kudos for the fanfictions in these fandoms. The popular authors' fame may influence how their works are received. Since AO3's user base has been increasing, we may expect newer fanfictions to receive more Kudos than older ones. Multi-chapter fanfictions are also likely to receive more Kudos than single-chapter ones. The archive warnings indicate that the fanfictions contain sensitive elements such as graphic violence or major character death, and may influence the readers' choice of whether to view them.   Other intrinsic features, such as the ratings of the fictions and the relationships in them may also influence the readers' preferences. In subsequent analysis, we use multiple methods to control for such influences.
 
 \begin{figure}
     \centering
@@ -121,8 +123,7 @@ Where $F_i$ is the vector representation of a fanfiction and $C_i$ is the center
 
 The TFIDF method focus on the words used in a fanfiction. Alternatively, we also use the \emph{Latent Dirichlet Allocation} (LDA) \cite{blei2003latent} to model the topics of the fanficitions. As a widely used topic modeling method, it models a fiction as a probabilistic distribution over a set of topics. Similar as in the TFIDF method, we construct for each fanfiction a feature space consisting of the topic distributions of the fanfictions published before it, and define the novelty score as the cosine distance between the fanfiction's topic distribution and the center. 
 
-Figure \ref{fig:tfidf_lda_kudos} plots the relationship between the fanfictions' novelty and the kudos they receive, aggregating all fandoms. Since the fandoms differ in reader base, we compute the z-score for each value of kudos based on the average number of kudos per fiction in its fandom. We observe that as the novelty score increases from 0  to 1, the z-score of Kudos steadily decrease from 0.1 to -0.1 in the vector space model, and from more than 0.1 to -0.03 in the LDA model. In both cases, the less novel fanfictions receive more than average kudos, and the highly novel fanfictions receive less than average. Similarly, Figure \ref{fig:tfidf_lda_comments} shows the relationship between novelty and the number of comments, and it can be observed that less novel fictions tend to receive more comments than highly novel fictions. The only exception is the minor peak in the left panel, with novelty score $\approx$ 0.7, but this does not change the general pattern.
-
+Figure \ref{fig:tfidf_lda_kudos} plots the relationship between the fanfictions' novelty and the kudos they receive, aggregating all fandoms. Since the fandoms differ in reader base, we compute the z-score for each value of kudos based on the average number of kudos per fiction in its fandom. We observe that as the novelty score increases from 0  to 1, the z-score of Kudos steadily decrease from 0.1 to -0.1 in the vector space model, and from more than 0.1 to -0.03 in the LDA model. In both cases, the less novel fanfictions receive more than average kudos, and the highly novel fanfictions receive less than average. Similar patterns can be observed between novelty and hits, comments and bookmarks (See supplementary figures).
 
 \begin{figure}
     \centering
@@ -131,13 +132,57 @@ Figure \ref{fig:tfidf_lda_kudos} plots the relationship between the fanfictions'
         \label{fig:tfidf_lda_kudos}
 \end{figure}
 
+
+We perform a regression analysis to further explore this relationship. Instead of using the z-score of kudos and comments as in previous analysis, here we use the logged values of kudos and comments as outcome variables. The novelty scores computed under the vector space model and the topic model are used as predictor variables. A few other control variables are added to account for the influence of other factors on the reception of fanfictions. First, the number of chapters that a fanfiction has is included (\emph{chapters}), considering that since AO3 displays the newest post on the top, multi-chapter fictions have more chances of exposure. Secondly, categorical variables are created to capture the effects of the fandom, archive warnings, authors, categories, ratings and the relationships on a fanfiction's success. Finally, we include the \emph{History} of each fanfiction as a numerical variable. The correlations between the numerical variables are shown in Figure \ref{fig:corr}. As no strong correlation exists between the predictor variables, we do not need to consider this effect.
+
 \begin{figure}
     \centering
-          \includegraphics[width=\textwidth]{/novelty_comments_tfidf_lda.pdf}
-        \caption{The relationship between novelty and comments. Left: the vector space model. Right: topic modeling. The x-axes are the novelty scores, and the y-axes are the corresponding average of the z-score of comments in bins with bin size = 0.1. The confidence intervals are generated with bootstrap resampling. }
-        \label{fig:tfidf_lda_comments}
+          \includegraphics[width=0.8\textwidth]{/variables_corr.pdf}
+        \caption{Correlations between the predictor and outcome variables. Strong collinearity exists between the outcome variables, but not the predictor variables. }
+        \label{fig:corr}
 \end{figure}
 
+We run a pooled OLS for each outcome variable, multiple-regressing on the predictor variables. Results of the multiple regression are summarized in Table \ref{tab:regression}.
+
+ \begin{table}
+\centering
+\begin{tabular}[width=0.8\textwidth]{p{3cm}p{3cm}p{3cm}p{3cm}p{3cm}}
+\toprule
+\ Outcome variable: & Kudos & Hits & Comments & Bookmarks \\ 
+   \hline			
+Term novelty & --0.6080***&  -0.4366***  & -0.1043*** & -0.2767*** \\
+& (0.008) & ( 0.007) & (0.008) & (0.010)\\
+Topic novelty & --2.5085*** & -2.0841*** & -0.8142*** & -1.9733*** \\
+& (0.047) & (0.043) &  (0.044 ) & (0.057)\\
+Fandom & 0.0061*** & 0.0097*** & 0.0064*** & -0.0012*** \\
+& (0.000) & (0.000) & (0.000) & (0.000)\\
+Chapters & -0.0063***& -0.0039*** & 0.0015***& -0.0059*** \\
+& (5.33e-05) & (4.88e-05) & (4.39e-05) & ( 5.67e-05) \\
+Archive warnings & 0.0011 & 0.0006*** & 0.000***& 0.0011 ***(\\
+& (4.26e-05) & (3.9e-05) & ( 3.99e-05 ) & 5.14e-05)\\
+Author & 3.932e-06*** & 2.883e-06***& 7.349e-07*** & 1.815e-06***\\
+& (9.96e-08) & (9.12e-08) & (9.41e-08) & (1.21e-07)\\
+Category & 0.0023***& 0.0019***& 0.0006*** & 0.0018***\\
+& (2.51e-05)  & (2.3e-05)  & (2.45e-05) & (3.16e-05)\\ 
+Rating & -0.0720*** & -0.0791***& -0.0360*** & -0.0341***\\
+& (0.001) & (0.001) & ( 0.001) & (0.001) \\
+Relationship & 1.833e-05*** & 2.275e-05***&  2.765e-06*** & 4.863e-06***\\
+& (2.85e-07) & (2.61e-07) & (2.78e-07) & (3.59e-07) \\
+History & -0.0002***& 0.0002*** & -9.132e-05 ***& 0.0003***\\
+& (4.87e-06) & (4.46e-06) & (5.39e-06) & (6.95e-06)\\
+\hline 
+Observations & 354978 & 354978 & 354978 & 354978 \\
+R-squared & 0.111 & 0.099 & 0.028 & 0.099\\
+\bottomrule
+\end{tabular}
+ \begin{tablenotes}
+      \small
+      \item Standard errors are in parentheses.
+      \item ***p < 0.01.
+       \end{tablenotes}
+\caption{OLS results}
+\label{tab:regression}
+\end{table}%
 
 \section*{Discussion}
 We have proposed three ways to quantify the novelty of fanfictions. We do this by modeling the texts of the fictions, and using document similarity measurements to calculate the distance between a fiction and the ``average'' fiction of its time and fandom; and also by considering the author-generated tags of the fictions, calculating the ``surprise'' of observing these tags. All methods have presented a negative correlation between a fanfiction's novelty and the Kudos that it receives, indicating that more novelty leads to less hedonic value.
