@@ -23,7 +23,7 @@
 
 \begin{document} %{{{
 
-\title{Novelty, Familiarity, and the Success of Fanfictions among Fans} %{{{
+\title{Novelty, Familiarity, and the Success of Fanfictions among Readers} %{{{
 \date{\today}
 \maketitle %}}}
 
@@ -37,9 +37,9 @@ However, most of these researches rely on external metrics to measure the succes
 
 We instead study a special type of creative works that are directly created and consumed by fans -- fan works. Known formally as transformative works, they are creative works made by fans based on one or more original works (``canons'') \cite{wiki:transf_work}. For example, a story written by a contemporary fan about Sherlock Holmes in his retirement is considered a fan work. Although fan works have multiple media types such as art, music and games, one of the most common type is creative writing: fanfictions. As a unique cultural phenomena, fanfictions have drawn attention from media studies and cultural studies \cite{thomas2011fanfiction}. However, most of the existing studies focus on the identity of fanfiction writers \cite{black2006language}, the practice of fanfiction writing \cite{LIT:LIT12061}, and the interaction between fans \cite{hills2015expertise}, and it is difficult to find studies that focus on fanfictions themselves as creative works.
 
-Using fanfictions as subjects of study, we may avoid some of the complications mentioned above. The success of a fanfiction can be measured directly: in our dataset, readers can click ``Kudos'' to express that they enjoyed reading a fanfiction. As a subculture, fanfictions are usually not published as books nor featured in mainstream media, and there is no ``bestseller list'' for fanfictions, therefore fans usually discover and evaluate fanfictions more independantly. Additionally, most fanfictions are freely available in the Internet, so that the price will not be a confounding factor. Regarding the intrinsic features, fans of a canon usually form communities known as fandoms \cite{wiki:fandom}, and fanfictions in a fandom share a homogenous context, reducing the variation in subjects. More importantly, the well-developed text mining and natural language processing methods allow us to quantify the novelty of a fanfiction based on its linguistic features.
+Using fanfictions as subjects of study, we may avoid some of the complications mentioned above. The success of a fanfiction can be measured directly: in our dataset, readers can click ``Kudos'' to express that they enjoyed reading a fanfiction, as well as leaving comments and bookmarks. As a subculture, fanfictions are usually not published as books nor featured in mainstream media, and there is no ``bestseller list'' for fanfictions, therefore fans usually discover and evaluate fanfictions independantly. Additionally, most fanfictions are freely available in the Internet, so that the price will not be a confounding factor. Regarding the intrinsic features, fans of a canon usually form communities known as fandoms \cite{wiki:fandom}, and fanfictions in a fandom share a homogenous context, reducing the variation in subjects. More importantly, the well-developed text mining and natural language processing methods allow us to quantify the novelty of a fanfiction based on its linguistic features.
 
-With these advantages, we investigate how a fanfiction's novelty or familiarity influences its success. We use three methods to quantify a fanfiction's novelty: one based on the word features, one on the topic features, and one based on its author-generated tags. A fanfiction is more novel if it has a large distance to other fanfictions published during the same time period in the feature space, and vice versa. Using statistical models, we found a negative relationship between a fanfiction's novelty and its success, consistent across our three metrics for novelty, suggesting that in disproval of the optimal differentiation hypothesis, fanfiction readers prefer familiarity and discourage novelty in general.
+With these advantages, we investigate how a fanfiction's novelty or familiarity influences its success. We use two methods to model the fanfictions: one based on the word features, and one on the topic features. A fanfiction's novelty is determined by comparing it to other fanfictions. It is more novel if it has a large distance to other fanfictions published during the same time period in the feature space, and vice versa. Using statistical models, we found a negative relationship between a fanfiction's novelty and its success, consistent across different measurements, suggesting that in disproval of the optimal differentiation hypothesis, fanfiction readers prefer familiarity and discourage novelty in general.
 
 
 \section*{Results} 
@@ -49,7 +49,7 @@ AO3 classifies the fandoms based on medium: movies, TV shows, books, anime \& ma
 
 \subsection*{Descriptive statistics}
 
-Figure \ref{fig:fandom_size} shows the number of fanfictions in each of the 24 fandoms that we study. The fandoms with the most fictions are \emph{Marvel}, \emph{Supernatural}, and \emph{Harry Potter}. Figure \ref{fig:fic_time_dist}  shows the time distribution of the fanfictions published. As AO3 was established in December 2009, the fictions earlier than this time might be migrated from other platforms, and may not correctly reflect the status of the archive. We therefore only run our analysis using the fictions published in January 2010 and later. After the establishment, the site first experienced a slow growth until around 2012, when the number of fictions published begin to rise radically. 
+Figure \ref{fig:fandom_size} shows the number of fanfictions in each of the 24 fandoms that we study. The fandoms with largest amounts of fictions are \emph{Marvel}, \emph{Supernatural}, and \emph{Harry Potter}. Figure \ref{fig:fic_time_dist}  shows the time distribution of the fanfictions published. As AO3 was established in December 2009, the fictions earlier than this time might be migrated from other platforms, and may not correctly reflect the status of the archive. We therefore only run our analysis using the fictions published in January 2010 and later. After the establishment, the site first experienced a slow growth until around 2012, when the number of fictions published begin to rise radically. 
 
 \begin{figure}
     \centering
@@ -86,7 +86,7 @@ Archive Warnings & The warnings for sensitive elements in the fanfiction. \\
 Category & The type of relationships in the fanfiction. \\
 Rating & The rating of the fanfiction. \\
 Relationship & The relationship(s) between characters in the fanfiction. \\
-History & The number of days between the last update of the fanfiction and time of the study. \\
+Age & The number of days between the last update of the fanfiction and time of the study. \\
 \hline
 Hits & The number of times a fanfiction is clicked on. \\
 Bookmarks & The number of people who bookmarked the fanfiction.\\
@@ -98,22 +98,22 @@ Comments & The number of comments that a fanfiction receives.\\
 \label{tab:metadata}
 \end{table}%
 
-A fanfiction's success is most directly shown by its kudos, which is a direct expression that a reader likes the fiction. The hits is also an indicator of popularity. A reader may choose to bookmark a fanfiction to read later. This may depend on multiple motivations, such as the length of the fiction and the time when the reader browses the website. Moreover, we do not know if the reader returns to read the fiction later. The number of comments shows the engagement of readers with a fanfiction, and correlates moderately with kudos. Based on these considerations, we choose to use kudos as the primary indicators of success, and hits, comments and bookmarks as secondary indicators. The correlation between these indicators can be found in Figure . Figure \ref{fig:kudos_dist} shows the logged cumulative distribution of kudos and comments. Following long-tailed distributions, a small number of fictions receive the majority of kudos and comments, while most fictions receive little or none. 
+A fanfiction's success is most directly shown by its kudos, which is a direct expression that a reader likes the fiction. The hits is also an indicator of popularity. A reader may choose to bookmark a fanfiction to read later. This may depend on multiple motivations, such as the length of the fiction and the time when the reader browses the website. Moreover, we do not know if the reader returns to read the fiction later. The number of comments shows the engagement of readers with a fanfiction, and is  indirectly associated with popularity. Based on these considerations, we choose to use kudos as the primary indicators of success, and hits, comments and bookmarks as secondary indicators. The correlation between these indicators can be found in Figure \ref{fig:corr}. Figure \ref{fig:kudos_dist} shows the logged cumulative distribution of kudos and comments. Following long-tailed distributions, a small number of fictions receive the majority of kudos and comments, while most fictions receive little or none. 
 
-While we are interested in how a fanfiction's novelty influences its success, there are many other factors at play. For example, some fandoms have large fan bases than others, resulting in a high average Kudos for the fanfictions in these fandoms. The popular authors' fame may influence how their works are received. Since AO3's user base has been increasing, we may expect newer fanfictions to receive more Kudos than older ones. Multi-chapter fanfictions are also likely to receive more Kudos than single-chapter ones. The archive warnings indicate that the fanfictions contain sensitive elements such as graphic violence or major character death, and may influence the readers' choice of whether to view them.   Other intrinsic features, such as the ratings of the fictions and the relationships in them may also influence the readers' preferences. In subsequent analysis, we use multiple methods to control for such influences.
+While we are interested in how a fanfiction's novelty influences its success, there are many other factors at play. For example, some fandoms have large fan bases than others, resulting in a high average Kudos for the fanfictions in these fandoms. The popular authors' fame may influence how their works are received. Since AO3's user base has been increasing, we may expect newer fanfictions to receive more Kudos than older ones. Multi-chapter fanfictions are also likely to receive more Kudos than single-chapter ones. The archive warnings indicate that the fanfictions contain sensitive elements such as graphic violence or major character death, and may influence the readers' choice of whether to view them.  Other intrinsic features, such as the ratings of the fictions and the relationships in them may also influence the readers' preferences. In subsequent analysis, we use multiple methods to control for such influences.
 
 \begin{figure}
     \centering
-        \includegraphics[width=\textwidth]{/kudos_comments_dist.pdf}
-        \caption{Linear-log cumulative distribution of kudos and comments. For multi-chapter fanfictions, we use the average number of kudos per chapter. A long-tail distribution is observed, where a small portion of fictions receive many kudos and comments, and most fictions receive view.}
+        \includegraphics[width=\textwidth]{/kudos_comments_hits_bookmarks_dist.pdf}
+        \caption{Linear-log cumulative distribution of kudos, hits, bookmarks and comments. For multi-chapter fanfictions, we average these values over the number of chapters. A long-tail distribution is observed, where a small portion of fictions receive many kudos and comments, and most fictions receive view.}
         \label{fig:kudos_dist}
 \end{figure}
 
 
 \subsection*{Fanfictions' Novelty and Success}
-Following the approaches by \cite{askin2017makes} and \cite{de2015game}, we evaluate a fanfiction's novelty by comparing it to other fanfictions in the past. Intuitively, if a fanfiction is close to the center of a feature space containing all past fictions, it is less novel; reversely, a peripheral position indicates higher novelty. 
+Following the approaches by \cite{askin2017makes} and \cite{de2015game}, we evaluate a fanfiction's novelty by comparing it to other fanfictions previously published. Intuitively, if a fanfiction is close to the center of a feature space containing all past fictions, it is less novel; reversely, a peripheral position indicates higher novelty. 
 
-We embed the fanfictions in the feature space using two methods. The first one is an vector space model as often used in information retrieval \cite{turney2010frequency}, where each fanfiction is represented as a vector, its entries being the term frequency-intersed document frequency (TFIDF) score of the unique words in the fiction. This allows us to identify the most representative terms in the documents. The feature space is created in a way that for each fanfiction, it contains all fanfictions published in the same fandom within the past 6 months before it was published. We then compute the center of the feature space as the average of all feature vectors. The novelty score of a fanfiction is defined as the cosine distance between its vector representation and the center:
+We embed the fanfictions in the feature space using two methods. The first one is an vector space model as often used in information retrieval \cite{turney2010frequency}, where each fanfiction is represented as a vector, its entries being the term frequency-intersed document frequency (TFIDF) score of the unique words in the fiction. This allows us to identify the most representative terms in the documents, quantifying the term-level novelty. The feature space is created in a way that for each fanfiction, it contains all fanfictions published in the same fandom within the past 6 months before it was published. We then compute the center of the feature space as the average of all feature vectors. The \emph{term novelty} score of a fanfiction is defined as the cosine distance between its vector representation and the center:
 
 \begin{equation}
 n = 1-\frac{\sum_{i=1}^{n}{F_iC_i}}{\sqrt{\sum_{i=1}^{n}{C_i^2}}\sqrt{\sum_{i=1}^{n}{C_i^2}}}
@@ -121,19 +121,19 @@ n = 1-\frac{\sum_{i=1}^{n}{F_iC_i}}{\sqrt{\sum_{i=1}^{n}{C_i^2}}\sqrt{\sum_{i=1}
 
 Where $F_i$ is the vector representation of a fanfiction and $C_i$ is the center of the vector space.
 
-The TFIDF method focus on the words used in a fanfiction. Alternatively, we also use the \emph{Latent Dirichlet Allocation} (LDA) \cite{blei2003latent} to model the topics of the fanficitions. As a widely used topic modeling method, it models a fiction as a probabilistic distribution over a set of topics. Similar as in the TFIDF method, we construct for each fanfiction a feature space consisting of the topic distributions of the fanfictions published before it, and define the novelty score as the cosine distance between the fanfiction's topic distribution and the center. 
+Alternatively, we also use the \emph{Latent Dirichlet Allocation} (LDA) \cite{blei2003latent} to model the topics of the fanficitions, quantifying novelty on the topic level. As a widely used topic modeling method, LDA models a fiction as a probabilistic distribution over a set of topics. Similar as in the previous method, we construct for each fanfiction a feature space consisting of the topic distributions of the fanfictions published before it, and define the \emph{topic novelty} score as the cosine distance between the fanfiction's topic distribution and the center. 
 
-Figure \ref{fig:tfidf_lda_kudos} plots the relationship between the fanfictions' novelty and the kudos they receive, aggregating all fandoms. Since the fandoms differ in reader base, we compute the z-score for each value of kudos based on the average number of kudos per fiction in its fandom. We observe that as the novelty score increases from 0  to 1, the z-score of Kudos steadily decrease from 0.1 to -0.1 in the vector space model, and from more than 0.1 to -0.03 in the LDA model. In both cases, the less novel fanfictions receive more than average kudos, and the highly novel fanfictions receive less than average. Similar patterns can be observed between novelty and hits, comments and bookmarks (See supplementary figures).
+Figure \ref{fig:tfidf_lda_kudos} plots the relationship between the fanfictions' novelty and the kudos they receive, aggregating all fandoms. Since the fandoms differ in reader base, we compute the z-score for each value of kudos based on the average number of kudos per fanfiction in its fandom. We observe that as the term novelty score increases from 0  to 1, the z-score of Kudos steadily decrease from 0.1 to -0.1 in the vector space model, and from more than 0.1 to -0.03 as the topic novelty increases in the LDA model. In both cases, the less novel fanfictions receive more than average kudos, and the highly novel fanfictions receive less than average. Similar patterns can be observed between novelty and hits, comments and bookmarks (See future supplementary figures).
 
 \begin{figure}
     \centering
           \includegraphics[width=\textwidth]{/novelty_tfidf_lda.pdf}
-        \caption{The relationship between novelty and kudos. Left: the vector space model. Right: topic modeling. The x-axes are the novelty scores, and the y-axes are the corresponding average of the z-score of kudos in bins with bin size = 0.1. The confidence intervals are generated with bootstrap resampling. }
+        \caption{The relationship between novelty and kudos. Left: term novelty. Right: topic novelty. The x-axes are the novelty scores, and the y-axes are the corresponding average of the z-score of kudos in bins with bin size = 0.1. The confidence intervals are generated with bootstrap resampling. }
         \label{fig:tfidf_lda_kudos}
 \end{figure}
 
 
-We perform a regression analysis to further explore this relationship. Instead of using the z-score of kudos and comments as in previous analysis, here we use the logged values of kudos and comments as outcome variables. The novelty scores computed under the vector space model and the topic model are used as predictor variables. A few other control variables are added to account for the influence of other factors on the reception of fanfictions. First, the number of chapters that a fanfiction has is included (\emph{chapters}), considering that since AO3 displays the newest post on the top, multi-chapter fictions have more chances of exposure. Secondly, categorical variables are created to capture the effects of the fandom, archive warnings, authors, categories, ratings and the relationships on a fanfiction's success. Finally, we include the \emph{History} of each fanfiction as a numerical variable. The correlations between the numerical variables are shown in Figure \ref{fig:corr}. As no strong correlation exists between the predictor variables, we do not need to consider this effect.
+We perform a regression analysis to further explore this relationship. Instead of using the z-scores as in previous analysis, here we use the logged values of kudos, hits, comments and bookmarks as outcome variables. The term novelty and topic novelty scores are used as predictor variables. A few other control variables are added to account for the influence of other factors on the reception of fanfictions. First, the number of chapters that a fanfiction has is included, considering that since AO3 displays the newest post on the top, multi-chapter fictions have more chances of exposure. Secondly, categorical variables are created to capture the effects of the fandoms, archive warnings, authors, categories, ratings and the relationships on a fanfiction's success. Finally, we include the age of each fanfiction as a numerical variable. The correlations between the numerical variables are shown in Figure \ref{fig:corr}. As no strong correlation exists between the predictor variables, we do not need to consider this effect.
 
 \begin{figure}
     \centering
@@ -142,7 +142,7 @@ We perform a regression analysis to further explore this relationship. Instead o
         \label{fig:corr}
 \end{figure}
 
-We run a pooled OLS for each outcome variable, multiple-regressing on the predictor variables. Results of the multiple regression are summarized in Table \ref{tab:regression}.
+A pooled OLS is run for each outcome variable, multiple-regressing on the predictor variables. The coefficient estimates of the multiple regression are summarized in Table \ref{tab:regression}. They further support our previous observation that higher novelty contributes to a fanfiction's receiving less kudos, hits and bookmarks. A much lower r-squared value for comments suggests that the model does not account for comments very well. As the reception of a fanfiction is shaped by many factors including possible kinds of noise, we consider the signals found with this model to be a strong indicator of the negative contribution of novelty to successful fanfictions.
 
  \begin{table}
 \centering
@@ -178,26 +178,26 @@ R-squared & 0.111 & 0.099 & 0.028 & 0.099\\
  \begin{tablenotes}
       \small
       \item Standard errors are in parentheses.
-      \item ***p < 0.01.
+      \item ***p < 0.001.
        \end{tablenotes}
 \caption{OLS results}
 \label{tab:regression}
 \end{table}%
 
 \section*{Discussion}
-We have proposed three ways to quantify the novelty of fanfictions. We do this by modeling the texts of the fictions, and using document similarity measurements to calculate the distance between a fiction and the ``average'' fiction of its time and fandom; and also by considering the author-generated tags of the fictions, calculating the ``surprise'' of observing these tags. All methods have presented a negative correlation between a fanfiction's novelty and the Kudos that it receives, indicating that more novelty leads to less hedonic value.
+We have developed a way to quantify the novelty of a fanfiction by locating it in a feature space, comparing it to other fanfictions in the same community. This also allow us to measure novelty of a piece of creative writing on different scales, including words and topics. Although we choose to focus on fanfictions, our method can be easily extended to other types of creative writings.
 
-Our results show a pattern diverting from the Wundt-Berlyne curve: instead of a reversed-U shape, we observe the hedonic value consistently decreasing when novelty increases (Fig \ref{fig:unigram_cos}, \ref{fig:lda_cos}, \ref{fig:tag_novelty}). This may be explained by the nature of fan works -- because fans desire to see familiar characters and stories, it is reasonable for them to prefer fanfictions that stay close to the original works. Presumably, a similar psychology may explain the abundance of sequel and spin-off films in today's film market. A possible extension of this work is therefore to investigate if the novelty-Kudos pattern holds for pop culture products other than fanfictions. 
-
+Our findings show that fanfictions with high novelty receive less positive feedbacks from readers, and the successful fanfictions are those with low novelty. This pattern diverges from many existing researches, which find reversed U-shapes with the peak of success being creative works with a moderate amount of novelty. A possible explanation may be the nature of fan works -- because fans desire to see familiar characters and stories, it is reasonable for them to prefer fanfictions that are familiar to them. A similar reasoning may explain people's desire to consume familiar culture products, such as listening to songs that they have listened to before \cite{thompson2014shazam}, and may justify the abundance of sequel and spin-off works in today's pop culture scene. 
 
 \section*{Methods}
 
 \subsection*{Data collection}
+A Python script was used to obtain data from AO3 (http://archiveofourown.org/) as csv files in March 2016. We filtered the data based on the language and length of the fanfictions, and removed entries with missing data. For more details, see Results.
 
 
-\subsection*{Topic modeling}
-The Python library Gensim's LDA \cite{gensimlda} is used to train topic models on our data. We set the number of topics to 40 and use default values for other parameters. 
-\subsection*{Computing tag novelty}
+\subsection*{Modeling fanfictions}
+The Python library scikit-learn was used to create the vector space models. Another library Gensim is used to fit LDA topic models on our data. We set the number of topics to 100 and use default values for other parameters. 
+
 
 
 \bibliographystyle{acm}

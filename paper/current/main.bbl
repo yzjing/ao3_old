@@ -115,6 +115,12 @@
   it?
 \newblock {\em Storyworlds: A Journal of Narrative Studies 3}, 1 (2011), 1--24.
 
+\bibitem{thompson2014shazam}
+{\sc Thompson, D.}
+\newblock The shazam effect.
+\newblock {\em The Atlantic, December issue. http://www. theatlantic.
+  com/magazine/archive/2014/12/the-shazam-effect/382237\/} (2014).
+
 \bibitem{turney2010frequency}
 {\sc Turney, P.~D., and Pantel, P.}
 \newblock From frequency to meaning: Vector space models of semantics.
@@ -142,9 +148,5 @@
 {\sc Zajonc, R.~B.}
 \newblock Attitudinal effects of mere exposure.
 \newblock {\em Journal of personality and social psychology 9}, 2p2 (1968), 1.
-
-\bibitem{gensimlda}
-{\sc Řehůřek, R.}
-\newblock models.ldamodel – latent dirichlet allocation, 2018.
 
 \end{thebibliography}

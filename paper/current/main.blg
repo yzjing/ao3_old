@@ -9,44 +9,42 @@ Warning--entry type for "2016film" isn't style-file defined
 --line 106 of file main.bib
 Warning--entry type for "ao3stats" isn't style-file defined
 --line 115 of file main.bib
-Warning--entry type for "gensimlda" isn't style-file defined
---line 325 of file main.bib
 Warning--entry type for "creativeindustries" isn't style-file defined
 --line 343 of file main.bib
 Warning--entry type for "2017film" isn't style-file defined
 --line 393 of file main.bib
 You've used 28 entries,
             2253 wiz_defined-function locations,
-            690 strings with 7701 characters,
-and the built_in function-call counts, 7552 in all, are:
-= -- 745
+            691 strings with 7787 characters,
+and the built_in function-call counts, 7555 in all, are:
+= -- 747
 > -- 256
 < -- 0
-+ -- 111
++ -- 112
 - -- 80
-* -- 568
-:= -- 1230
-add.period$ -- 79
+* -- 572
+:= -- 1234
+add.period$ -- 80
 call.type$ -- 28
 change.case$ -- 124
 chr.to.int$ -- 0
 cite$ -- 28
-duplicate$ -- 244
-empty$ -- 696
+duplicate$ -- 245
+empty$ -- 692
 format.name$ -- 80
-if$ -- 1559
+if$ -- 1557
 int.to.chr$ -- 0
 int.to.str$ -- 28
-missing$ -- 20
-newline$ -- 138
+missing$ -- 21
+newline$ -- 139
 num.names$ -- 56
-pop$ -- 124
+pop$ -- 118
 preamble$ -- 1
 purify$ -- 96
 quote$ -- 0
-skip$ -- 163
+skip$ -- 161
 stack$ -- 0
-substring$ -- 539
+substring$ -- 540
 swap$ -- 56
 text.length$ -- 0
 text.prefix$ -- 0
@@ -55,5 +53,5 @@ type$ -- 112
 warning$ -- 0
 while$ -- 90
 width$ -- 30
-write$ -- 271
-(There were 6 warnings)
+write$ -- 272
+(There were 5 warnings)
