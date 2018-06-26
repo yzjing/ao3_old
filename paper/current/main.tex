@@ -49,11 +49,11 @@ With these advantages, we investigate how a fanfiction's novelty or familiarity 
 \section*{Results} 
 We collect data from an online fanfiction archive, Archive of Our Own (AO3), which allows users to upload their fanfictions and categorizes them based on fandoms. Established in 2009, it has become one of the largest fan communities, with 1,313,000 users and 3,423,000 pieces of fanfictions by November 2017 \cite{ao3stats}.
 
-AO3 classifies the fandoms based on medium: movies, TV shows, books, anime \& manga, and musicals, etc. We first list the top 5 fandoms in each category based on the number of fanfictions. Then we exclude the fandoms that are subsets of other large fandoms: for example, we keep \emph{Marvel} but exclude \emph{The Avengers}, since the fanfictions in \emph{The Avengers} are also in the \emph{Marvel} fandom. Fandoms that cover diverse topics such as \emph{k-pop} are also removed. We only kept the fictions written in English. Finally, to control for the effects of fiction length on the readers' preference and on our methods, we only analyze the fictions with 500 - 1500 words in each chapter, which is the range where most fictions lie (see Supp). This leaves us with 701,635 fanfictions in 24 fandoms.
+AO3 classifies the fandoms based on formats, such as movies, TV shows, books, anime \& manga, and musicals. We first list the top 5 fandoms in each category based on the number of fanfictions. Then we exclude the fandoms that are subsets of other large fandoms: for example, we keep \emph{Marvel} but exclude \emph{The Avengers}, since the fanfictions in \emph{The Avengers} are also in the \emph{Marvel} fandom. Fandoms that cover diverse topics such as \emph{k-pop} are also removed. We only kept the fictions written in English. Finally, to control for the effects of fiction length on the readers' preference and on our methods, we only analyze the fictions with 500 - 1500 words in each chapter, which is the range where most fictions lie in(see Supp). This leaves us with 701,635 fanfictions in 24 fandoms.
 
 \subsection*{Descriptive statistics}
 
-Figure \ref{fig:fandom_size} shows the number of fanfictions in each of the 24 fandoms that we study. The fandoms with largest amounts of fictions are \emph{Marvel}, \emph{Supernatural}, and \emph{Harry Potter}. Figure \ref{fig:fic_time_dist}  shows the time distribution of the fanfictions published. As AO3 was established in December 2009, the fictions earlier than this time might be migrated from other platforms, and may not correctly reflect the status of the archive. We therefore only run our analysis using the fictions published in January 2010 and later. After the establishment, the site first experienced a slow growth until around 2012, when the number of fictions published begin to rise radically. 
+Figure \ref{fig:fandom_size} shows the number of fanfictions in each of the 24 fandoms that we study. The fandoms with the largest amounts of fictions are \emph{Marvel}, \emph{Supernatural}, and \emph{Sherlock Holmes}. Figure \ref{fig:fic_time_dist}  shows the time series of the fanfictions' volume. As AO3 was established in December 2009, the fictions earlier than this time might be migrated from other platforms, and may not correctly reflect the status of the archive. We therefore only run our analysis using the fictions published in January 2010 or later. After its establishment, the site first experienced a slow growth until around 2012, when the number of fictions published begin to rise rapidly. 
 
 \begin{figure}
     \centering
@@ -72,39 +72,40 @@ Figure \ref{fig:fandom_size} shows the number of fanfictions in each of the 24 f
     \caption{The size of fandoms and the number of fanfictions published per month.}\label{fig:stats_size_time}
 \end{figure}
 
-Besides the fanfictions' texts, we also collected metadata including 14 fields. Some of them provide information about the fanfictions, while some can be used to evaluate the success of the fanfictions. Table \ref{tab:metadata} lists the names and descriptions of these fields. 
-
 
 \begin{table}
 \centering
 \begin{tabular}[width=0.8\textwidth]{p{3cm}p{10cm}}
 \toprule
-\ Fields & Description \\ 
+Fields & Description \\ 
    \hline			
 Title & Titles of the fanfictions.  \\
-Fandoms & The fandom(s) that the fanfiction belongs to/ \\
+Fandoms & The fandom(s) that the fanfiction belongs to \\
 Author & The author of the fanfiction.  \\
-Publish Date & The date the fiction was published \\
 Chapters & The number of chapters that a fanfiction have. \\
 Archive Warnings & The warnings for sensitive elements in the fanfiction. \\
 Category & The type of relationships in the fanfiction. \\
-Rating & The rating of the fanfiction. \\
-Relationship & The relationship(s) between characters in the fanfiction. \\
-Age & The number of days between the last update of the fanfiction and time of the study. \\
+Rating & The age rating of the fanfiction . \\
+Relationship & The relationship(s) between characters in the fanfiction, in the form of Character A/Character B
+or Character A\&Character B. \\
+Publish Date & The date the fiction was published \\
+Complete date & For serial fanfictions, the date when it was marked as ``complete''.\\
+Update date & The date when the fanfiction was last updated. \\
 \hline
+Kudos & The number of kudos (likes) that the fanfiction received. \\
+Comments & The number of comments that a fanfiction received.\\
 Hits & The number of times a fanfiction is clicked on. \\
 Bookmarks & The number of people who bookmarked the fanfiction.\\
-Kudos & The number of ``like'' that the fanfiction receives. \\
-Comments & The number of comments that a fanfiction receives.\\
+
 \bottomrule
 \end{tabular}
 \caption{Metadata fields of the fanfictions.}
 \label{tab:metadata}
 \end{table}%
 
-A fanfiction's success is most directly shown by its kudos, which is a direct expression that a reader likes the fiction. The hits is also an indicator of popularity. A reader may choose to bookmark a fanfiction to read later. This may depend on multiple motivations, such as the length of the fiction and the time when the reader browses the website. Moreover, we do not know if the reader returns to read the fiction later. The number of comments shows the engagement of readers with a fanfiction, and is  indirectly associated with popularity. Based on these considerations, we choose to use kudos as the primary indicators of success, and hits, comments and bookmarks as secondary indicators. The correlation between these indicators can be found in Figure \ref{fig:corr}. Figure \ref{fig:kudos_dist} shows the logged cumulative distribution of kudos and comments. Following long-tailed distributions, a small number of fictions receive the majority of kudos and comments, while most fictions receive little or none. 
+We also collected metadata for each fanficiton (see Table \ref{tab:metadata}. Some of them can be used to evaluate the success of the fanfictions. While kudos is the most direct indication, being a straightforward expression that a reader liked the fiction, the hits is also an indicator of popularity. A reader may choose to bookmark a fanfiction to read later. This may depend on multiple motivations, such as the length of the fiction and the time when the reader browses the website; we also do not know if the reader returns to read the fiction later. The number of comments shows the engagement of readers with a fanfiction, and is indirectly associated with popularity. Based on these considerations, we choose to use kudos as the primary indicators of success, and hits, comments and bookmarks as secondary indicators. The correlation between these indicators can be found in Figure \ref{fig:corr}. Figure \ref{fig:kudos_dist} shows the cumulative distribution of kudos and comments in a logarithmic scale. Following long-tailed distributions, a small number of fictions receive the majority of kudos and comments, while most fictions receive little or none. 
 
-While we are interested in how a fanfiction's novelty influences its success, there are many other factors at play. For example, some fandoms have large fan bases than others, resulting in a high average Kudos for the fanfictions in these fandoms. The popular authors' fame may influence how their works are received. Since AO3's user base has been increasing, we may expect newer fanfictions to receive more Kudos than older ones. Multi-chapter fanfictions are also likely to receive more Kudos than single-chapter ones. The archive warnings indicate that the fanfictions contain sensitive elements such as graphic violence or major character death, and may influence the readers' choice of whether to view them.  Other intrinsic features, such as the ratings of the fictions and the relationships in them may also influence the readers' preferences. In subsequent analysis, we use multiple methods to control for such influences.
+While we focus on how a fanfiction's novelty influences its success, there are other factors at play. For example, some fandoms have larger fan bases than others, resulting in a high average Kudos for the fanfictions in these fandoms. The popular authors' fame may influence how their works are received. Since AO3's user base has been increasing, we may expect newer fanfictions to receive more Kudos than older ones. Multi-chapter fanfictions may also be likely to receive more Kudos than single-chapter ones. The ``Archive Warnings'' indicate that the fanfictions contain sensitive elements such as graphic violence or major character death, and may influence the readers' choice to read them.  Other intrinsic features, such as the ratings of the fictions and the relationships in them may also influence the readers' preferences. In subsequent analysis, we use multiple strategies to control for such influences.
 
 \begin{figure}
     \centering
