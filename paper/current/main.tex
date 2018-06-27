@@ -34,7 +34,7 @@
 \maketitle %}}}
 
 \begin{abstract}
-
+Finding out what people enjoy is crucial for the creative industry. Researches have suggested that successful cultural products balance between novelty and conventionality: they provide people with familiar things, with the addition of a little surprise. However, both the novelty and success of cultural products are difficult to quantitatively study. Using data of a special cultural product --- fanfictions, we develop methods to evaluate the novelty of writings based on their linguistic features. We found that both high word-level novelty and high topic-level novelty contribute to a fanfiction being less successful among readers, diverging from the traditional theory. Our methods can be readily applied to other genres of creative writing.
 \end{abstract}
 
 What do people like? This puzzle is the main challenge for the creative industry, a multi-billion dollar sector that produces mumerous cultural products in the form of movies, TV shows and video games \cite{creativeindustries}. On one hand, novelty is central to creative works because people seek surprise when consuming such products \cite{hutter2011infinite}. But on the other hand, studies have shown that people also have a strong preference for familiarity. For example, often when people listen to music, they choose songs that they have already listened to \cite{thompson2014shazam}. Mere exposure to a certain stimuli can also increase people's preference for it \cite{zajonc1968attitudinal}, even when they are not aware of the exposure \cite{kunst1980affective}. The exposure effect is assumed to have an evolutionary basis, and has been verified by multiple experiments \cite{bornstein1989exposure}.
@@ -127,11 +127,11 @@ where $f$ is the vector representation of a fanfiction and $c$ is the center of 
 
 Alternatively, we also use the \emph{Latent Dirichlet Allocation} (LDA) \cite{blei2003latent} to model the topics of the fanficitions, quantifying their novelty on the topic level. As a widely used topic modeling method, LDA models a fiction as a probabilistic distribution over a set of topics. Similar as in the previous method, for each fanfiction we construct a feature space consisting of the topic distributions of the fanfictions published before it, and define the \emph{topic novelty} score as the cosine distance between the fanfiction's topic distribution and the center. 
 
-Figure \ref{fig:tfidf_lda_kudos} plots the relationship between the fanfictions' novelty and the kudos they receive, aggregated across fandoms. Since the fandoms differ in reader base, we compute the z-score for each value of kudos based on the average number of kudos per fanfiction in its fandom. We observe that as the term novelty score increases, the z-score of Kudos steadily decrease in both cases. The less novel fanfictions receive more than average kudos, and the highly novel fanfictions receive less than average. Similar patterns can be observed between novelty and hits, comments and bookmarks (See future supplementary figures).
+Figure \ref{fig:tfidf_lda_kudos} plots the relationship between the fanfictions' novelty and the kudos they receive, aggregated across fandoms. Since the fandoms differ in reader base, we compute the z-score for each value of kudos based on the average number of kudos per fanfiction in its fandom. We observe that as the term novelty and topic novelty score increases, the z-score of Kudos steadily decrease in both cases except for one outlier. The less novel fanfictions receive more than average kudos, and the highly novel fanfictions receive less than average. Similar patterns can be observed between novelty and hits, comments and bookmarks (See future supplementary figures).
 
 \begin{figure}
     \centering
-          \includegraphics[width=\textwidth]{/novelty_tfidf_lda.pdf}
+          \includegraphics[width=\textwidth]{/novelty_kudos_tfidf_lda.pdf}
         \caption{The relationship between novelty and kudos. Left: term novelty. Right: topic novelty. The horizontal axes are the novelty scores, and the vertical axes are the corresponding average of the z-score of kudos in bins with bin size = 0.1. The confidence intervals obtained from bootstrap resampling are shown. }
         \label{fig:tfidf_lda_kudos}
 \end{figure}
