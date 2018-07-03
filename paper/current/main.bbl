@@ -92,6 +92,15 @@
   prophecies in an artificial cultural market.
 \newblock {\em Social psychology quarterly 71}, 4 (2008), 338--355.
 
+\bibitem{seabold2010statsmodels}
+{\sc Seabold, S., and Perktold, J.}
+\newblock Statsmodels: Econometric and statistical modeling with python.
+\newblock In {\em 9th Python in Science Conference\/} (2010).
+
+\bibitem{pygam}
+{\sc Serven, D., and Brummitt, C.}
+\newblock pygam: Generalized additive models in python, Mar. 2018.
+
 \bibitem{sluckin1980liking}
 {\sc Sluckin, W., Colman, A.~M., and Hargreaves, D.~J.}
 \newblock Liking words as a function of the experienced frequency of their
@@ -121,6 +130,11 @@
 \newblock {\em The Atlantic, December issue. http://www. theatlantic.
   com/magazine/archive/2014/12/the-shazam-effect/382237\/} (2014).
 
+\bibitem{thompson2017hit}
+{\sc Thompson, D.}
+\newblock {\em Hit makers: The science of popularity in an age of distraction}.
+\newblock Penguin, 2017.
+
 \bibitem{turney2010frequency}
 {\sc Turney, P.~D., and Pantel, P.}
 \newblock From frequency to meaning: Vector space models of semantics.
@@ -143,6 +157,11 @@
 \bibitem{spiderman}
 {\sc Wikipedia}.
 \newblock Spider-man in film, 2017.
+
+\bibitem{wood2006generalized}
+{\sc Wood, S.~N.}
+\newblock {\em Generalized additive models: an introduction with R}.
+\newblock Chapman and Hall/CRC, 2006.
 
 \bibitem{zajonc1968attitudinal}
 {\sc Zajonc, R.~B.}

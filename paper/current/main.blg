@@ -13,45 +13,45 @@ Warning--entry type for "creativeindustries" isn't style-file defined
 --line 343 of file main.bib
 Warning--entry type for "2017film" isn't style-file defined
 --line 393 of file main.bib
-You've used 28 entries,
+You've used 32 entries,
             2253 wiz_defined-function locations,
-            691 strings with 7787 characters,
-and the built_in function-call counts, 7555 in all, are:
-= -- 747
-> -- 256
+            706 strings with 8212 characters,
+and the built_in function-call counts, 8507 in all, are:
+= -- 827
+> -- 294
 < -- 0
-+ -- 112
-- -- 80
-* -- 572
-:= -- 1234
-add.period$ -- 80
-call.type$ -- 28
-change.case$ -- 124
++ -- 128
+- -- 92
+* -- 623
+:= -- 1391
+add.period$ -- 91
+call.type$ -- 32
+change.case$ -- 140
 chr.to.int$ -- 0
-cite$ -- 28
-duplicate$ -- 245
-empty$ -- 692
-format.name$ -- 80
-if$ -- 1557
+cite$ -- 32
+duplicate$ -- 295
+empty$ -- 790
+format.name$ -- 92
+if$ -- 1759
 int.to.chr$ -- 0
-int.to.str$ -- 28
-missing$ -- 21
-newline$ -- 139
-num.names$ -- 56
-pop$ -- 118
+int.to.str$ -- 32
+missing$ -- 26
+newline$ -- 158
+num.names$ -- 64
+pop$ -- 154
 preamble$ -- 1
-purify$ -- 96
+purify$ -- 110
 quote$ -- 0
-skip$ -- 161
+skip$ -- 187
 stack$ -- 0
-substring$ -- 540
-swap$ -- 56
+substring$ -- 560
+swap$ -- 64
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 112
+type$ -- 124
 warning$ -- 0
-while$ -- 90
-width$ -- 30
-write$ -- 272
+while$ -- 98
+width$ -- 34
+write$ -- 309
 (There were 5 warnings)
