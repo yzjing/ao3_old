@@ -137,7 +137,9 @@ Figure \ref{fig:tfidf_lda_kudos} plots the relationship between the fanfictions'
 \end{figure}
 
 
-We perform a regression analysis to further explore this relationship. Instead of using the z-scores as in previous analysis, here we use the logarithm of kudos, hits, comments and bookmarks as outcome variables. The term novelty and topic novelty scores are used as predictor variables. Other control variables are added to account for the influence of other factors on the reception of fanfictions. First, the number of chapters that a fanfiction has is included, considering that since AO3 displays the newest post on the top, multi-chapter fictions have more chances of exposure. Secondly, categorical variables are created to capture the effects of the fandoms, archive warnings, authors, categories, ratings and the relationships on a fanfiction's success. Finally, we include the age of each fanfiction as a numerical variable. The correlations between the numerical variables are shown in Figure \ref{fig:corr}, showing no strong correlation between the predictor variables.
+We perform regression analysis to further explore this relationship. Four models are created with response variables being the logarithm of kudos, hits, comments, and bookmarks respectively, and the term novelty and topic novelty scores being the predictor variables in all models. Control variables are added to account for the influence of other factors on the reception of fanfictions. First, the number of chapters that a fanfiction has is included, considering that multi-chapter fictions have more chances of exposure. Secondly, categorical variables are created to capture the effects of the fandoms, archive warnings, categories, and ratings. Thirdly, the authors may accumulate fame by writing more fanfictions. We therefore use a binary variable \emph{frequent author} to indicate whether an author has written more than 10 fanfictions. Fourthly, the relationship between characters is a main reason that fans read fanfictions, and some relationships have a larger fan base than others. To account for this effect, we create another binary variable \emph{frequent relationship} to capture whether a fanfiction features a relationship that is among the top 5 most frequent relationships in the fandom. Finally, we include the age of each fanfiction as a numerical variable, which is the number of days since a fanfiction was last edited. The correlations between the numerical variables are shown in Figure \ref{fig:corr}, showing no strong correlation between the predictor variables.
+
+Because of the excessive zeroes in the response variables, we apply a Heckman--style correction with two steps. A Logistic regression is first performed on the predictor and control variables to predict the probability of each sample having a non-zero outcome. This probability is then used as an additional predictor variable in a pooled OLS regression for each model.
 
 \begin{figure}
     \centering
@@ -146,37 +148,43 @@ We perform a regression analysis to further explore this relationship. Instead o
         \label{fig:corr}
 \end{figure}
 
-A pooled OLS is run for each outcome variable, multiple-regressing on the predictor variables. The coefficient estimates of the multiple regression are summarized in Table \ref{tab:regression}. They further support our previous observation that higher novelty contributes to a fanfiction's receiving less kudos, hits and bookmarks. A much lower r-squared value for comments suggests that the model does not account for comments very well. As the reception of a fanfiction is shaped by many factors including possible kinds of noise, we consider the signals found with this model to be a strong indicator of the negative contribution of novelty to successful fanfictions.
+Selected OLS coefficient estimates of each model are summarized in Table \ref{tab:regression} (for the full coefficients table, see Supplementary materials). We notice that a fanfiction featuring frequent relationships and male to male relationships are likely to have better reception. Meanwhile, warnings such as character death and mature contents are not beneficial to their reception. In contrast to our assumption, the number of chapters, the author's fame, and the age do not have significant influence on the fanfictions' success. Besides the control variables, we find that the term novelty and topic novelty both have significant negative coefficient estimates. This further supports our previous observation that higher novelty contributes to a fanfiction's receiving less kudos, hits, comments, and bookmarks. As the reception of a fanfiction is shaped by many factors including possible noise, we consider the signals found with this model to be a strong indication.
 
  \begin{table}
 \centering
-\begin{tabular}[width=0.8\textwidth]{p{3cm}p{3cm}p{3cm}p{3cm}p{3cm}}
+\begin{tabular}[width=0.8\textwidth]{p{4cm}p{3cm}p{3cm}p{3cm}p{3cm}}
 \toprule
-\ Outcome variable: & Kudos & Hits & Comments & Bookmarks \\ 
+Response variable: & Kudos & Hits & Comments & Bookmarks \\ 
    \hline			
-Term novelty & --0.6080***&  -0.4366***  & -0.1043*** & -0.2767*** \\
-& (0.008) & ( 0.007) & (0.008) & (0.010)\\
-Topic novelty & --2.5085*** & -2.0841*** & -0.8142*** & -1.9733*** \\
-& (0.047) & (0.043) &  (0.044 ) & (0.057)\\
-Fandom & 0.0061*** & 0.0097*** & 0.0064*** & -0.0012*** \\
-& (0.000) & (0.000) & (0.000) & (0.000)\\
-Chapters & -0.0063***& -0.0039*** & 0.0015***& -0.0059*** \\
-& (5.33e-05) & (4.88e-05) & (4.39e-05) & ( 5.67e-05) \\
-Archive warnings & 0.0011 & 0.0006*** & 0.000***& 0.0011 ***(\\
-& (4.26e-05) & (3.9e-05) & ( 3.99e-05 ) & 5.14e-05)\\
-Author & 3.932e-06*** & 2.883e-06***& 7.349e-07*** & 1.815e-06***\\
-& (9.96e-08) & (9.12e-08) & (9.41e-08) & (1.21e-07)\\
-Category & 0.0023***& 0.0019***& 0.0006*** & 0.0018***\\
-& (2.51e-05)  & (2.3e-05)  & (2.45e-05) & (3.16e-05)\\ 
-Rating & -0.0720*** & -0.0791***& -0.0360*** & -0.0341***\\
-& (0.001) & (0.001) & ( 0.001) & (0.001) \\
-Relationship & 1.833e-05*** & 2.275e-05***&  2.765e-06*** & 4.863e-06***\\
-& (2.85e-07) & (2.61e-07) & (2.78e-07) & (3.59e-07) \\
-History & -0.0002***& 0.0002*** & -9.132e-05 ***& 0.0003***\\
-& (4.87e-06) & (4.46e-06) & (5.39e-06) & (6.95e-06)\\
+Term novelty & -0.5961***&  -0.4339***  & -0.1794*** & -0.6326*** \\
+& (0.008) & ( 0.012) & (0.020) & (0.014)\\
+Topic novelty & -2.3696*** & -1.4229*** & -0.9851*** & -4.0823*** \\
+& (0.047) & (0.060) &  (0.026 ) & (0.077)\\
+Chapters & -0.0072***& -0.0043*** & 0.0002***& -0.0042*** \\
+& (0.000) & (4.88e-05) & (8.64e-05) & ( 0.000) \\
+Frequent relationship & 0.3452*** & 0.4332*** & 0.1657*** & 0.6386***\\
+& (0.006) & (0.007) & (0.013) & (0.010)\\
+Frequent author & -0.2350*** & -0.2747*** & 0.0921*** & 0.0970***\\
+& (0.005) & (0.007) & (0.004) & (0.009)\\
+Category (Female/Male) & -0.4200*** & -0.1943*** & -0.1000*** & -0.3440***\\
+& (0.006) & (0.007) & (0.010) & (0.009)\\
+Category (Male/Male) & 0.1742*** & 0.3030*** & 0.1107*** & 0.5297***\\
+& (0.006) & (0.008) & (0.011) & (0.011)\\
+Archive warnings (death) & -0.3897*** & 0.2025*** & -0.1260*** & -0.4673***\\
+& ( 0.010) & (0.013) & (0.010) & (0.017)\\
+Rating (General audience) & 0.0656*** & -0.1002*** & -0.0961*** & -0.5963***\\
+& ( 0.008) & (0.013) & (0.006) & (0.015)\\
+Rating (Mature) & -0.3883*** & 0.3668*** & -0.0988*** & -0.4289***\\
+& (0.008) & (0.011) & (0.009) & (0.012)\\
+Fandom (Doctor Who) & -0.3653*** & 0.3405*** & -0.0857*** & -0.5748***\\
+& (0.006) & 0.008 & (0.008) & (0.010)\\
+Fandom (Star Wars ) & 0.3571*** & 0.1642*** & 0.2160*** & 0.2866***\\
+& (0.016) & (0.020) & (0.017) & (0.027)\\
+Age & 0.0001***& 0.0002*** & -9.094e-05***& 3.38e-05***\\
+& (4.43e-06) & (7.79e-06) & (9.83e-06) & (7.36e-06)\\
 \hline 
-Observations & 354978 & 354978 & 354978 & 354978 \\
-R-squared & 0.111 & 0.099 & 0.028 & 0.099\\
+Observations & 526992 & 526992 & 526992 & 526992 \\
+Adjusted R-squared & 0.247 & 0.115 & 0.116  & 0.150\\
 \bottomrule
 \end{tabular}
  \begin{tablenotes}
