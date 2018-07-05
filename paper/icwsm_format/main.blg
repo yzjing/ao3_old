@@ -1,0 +1,58 @@
+This is BibTeX, Version 0.99d (TeX Live 2017)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: main.aux
+The style file: aaai.bst
+Database file #1: main.bib.bib
+Warning--entry type for "spiderman" isn't style-file defined
+--line 98 of file main.bib.bib
+Warning--entry type for "2016film" isn't style-file defined
+--line 106 of file main.bib.bib
+Warning--entry type for "ao3stats" isn't style-file defined
+--line 115 of file main.bib.bib
+Warning--entry type for "creativeindustries" isn't style-file defined
+--line 343 of file main.bib.bib
+Warning--entry type for "2017film" isn't style-file defined
+--line 393 of file main.bib.bib
+Warning--there's a number but no volume in huron2013psychological
+You've used 32 entries,
+            2568 wiz_defined-function locations,
+            754 strings with 8901 characters,
+and the built_in function-call counts, 10719 in all, are:
+= -- 1161
+> -- 304
+< -- 1
++ -- 98
+- -- 92
+* -- 811
+:= -- 1769
+add.period$ -- 155
+call.type$ -- 32
+change.case$ -- 172
+chr.to.int$ -- 30
+cite$ -- 33
+duplicate$ -- 425
+empty$ -- 842
+format.name$ -- 138
+if$ -- 2167
+int.to.chr$ -- 3
+int.to.str$ -- 0
+missing$ -- 26
+newline$ -- 190
+num.names$ -- 96
+pop$ -- 153
+preamble$ -- 1
+purify$ -- 206
+quote$ -- 0
+skip$ -- 359
+stack$ -- 0
+substring$ -- 567
+swap$ -- 73
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 248
+warning$ -- 1
+while$ -- 99
+width$ -- 38
+write$ -- 428
+(There were 6 warnings)
