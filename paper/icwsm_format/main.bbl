@@ -44,6 +44,14 @@ Fanlore.
 \newblock Transformative work.
 \newblock [Online; accessed 14-December-2015].
 
+\bibitem[\protect\citeauthoryear{Halberstadt and
+  Rhodes}{2003}]{Halberstadt2003}
+Halberstadt, J., and Rhodes, G.
+\newblock 2003.
+\newblock It's not just average faces that are attractive: Computer-manipulated
+  averageness makes birds, fish, and automobiles attractive.
+\newblock {\em Psychonomic Bulletin {\&} Review} 10(1):149--156.
+
 \bibitem[\protect\citeauthoryear{Hargreaves}{1984}]{hargreaves1984effects}
 Hargreaves, D.~J.
 \newblock 1984.
@@ -118,18 +126,6 @@ Salganik, M.~J., and Watts, D.~J.
   prophecies in an artificial cultural market.
 \newblock {\em Social psychology quarterly} 71(4):338--355.
 
-\bibitem[\protect\citeauthoryear{Seabold and
-  Perktold}{2010}]{seabold2010statsmodels}
-Seabold, S., and Perktold, J.
-\newblock 2010.
-\newblock Statsmodels: Econometric and statistical modeling with python.
-\newblock In {\em 9th Python in Science Conference}.
-
-\bibitem[\protect\citeauthoryear{Serven and Brummitt}{2018}]{pygam}
-Serven, D., and Brummitt, C.
-\newblock 2018.
-\newblock pygam: Generalized additive models in python.
-
 \bibitem[\protect\citeauthoryear{Sluckin, Colman, and
   Hargreaves}{1980}]{sluckin1980liking}
 Sluckin, W.; Colman, A.~M.; and Hargreaves, D.~J.
@@ -138,18 +134,19 @@ Sluckin, W.; Colman, A.~M.; and Hargreaves, D.~J.
   occurrence.
 \newblock {\em British Journal of Psychology} 71(1):163--169.
 
-\bibitem[\protect\citeauthoryear{Sorensen}{2007}]{sorensen2007bestseller}
-Sorensen, A.~T.
-\newblock 2007.
-\newblock Bestseller lists and product variety.
-\newblock {\em The journal of industrial economics} 55(4):715--738.
-
 \bibitem[\protect\citeauthoryear{Sreenivasan}{2013}]{sreenivasan2013quantitative}
 Sreenivasan, S.
 \newblock 2013.
 \newblock Quantitative analysis of the evolution of novelty in cinema through
   crowdsourced keywords.
 \newblock {\em Scientific reports} 3.
+
+\bibitem[\protect\citeauthoryear{Thelwall and
+  Wilson}{2014}]{thelwall2014regression}
+Thelwall, M., and Wilson, P.
+\newblock 2014.
+\newblock Regression for citation data: An evaluation of different methods.
+\newblock {\em Journal of Informetrics} 8(4):963--971.
 
 \bibitem[\protect\citeauthoryear{Thomas}{2011}]{thomas2011fanfiction}
 Thomas, B.
@@ -176,6 +173,13 @@ Turney, P.~D., and Pantel, P.
 \newblock 2010.
 \newblock From frequency to meaning: Vector space models of semantics.
 \newblock {\em Journal of artificial intelligence research} 37:141--188.
+
+\bibitem[\protect\citeauthoryear{Uzzi \bgroup et al\mbox.\egroup
+  }{2013}]{uzzi2013atypical}
+Uzzi, B.; Mukherjee, S.; Stringer, M.; and Jones, B.
+\newblock 2013.
+\newblock Atypical combinations and scientific impact.
+\newblock {\em Science} 342(6157):468--472.
 
 \bibitem[\protect\citeauthoryear{Wikipedia}{2015}]{wiki:fandom}
 Wikipedia.

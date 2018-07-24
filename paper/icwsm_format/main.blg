@@ -18,43 +18,43 @@ Warning--entry type for "spider-gross" isn't style-file defined
 Warning--there's a number but no volume in huron2013psychological
 You've used 33 entries,
             2568 wiz_defined-function locations,
-            757 strings with 8947 characters,
-and the built_in function-call counts, 10979 in all, are:
-= -- 1187
-> -- 311
+            763 strings with 9132 characters,
+and the built_in function-call counts, 11245 in all, are:
+= -- 1222
+> -- 327
 < -- 1
-+ -- 100
-- -- 94
-* -- 825
-:= -- 1811
-add.period$ -- 159
++ -- 106
+- -- 100
+* -- 867
+:= -- 1852
+add.period$ -- 160
 call.type$ -- 33
-change.case$ -- 177
+change.case$ -- 180
 chr.to.int$ -- 31
 cite$ -- 34
-duplicate$ -- 435
-empty$ -- 866
-format.name$ -- 141
-if$ -- 2221
+duplicate$ -- 437
+empty$ -- 872
+format.name$ -- 147
+if$ -- 2268
 int.to.chr$ -- 3
 int.to.str$ -- 0
-missing$ -- 26
-newline$ -- 195
+missing$ -- 27
+newline$ -- 196
 num.names$ -- 99
-pop$ -- 162
+pop$ -- 153
 preamble$ -- 1
-purify$ -- 212
+purify$ -- 215
 quote$ -- 0
-skip$ -- 371
+skip$ -- 373
 stack$ -- 0
-substring$ -- 572
+substring$ -- 622
 swap$ -- 75
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 256
 warning$ -- 1
-while$ -- 101
-width$ -- 39
-write$ -- 439
+while$ -- 105
+width$ -- 38
+write$ -- 443
 (There were 7 warnings)
