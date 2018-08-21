@@ -30,18 +30,18 @@
 %PDF Info Is Required:
   \pdfinfo{
 /Title (Does Novelty Disturb and Repel? Linguistic features and the Success of Fanfictions in Fandoms)
-/Author (Elise Jing, Yong-Yeol Ahn, Simon Dedeo)}
+/Author (Elise Jing, Simon Dedeo, Yong-Yeol Ahn)}
 \setcounter{secnumdepth}{0}  
  \begin{document}
 % The file aaai.sty is the style file for AAAI Press 
 % proceedings, working notes, and technical reports.
 %
 \title{Does Novelty Disturb and Repel? Linguistic features and the Success of Fanfictions in Fandoms}
-\author{Elise Jing, Yong-Yeol Ahn, Simon Dedeo\\
+\author{Elise Jing, Simon Dedeo, Yong-Yeol Ahn\\
 }
 \maketitle
 \begin{abstract}
-Finding out what people enjoy is crucial for the creative industry. Researches suggested that successful cultural products balance novelty and conventionality: they provide something comfortable, with a little surprise. Using a large dataset of a specific type of cultural products --- fanfictions, we study the relationships between the recognition and the novelty of a fanfiction. We quantify the novelty of a fanfiction using a term-based language model as well as a topic model, in the context of existing fanfictions in the fandom. We found that both high word-level novelty and high topic-level novelty are associated with poorer recognition among readers, diverging from the traditional theory of hedonic values of novelty.
+Finding out what people enjoy is crucial for the creative industry. Researches suggested that successful cultural products balance novelty and conventionality: they provide something comfortable, with a little surprise. Using a large dataset of a specific type of cultural products --- fanfictions, we study the relationships between the recognition and the novelty of a fanfiction. We quantify the novelty of a fanfiction using a term-based language model as well as a topic model, in the context of existing fanfictions in the fandom. We found that both fictions with very low novelty and very high novelty are popular among readers, while the fictions in the middle are associated with poorer recognition. Diverging from the traditional theory of hedonic values of novelty, we suggest that people prefer creative works that are either very familiar or very novel.
 \end{abstract}
 
 \section*{Introduction}
@@ -71,14 +71,14 @@ AO3 classifies the fandoms based on formats, such as movies, TV shows, books, an
 \begin{figure*}
     \centering
    % \hspace{1cm}
-        \includegraphics[width=0.7\textwidth]{/fic_time_fandom_size_dist.pdf}
+        \includegraphics[width=\textwidth]{/fic_time_fandom_size_dist.pdf}
         \caption{The size of fandoms and the number of fanfictions published in time.}
         \label{fig:fandom_size}    
     \end{figure*}
     
 \begin{figure*}
     \centering
-       \includegraphics[width=0.8\textwidth]{/kudos_comments_hits_bookmarks_ccdf.pdf}
+       \includegraphics[width=\textwidth]{/kudos_comments_hits_bookmarks_ccdf.pdf}
         \caption{Log-lin complementary cumulative distribution of kudos, hits, bookmarks and comments. For multi-chapter fanfictions, we average these values over the number of chapters. Fat-tailed distributions are observed, where a small portion of fictions receive many kudos and comments, and most fictions receive few.}
         \label{fig:kudos_dist}
     \end{figure*}
@@ -157,7 +157,7 @@ Because of the prevalent zero values in the response variables, we apply a Heckm
 
 \begin{figure*}
     \centering
-          \includegraphics[width=0.8\textwidth]{/ols_coefs.pdf}
+          \includegraphics[width=0.8\textwidth]{/ols_coefs_partial.pdf}
         \caption{OLS coefficients for the independent variables. The 95\% confidence intervals are plotted, but not visible because of the small values. }
         \label{fig:ols}
 \end{figure*}
