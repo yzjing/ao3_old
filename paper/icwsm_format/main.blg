@@ -9,7 +9,7 @@ Warning--entry type for "2016film" isn't style-file defined
 --line 106 of file main.bib.bib
 Warning--entry type for "ao3stats" isn't style-file defined
 --line 115 of file main.bib.bib
-Warning--entry type for "creativeindustries" isn't style-file defined
+Warning--entry type for "artsculturalindustries" isn't style-file defined
 --line 343 of file main.bib.bib
 Warning--entry type for "2017film" isn't style-file defined
 --line 393 of file main.bib.bib
@@ -18,12 +18,12 @@ Warning--entry type for "spider-gross" isn't style-file defined
 Warning--there's a number but no volume in huron2013psychological
 You've used 33 entries,
             2568 wiz_defined-function locations,
-            763 strings with 9132 characters,
-and the built_in function-call counts, 11245 in all, are:
+            764 strings with 9165 characters,
+and the built_in function-call counts, 11247 in all, are:
 = -- 1222
 > -- 327
 < -- 1
-+ -- 106
++ -- 107
 - -- 100
 * -- 867
 := -- 1852
@@ -47,7 +47,7 @@ purify$ -- 215
 quote$ -- 0
 skip$ -- 373
 stack$ -- 0
-substring$ -- 622
+substring$ -- 623
 swap$ -- 75
 text.length$ -- 1
 text.prefix$ -- 0

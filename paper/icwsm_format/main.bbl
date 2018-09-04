@@ -1,5 +1,10 @@
 \begin{thebibliography}{}
 
+\bibitem[\protect\citeauthoryear{Archive~of Our~Own}{2017}]{ao3stats}
+Archive~of Our~Own, .
+\newblock 2017.
+\newblock Archive of our own.
+
 \bibitem[\protect\citeauthoryear{Askin and Mauskapf}{2017}]{askin2017makes}
 Askin, N., and Mauskapf, M.
 \newblock 2017.
@@ -107,16 +112,11 @@ Mojo, B.~O.
 \newblock 2018.
 \newblock All time box office.
 
-\bibitem[\protect\citeauthoryear{of
-  Economic~Analysis}{2015}]{creativeindustries}
-of~Economic~Analysis, B.
-\newblock 2015.
-\newblock Spending on arts and cultural production continues to increase.
-
-\bibitem[\protect\citeauthoryear{of Our~Own}{2017}]{ao3stats}
-of~Our~Own, A.
-\newblock 2017.
-\newblock Archive of our own.
+\bibitem[\protect\citeauthoryear{National Endowment for~the
+  Arts}{2018}]{artsculturalindustries}
+National Endowment for~the Arts, .
+\newblock 2018.
+\newblock The arts contribute more than \$760 billion to the u.s. economy.
 
 \bibitem[\protect\citeauthoryear{Salganik and
   Watts}{2008}]{salganik2008leading}
