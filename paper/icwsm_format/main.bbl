@@ -76,6 +76,13 @@ Hills, M.
   exploring the narrative universe of doctor who.
 \newblock {\em Convergence} 21(3):360--374.
 
+\bibitem[\protect\citeauthoryear{Horv{\'a}t \bgroup et al\mbox.\egroup
+  }{2018}]{horvat2018role}
+Horv{\'a}t, E.-A.; Wachs, J.; Wang, R.; and Hann{\'a}k, A.
+\newblock 2018.
+\newblock The role of novelty in securing investors for equity crowdfunding
+  campaigns.
+
 \bibitem[\protect\citeauthoryear{Huron}{2013}]{huron2013psychological}
 Huron, D.
 \newblock 2013.
@@ -144,6 +151,27 @@ Salganik, M.~J., and Watts, D.~J.
   prophecies in an artificial cultural market.
 \newblock {\em Social psychology quarterly} 71(4):338--355.
 
+\bibitem[\protect\citeauthoryear{Salganik, Dodds, and
+  Watts}{2006}]{salganik2006experimental}
+Salganik, M.~J.; Dodds, P.~S.; and Watts, D.~J.
+\newblock 2006.
+\newblock Experimental study of inequality and unpredictability in an
+  artificial cultural market.
+\newblock {\em science} 311(5762):854--856.
+
+\bibitem[\protect\citeauthoryear{Salton and Buckley}{1988}]{salton1988term}
+Salton, G., and Buckley, C.
+\newblock 1988.
+\newblock Term-weighting approaches in automatic text retrieval.
+\newblock {\em Information processing \& management} 24(5):513--523.
+
+\bibitem[\protect\citeauthoryear{Seabold and
+  Perktold}{2010}]{seabold2010statsmodels}
+Seabold, S., and Perktold, J.
+\newblock 2010.
+\newblock Statsmodels: Econometric and statistical modeling with python.
+\newblock In {\em 9th Python in Science Conference}.
+
 \bibitem[\protect\citeauthoryear{Sluckin, Colman, and
   Hargreaves}{1980}]{sluckin1980liking}
 Sluckin, W.; Colman, A.~M.; and Hargreaves, D.~J.
@@ -179,12 +207,6 @@ Thompson, D.
 \newblock The shazam effect.
 \newblock {\em The Atlantic, December issue. http://www. theatlantic.
   com/magazine/archive/2014/12/the-shazam-effect/382237}.
-
-\bibitem[\protect\citeauthoryear{Turney and Pantel}{2010}]{turney2010frequency}
-Turney, P.~D., and Pantel, P.
-\newblock 2010.
-\newblock From frequency to meaning: Vector space models of semantics.
-\newblock {\em Journal of artificial intelligence research} 37:141--188.
 
 \bibitem[\protect\citeauthoryear{Uzzi \bgroup et al\mbox.\egroup
   }{2013}]{uzzi2013atypical}
