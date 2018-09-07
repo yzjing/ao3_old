@@ -16,45 +16,45 @@ Warning--entry type for "2017film" isn't style-file defined
 Warning--entry type for "spider-gross" isn't style-file defined
 --line 503 of file main.bib.bib
 Warning--there's a number but no volume in huron2013psychological
-You've used 33 entries,
+You've used 35 entries,
             2568 wiz_defined-function locations,
-            764 strings with 9165 characters,
-and the built_in function-call counts, 11247 in all, are:
-= -- 1222
-> -- 327
-< -- 1
-+ -- 107
-- -- 100
-* -- 867
-:= -- 1852
-add.period$ -- 160
-call.type$ -- 33
-change.case$ -- 180
-chr.to.int$ -- 31
-cite$ -- 34
-duplicate$ -- 437
-empty$ -- 872
-format.name$ -- 147
-if$ -- 2268
+            779 strings with 9371 characters,
+and the built_in function-call counts, 11903 in all, are:
+= -- 1291
+> -- 341
+< -- 3
++ -- 113
+- -- 104
+* -- 919
+:= -- 1959
+add.period$ -- 170
+call.type$ -- 35
+change.case$ -- 189
+chr.to.int$ -- 33
+cite$ -- 36
+duplicate$ -- 465
+empty$ -- 926
+format.name$ -- 153
+if$ -- 2400
 int.to.chr$ -- 3
 int.to.str$ -- 0
-missing$ -- 27
-newline$ -- 196
-num.names$ -- 99
-pop$ -- 153
+missing$ -- 30
+newline$ -- 208
+num.names$ -- 105
+pop$ -- 160
 preamble$ -- 1
-purify$ -- 215
+purify$ -- 227
 quote$ -- 0
-skip$ -- 373
+skip$ -- 396
 stack$ -- 0
-substring$ -- 623
-swap$ -- 75
-text.length$ -- 1
+substring$ -- 660
+swap$ -- 81
+text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 256
+type$ -- 268
 warning$ -- 1
-while$ -- 105
-width$ -- 38
-write$ -- 443
+while$ -- 111
+width$ -- 40
+write$ -- 472
 (There were 7 warnings)

@@ -89,14 +89,14 @@ Figure \ref{fig:fandom_size} (a) shows the number of fanfictions in each of the 
         \label{fig:kudos_dist}
     \end{figure*}
 
-\begin{table*}
+\begin{table}
 \centering
-\begin{tabular}[width=0.8\textwidth]{p{3cm}p{10cm}}
+\begin{tabular}[width=\textwidth]{p{3cm}p{5cm}}
 \toprule
 Fields & Description \\ 
    \hline			
 Title & Titles of the fanfictions.  \\
-Fandoms & The fandom(s) that the fanfiction belongs to \\
+Fandoms & The fandom(s) that the fanfiction belongs to. \\
 Author & The author of the fanfiction.  \\
 Chapters & The number of chapters that a fanfiction have. \\
 Archive Warnings & The warnings for sensitive elements in the fanfiction. \\
@@ -117,25 +117,23 @@ Bookmarks & The number of people who bookmarked the fanfiction.\\
 \end{tabular}
 \caption{Metadata fields of the fanfictions.}
 \label{tab:metadata}
-\end{table*}%
+\end{table}%
 
 We also collected metadata for each fanfiction (see Table \ref{tab:metadata}). Variables such as kudos, hits, comments, and bookmarks are used to operationalize the success of a fanfiction. While the hits is the most direct metric for popularity, the kudos is a straightforward expression that a reader liked the fiction. A reader can also comment on a fiction or bookmark it to read later. The comments and bookmarks therefore signal the recognition or engagement from readers, although they depend on multiple motivations, and are less directly associated with popularity. Figure \ref{fig:kudos_dist} shows the cumulative distribution of these indicators on a logarithmic scale. Like many other measurements of popularity, they exhibit fat-tails. That is, a small number of fictions receive the majority of kudos, etc, while most fictions receive little or none. We use the logarithm of these values, which is a common practice for similar data such as citations. This helps to reduce the potential bias when performing regression and many other statistical analysis \cite{thelwall2014regression}. 
 
-\textbf{Quantifying novelty}   As previous studies noted \cite{askin2017makes} \cite{de2015game}, it is reasonable to assess a fanfiction's novelty in the context of other previously published fanfictions. Intuitively, a fanfiction is less novel if it is similar to many other fictions published before. Therefore, we locate the center of the feature space containing all past fictions in respect of a fanfiction. If a fanfiction is close to the center, it is less novel, and vice versa.
+\textbf{Quantifying novelty}   As previous studies noted \cite{askin2017makes,de2015game}, it is reasonable to assess a fanfiction's novelty in the context of other previously published fanfictions. Intuitively, a fanfiction is less novel if it is similar to many other fictions published before. Here we use the centroid of all past fictions in a fandom in a feature space as the guide for measuring novelty. Namely, we assume that a fanfiction is less novel if it is close to the center, and vice versa. 
 
-We extract features from the fanfictions using two methods, the term frequency - inversed document frequency (TF-IDF) and the Latent Dirichlet Allocation (LDA) \cite{blei2003latent}. TF-IDF is a vector space model often used in information retrieval \cite{turney2010frequency}, where each fanfiction is represented as a vector, and its entries are scores of the unique terms in the fiction. This allows us to identify the most representative terms in the documents, quantifying the term-level novelty. The TF-IDF scores are computed, for each fanfiction, using all fanfictions published in the same fandom within the past 6 months from when it was published. We then compute the center of the feature space as the average of all feature vectors. The \emph{term novelty} score $s_i$ of a fanfiction is defined as:
+We extract features from the fanfictions using two methods, the term frequency - inversed document frequency (TF---IDF) and the Latent Dirichlet Allocation (LDA) \cite{blei2003latent}. TF---IDF is a vector space model often used in information retrieval \cite{salton1988term}, where each fanfiction is represented as a vector, and its entries are scores of the unique terms in the fiction. This allows us to quantify the term-level novelty. The TF-IDF scores are computed, for each fanfiction, using all fanfictions published in the same fandom within the past 6 months from when it was published. We then compute the center of the feature space as the average of all feature vectors. The \emph{term novelty} score $s_i$ of a fanfiction is defined as:
 
 \begin{equation}
 s_i = 1-\frac{\boldsymbol{f_i} \cdot{\boldsymbol{f_i^{(c)}}}} {\lvert \boldsymbol{f_i} \rvert \lvert \boldsymbol{f_i^{(c)}} \rvert}
 \end{equation}
 
-where $\boldsymbol{f_i}$ is the vector representation of a fanfiction and $\boldsymbol{f_i^{(c)}}$ is the center of the vector space defined in respect of this fanfiction.
+where $\boldsymbol{f_i}$ is the vector representation of a fanfiction and $\boldsymbol{f_i^{(c)}}$ is the center of the vector space defined with respect of this fanfiction.
 
-We also use the LDA to quantify the fanfictions' novelty with respect to their topics. LDA models a document as a probabilistic distribution over a set of topics, each of which is a probability distribution across terms. Similar to the TFIDF method, for each fanfiction we construct a feature space consisting of the topic distributions of the fanfictions published before it, and define the \emph{topic novelty} score as the cosine distance between the fanfiction's topic distribution and the center of the feature space. 
+We also use the LDA to quantify the fanfictions' novelty in terms of their topics. LDA models a document as a probabilistic distribution over a set of topics, each of which is a probability distribution across terms. Similar to the TF---IDF, for each fanfiction, we construct a feature space consisting of the topic distributions of the fanfictions published before it, and define the \emph{topic novelty} score as the cosine distance between the fanfiction's topic distribution and the center of the feature space. (See Appendix for the model details.)
 
-The Python library scikit-learn was used to create the vector space models. Another library Gensim is used to fit LDA topic models on our data. We set the number of topics to 100 and use default values for other parameters. 
-
-\textbf{Control factors}    To isolate the relationships between the novelty and success, we need to control for other confounding factors. For example, some fandoms have larger fan bases than others, resulting in higher numbers of kudos for the fanfictions in these fandoms. The popular authors' fame may influence how their works are received. Since AO3's user base has been increasing, we may expect newer fanfictions to receive more kudos than older ones. Multi-chapter fanfictions may also be likely to receive more kudos than single-chapter ones. The ``Archive Warnings'' indicate that the fanfictions contain sensitive elements such as graphic violence or major character death, and may influence the readers' choice to read them. Other intrinsic features, such as the age ratings of the fictions and the relationships in them may also influence the readers' preferences. In subsequent analysis, we use multiple strategies to control for such influences.
+\textbf{Control factors}    To isolate the relationships between the novelty and success, we need to control for other confounding factors. For example, some fandoms have larger fan bases than others, resulting in higher numbers of kudos for the fanfictions in these fandoms. The authors' fame may influence how their works are received. Since AO3's user base has been increasing, we may expect newer fanfictions to receive more kudos than older ones. Multi-chapter fanfictions may also be likely to receive more kudos than single-chapter ones. The ``Archive Warnings'' indicate that the fanfictions contain sensitive elements such as graphic violence or major character death, and may influence the readers' choice to read them. Other intrinsic features, such as the age ratings of the fictions and the relationships in them may also influence the readers' preferences. In subsequent analysis, we use multiple strategies to control for such influences.
 
 
 \section{Results}
@@ -203,16 +201,23 @@ The fanfiction dataset naturally controls for the variation in the fictions' sub
 
 We have developed a method to quantify the novelty of writings by comparing its linguistic features to other writings. We also measure novelty on two levels: the term level and the topic level. Our method, however, uses a bag-of-words model and neglects the semantic information contained in word orderings. It is also unable to disintegrate the novelty of style and the novelty of content, which may affect the readers' reception in different ways. Despite such caveats, our method provides an intuitive quantitive definition for novelty that can easily extend to other types of creative writings. A potential research direction is therefore to investigate the relationship between novelty and success in other areas, such as book markets or news articles.
 
-
-
-
-
-
 \section{ Acknowledgments}
 We thank the AO3 staff for helping us with the data collection, and thank Agnes Horvat for her comments.
 
 \bibliography{main.bib}
 \bibliographystyle{aaai}
+
+\appendix
+\section{Appendix}
+\subsection{Model details}
+
+The Python library \texttt{scikit-learn} was used to create the vector space models. 
+
+The Python library gensim is used to fit LDA topic models on our data. Number of topics $=$ 100, $\alpha = 0.01$, iterations $=$ 50.
+
+
+
+
 \end{document}
 
 
