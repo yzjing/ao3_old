@@ -20,7 +20,7 @@
 \usepackage[flushleft]{threeparttable}
 
 % temporary formatting for editing
-\linespread{2}
+%\linespread{2}
 \pagestyle{plain} 
 
 \graphicspath{ {./figs} }
@@ -131,7 +131,7 @@ s_{i(term)} = 1-\frac{\boldsymbol{f_i} \cdot{\boldsymbol{f_i^{(c)}}}} {\lvert \b
 
 where $\boldsymbol{f_i}$ is the vector representation of a fanfiction, and $\boldsymbol{f_i^{(c)}}$ is the centroid of the vector space defined with respect of this fanfiction.
 
-We also use the LDA to quantify the fanfictions' novelty in terms of their topics. LDA models a document as a probabilistic distribution over a set of topics, each of which is a probability distribution across terms. Similar to the TF---IDF, for each fanfiction, we construct a feature space consisting of the topic distributions of the fanfictions published before it, and define the \emph{topic novelty} score $s_{i(topic)}$ as the cosine distance between the fanfiction's topic distribution and the center of the feature space. (See Appendix for the model details.)
+We also use the LDA to quantify the fanfictions' novelty in terms of their topics. LDA models a document as a probabilistic distribution over a set of topics, each of which is a probability distribution across terms. Similar to the TF---IDF, for each fanfiction, we construct a feature space consisting of the topic distributions of the fanfictions published before it, and define the \emph{topic novelty} score $s_{i(topic)}$ as the Jensen-Shannon divergence between the fanfiction's topic distribution and the center of the feature space. (See Appendix for the model details.)
 
 \section{Results}
 
