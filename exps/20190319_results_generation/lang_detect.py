@@ -3,31 +3,20 @@ sys.path.append('/nfs/nfs7/home/jingy/.local/lib/python3.5/site-packages')
 
 import spacy
 from spacy_cld import LanguageDetector
-import en_core_web_md
+import en_core_web_sm
 import pandas as pd
 
-nlp = en_core_web_md.load()
+nlp = en_core_web_sm.load()
+from spacy.lang.en import English
 language_detector = LanguageDetector()
 nlp.add_pipe(language_detector)
 
 
 def detect_Eng(text):
-    print(text[0:50])
-    # doc = nlp(line)
-    # if doc._.languages == ['en']:
-    #     cnt_en += 1
-    # cnt_all += 1
-
-
-for fandom in fandoms:
-    df = pd.read_csv('../' + fandom + '_preprocessed.tsv', sep = '\t')
-    df = df.apply(lambda row: detect_Eng(row['Text']), axis=1)
-    break
-
-
-# print(doc._.languages)  # ['en']
-# print(doc._.language_scores['en'])  # 0.96
-
+    doc = nlp(text[0:50])
+    if doc._.languages == ['en']:
+    	return True
+    return False
 
 fandoms = [
 'les_miserables_all_media_types',
@@ -54,3 +43,8 @@ fandoms = [
 'dragon_age_all_media_types',
 'supernatural',
 ]
+
+for fandom in fandoms:
+    df = pd.read_csv('../' + fandom + '_preprocessed.tsv', sep = '\t')
+    df = df[df.apply(lambda row: detect_Eng(row['Text']), axis=1)]
+    df.to_csv(fandom + '_preprocessed2.tsv', sep='\t', index=False)
