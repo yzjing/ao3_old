@@ -46,16 +46,16 @@ df_bookmarks <- df[df$Bookmarks != 0, ]
 + Fandom_sailor_moon+ Fandom_one_direction, data=df_bookmarks, method='REML', family='gaussian')
 
 
-pdf('/Users/a307/Desktop/rplot_2.pdf', width=16, height=8)
+pdf('/Users/a307/Desktop/gam_res.pdf', width=16, height=8)
 par(mfrow=c(2,4))
-plot(res_kudos, scale=0, shade=TRUE, select=1, xlab='Term novelty', ylab='Kudos', cex.lab=1.5, cex.axis=1.5)
-plot(res_hits, scale=0, shade=TRUE, select=1, xlab='Term novelty', ylab='Hits', cex.lab=1.5, cex.axis=1.5)
-plot(res_comments, scale=0, shade=TRUE,  select=1, xlab='Term novelty', ylab='Comments', cex.lab=1.5, cex.axis=1.5)
-plot(res_bookmarks, scale=0, shade=TRUE, select=1, xlab='Term novelty', ylab='Bookmarks', cex.lab=1.5, cex.axis=1.5)
-plot(res_kudos, scale=0, shade=TRUE, select=2, xlab='Topic novelty', ylab='Kudos', cex.lab=1.5, cex.axis=1.5)
-plot(res_hits, scale=0, shade=TRUE, select=2, xlab='Topic novelty', ylab='Hits', cex.lab=1.5, cex.axis=1.5)
-plot(res_comments, scale=0, shade=TRUE,  select=2, xlab='Topic novelty', ylab='Comments', cex.lab=1.5, cex.axis=1.5)
-plot(res_bookmarks, scale=0, shade=TRUE, select=2, xlab='Topic novelty', ylab='Bookmarks', cex.lab=1.5, cex.axis=1.5)
+plot(res_kudos, scale=0, shade=TRUE, select=1, xlab='Term novelty', ylab='Kudos', cex.lab=1.6, cex.axis=2)
+plot(res_hits, scale=0, shade=TRUE, select=1, xlab='Term novelty', ylab='Hits', cex.lab=1.6, cex.axis=2)
+plot(res_comments, scale=0, shade=TRUE,  select=1, xlab='Term novelty', ylab='Comments', cex.lab=1.6, cex.axis=2)
+plot(res_bookmarks, scale=0, shade=TRUE, select=1, xlab='Term novelty', ylab='Bookmarks', cex.lab=1.6, cex.axis=2)
+plot(res_kudos, scale=0, shade=TRUE, select=2, xlab='Topic novelty', ylab='Kudos', cex.lab=1.6, cex.axis=2)
+plot(res_hits, scale=0, shade=TRUE, select=2, xlab='Topic novelty', ylab='Hits', cex.lab=1.6, cex.axis=2)
+plot(res_comments, scale=0, shade=TRUE,  select=2, xlab='Topic novelty', ylab='Comments', cex.lab=1.6, cex.axis=2)
+plot(res_bookmarks, scale=0, shade=TRUE, select=2, xlab='Topic novelty', ylab='Bookmarks', cex.lab=1.6, cex.axis=2)
 dev.off()
         
 
