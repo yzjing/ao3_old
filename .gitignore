@@ -66,3 +66,21 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# data
+*.tsv
+*.csv
+*.txt
+*.p
+
+# plots
+*.pdf
+*.png
+
+# notebook
+*-checkpoint.ipynb
+
+# mac
+*.DS_Store
+
+

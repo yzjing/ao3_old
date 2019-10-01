@@ -1,8 +1,0 @@
-
-Description about datasets.
-
-files end with ¡®preprocessed.tsv¡¯: basic filtering and preprocessing with the text. Some fields regarding comments and bookmarks modified.
-files end with ¡®processed.tsv¡¯: after running LDA (raw texts are substituted with topic distributions)
-files end with ¡®processed2.tsv¡¯: added KL (topic distributions are substituted with KL to monthly standard), chapters are combined by averaging KL. some other fields (comments, publish date, update date) modified.
-
-files ended with spy, state, or no extension: used to hold the LDA model.
