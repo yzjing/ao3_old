@@ -1,9 +1,9 @@
 library(mgcv)
-df <- read.csv(file='/Users/a307/Desktop/work/current/ao3/exps/20190319_results_generation/fanfic_regression_data_curated.tsv', header=TRUE, sep='\t')
+df <- read.csv(file='/Users/a307/Desktop/work/current/ao3/exps/20190319_results_generation/fanfic_regression_data_merged_chs_rgam.tsv', header=TRUE, sep='\t')
 
 df_kudos <- df[df$Kudos != 0, ]
  res_kudos <- mgcv::bam(Kudos ~ s(Term_novelty, bs='cr', sp=0.1,k=7) + s(Topic_novelty, bs='cr', sp=0.1,k=5) + s(Chapters, sp=0.1, bs='cr') + s(author_fic_cnt, sp=0.1, bs='cr') 
-+  Freq_relationship + Category_F_F + Category_F_M + Category_Gen + Category_M_M
++  Freq_relationship +   Category_Gen + Category_M_M
 +  Category_Multi + Category_Other + ArchiveWarnings_underage + ArchiveWarnings_death + 
 + ArchiveWarnings_choose_no + ArchiveWarnings_no_apply + ArchiveWarnings_violence + Rating_E                  
 + Rating_G + Rating_M + Rating_N + Fandom_harry_potter + Fandom_dcu + Fandom_doctor_who + Fandom_star_wars          
@@ -14,7 +14,7 @@ df_kudos <- df[df$Kudos != 0, ]
 
 df_hits <- df[df$Hits != 0, ]
  res_hits <- mgcv::bam(Hits ~ s(Term_novelty, bs='cr', sp=0.1,k=7) + s(Topic_novelty, bs='cr', sp=0.1,k=5) + s(Chapters, sp=0.1, bs='cr') + s(author_fic_cnt, sp=0.1, bs='cr') 
-+ Freq_relationship + Category_F_F + Category_F_M + Category_Gen + Category_M_M
++ Freq_relationship +   Category_Gen + Category_M_M
 + Category_Multi + Category_Other + ArchiveWarnings_underage + ArchiveWarnings_death + 
 ArchiveWarnings_choose_no + ArchiveWarnings_no_apply + ArchiveWarnings_violence + Rating_E                  
 + Rating_G + Rating_M + Rating_N + Fandom_harry_potter + Fandom_dcu + Fandom_doctor_who + Fandom_star_wars          
@@ -25,7 +25,7 @@ ArchiveWarnings_choose_no + ArchiveWarnings_no_apply + ArchiveWarnings_violence 
 
 df_comments <- df[df$Comments != 0, ]
 res_comments <- mgcv::bam(Comments ~ s(Term_novelty, bs='cr', sp=0.1,k=7) + s(Topic_novelty, bs='cr', sp=0.1,k=5) + s(Chapters, sp=0.1, bs='cr') + s(author_fic_cnt, sp=0.1, bs='cr') 
-+ Freq_relationship + Category_F_F + Category_F_M + Category_Gen + Category_M_M
++ Freq_relationship +   Category_Gen + Category_M_M
 + Category_Multi + Category_Other + ArchiveWarnings_underage + ArchiveWarnings_death
 + ArchiveWarnings_choose_no + ArchiveWarnings_no_apply + ArchiveWarnings_violence + Rating_E                  
 + Rating_G + Rating_M + Rating_N + Fandom_harry_potter + Fandom_dcu + Fandom_doctor_who + Fandom_star_wars          
@@ -36,7 +36,7 @@ res_comments <- mgcv::bam(Comments ~ s(Term_novelty, bs='cr', sp=0.1,k=7) + s(To
 
 df_bookmarks <- df[df$Bookmarks != 0, ]
  res_bookmarks <- mgcv::bam(Hits ~ s(Term_novelty, bs='cr', sp=0.1,k=7) + s(Topic_novelty, bs='cr', sp=0.1,k=5) + s(Chapters, sp=0.1, bs='cr') + s(author_fic_cnt, sp=0.1, bs='cr') 
-+ Freq_relationship + Category_F_F + Category_F_M + Category_Gen + Category_M_M
++ Freq_relationship +   Category_Gen + Category_M_M
 + Category_Multi + Category_Other + ArchiveWarnings_underage + ArchiveWarnings_death
 + ArchiveWarnings_choose_no + ArchiveWarnings_no_apply + ArchiveWarnings_violence + Rating_E                  
 + Rating_G + Rating_M + Rating_N + Fandom_harry_potter + Fandom_dcu + Fandom_doctor_who + Fandom_star_wars          
