@@ -1,9 +1,11 @@
 library(mgcv)
-df <- read.csv(file='/Users/a307/Desktop/work/current/ao3/exps/20190319_results_generation/fanfic_regression_data_merged_chs_rgam.tsv', header=TRUE, sep='\t')
+df <- read.csv(file='/Users/a307/Desktop/work/current/ao3/data/fanfic_regression_data_merged_chs.tsv', header=TRUE, sep='\t')
+
 
 df_kudos <- df[df$Kudos != 0, ]
- res_kudos <- mgcv::bam(Kudos ~ s(Term_novelty, bs='cr', sp=0.1,k=7) + s(Topic_novelty, bs='cr', sp=0.1,k=5) + s(Chapters, sp=0.1, bs='cr') + s(author_fic_cnt, sp=0.1, bs='cr') 
-+  Freq_relationship +   Category_Gen + Category_M_M
+ res_kudos <- mgcv::bam(Kudos ~ s(Term_novelty, bs='cr', sp=0.1,k=5) + s(Topic_novelty, bs='cr', sp=0.1,k=5)
+ 	+ s(Chapters, sp=0.1, bs='cr') + s(author_fic_cnt, sp=0.1, bs='cr')  + s(Words, sp=0.1, bs='cr')
++  Freq_relationship + Category_F_F + Category_F_M + Category_Gen + Category_M_M
 +  Category_Multi + Category_Other + ArchiveWarnings_underage + ArchiveWarnings_death + 
 + ArchiveWarnings_choose_no + ArchiveWarnings_no_apply + ArchiveWarnings_violence + Rating_E                  
 + Rating_G + Rating_M + Rating_N + Fandom_harry_potter + Fandom_dcu + Fandom_doctor_who + Fandom_star_wars          
@@ -13,37 +15,40 @@ df_kudos <- df[df$Kudos != 0, ]
 + Fandom_sailor_moon+ Fandom_one_direction, data=df_kudos, method='REML', family='gaussian')
 
 df_hits <- df[df$Hits != 0, ]
- res_hits <- mgcv::bam(Hits ~ s(Term_novelty, bs='cr', sp=0.1,k=7) + s(Topic_novelty, bs='cr', sp=0.1,k=5) + s(Chapters, sp=0.1, bs='cr') + s(author_fic_cnt, sp=0.1, bs='cr') 
-+ Freq_relationship +   Category_Gen + Category_M_M
-+ Category_Multi + Category_Other + ArchiveWarnings_underage + ArchiveWarnings_death + 
-ArchiveWarnings_choose_no + ArchiveWarnings_no_apply + ArchiveWarnings_violence + Rating_E                  
+ res_hits <- mgcv::bam(Hits ~ s(Term_novelty, bs='cr', sp=0.1,k=5) + s(Topic_novelty, bs='cr', sp=0.1,k=5)
+ 	+ s(Chapters, sp=0.1, bs='cr') + s(author_fic_cnt, sp=0.1, bs='cr')  + s(Words, sp=0.1, bs='cr')
++  Freq_relationship + Category_F_F + Category_F_M + Category_Gen + Category_M_M
++  Category_Multi + Category_Other + ArchiveWarnings_underage + ArchiveWarnings_death + 
++ ArchiveWarnings_choose_no + ArchiveWarnings_no_apply + ArchiveWarnings_violence + Rating_E                  
 + Rating_G + Rating_M + Rating_N + Fandom_harry_potter + Fandom_dcu + Fandom_doctor_who + Fandom_star_wars          
 + Fandom_arthurian + Fandom_supernatural + Fandom_haikyuu  + Fandom_kuroko_no_basuke + Fandom_hamilton_miranda 
 + Fandom_dragon_age + Fandom_the_walking_dead + Fandom_buffy  + Fandom_les_miserables + Fandom_naruto + Fandom_tolkien 
 + Fandom_shakespare + Fandom_hetalia + Fandom_attack_on_titan + Fandom_ms_paint_adventures + Fandom_marvel             
-+ Fandom_sailor_moon+ Fandom_one_direction, data=df_hits, method='REML', family='gaussian')
++ Fandom_sailor_moon+ Fandom_one_direction, data=df_kudos, method='REML', family='gaussian')
 
 df_comments <- df[df$Comments != 0, ]
-res_comments <- mgcv::bam(Comments ~ s(Term_novelty, bs='cr', sp=0.1,k=7) + s(Topic_novelty, bs='cr', sp=0.1,k=5) + s(Chapters, sp=0.1, bs='cr') + s(author_fic_cnt, sp=0.1, bs='cr') 
-+ Freq_relationship +   Category_Gen + Category_M_M
-+ Category_Multi + Category_Other + ArchiveWarnings_underage + ArchiveWarnings_death
+res_comments <- mgcv::bam(Comments ~ s(Term_novelty, bs='cr', sp=0.1,k=5) + s(Topic_novelty, bs='cr', sp=0.1,k=5)
+ 	+ s(Chapters, sp=0.1, bs='cr') + s(author_fic_cnt, sp=0.1, bs='cr')  + s(Words, sp=0.1, bs='cr')
++  Freq_relationship + Category_F_F + Category_F_M + Category_Gen + Category_M_M
++  Category_Multi + Category_Other + ArchiveWarnings_underage + ArchiveWarnings_death + 
 + ArchiveWarnings_choose_no + ArchiveWarnings_no_apply + ArchiveWarnings_violence + Rating_E                  
 + Rating_G + Rating_M + Rating_N + Fandom_harry_potter + Fandom_dcu + Fandom_doctor_who + Fandom_star_wars          
 + Fandom_arthurian + Fandom_supernatural + Fandom_haikyuu  + Fandom_kuroko_no_basuke + Fandom_hamilton_miranda 
 + Fandom_dragon_age + Fandom_the_walking_dead + Fandom_buffy  + Fandom_les_miserables + Fandom_naruto + Fandom_tolkien 
 + Fandom_shakespare + Fandom_hetalia + Fandom_attack_on_titan + Fandom_ms_paint_adventures + Fandom_marvel             
-+ Fandom_sailor_moon+ Fandom_one_direction, data=df_comments, method='REML', family='gaussian')
++ Fandom_sailor_moon+ Fandom_one_direction, data=df_kudos, method='REML', family='gaussian')
 
 df_bookmarks <- df[df$Bookmarks != 0, ]
- res_bookmarks <- mgcv::bam(Hits ~ s(Term_novelty, bs='cr', sp=0.1,k=7) + s(Topic_novelty, bs='cr', sp=0.1,k=5) + s(Chapters, sp=0.1, bs='cr') + s(author_fic_cnt, sp=0.1, bs='cr') 
-+ Freq_relationship +   Category_Gen + Category_M_M
-+ Category_Multi + Category_Other + ArchiveWarnings_underage + ArchiveWarnings_death
+ res_bookmarks <- mgcv::bam(Hits ~ s(Term_novelty, bs='cr', sp=0.1,k=5) + s(Topic_novelty, bs='cr', sp=0.1,k=5)
+ 	+ s(Chapters, sp=0.1, bs='cr') + s(author_fic_cnt, sp=0.1, bs='cr')  + s(Words, sp=0.1, bs='cr')
++  Freq_relationship + Category_F_F + Category_F_M + Category_Gen + Category_M_M
++  Category_Multi + Category_Other + ArchiveWarnings_underage + ArchiveWarnings_death + 
 + ArchiveWarnings_choose_no + ArchiveWarnings_no_apply + ArchiveWarnings_violence + Rating_E                  
 + Rating_G + Rating_M + Rating_N + Fandom_harry_potter + Fandom_dcu + Fandom_doctor_who + Fandom_star_wars          
 + Fandom_arthurian + Fandom_supernatural + Fandom_haikyuu  + Fandom_kuroko_no_basuke + Fandom_hamilton_miranda 
 + Fandom_dragon_age + Fandom_the_walking_dead + Fandom_buffy  + Fandom_les_miserables + Fandom_naruto + Fandom_tolkien 
 + Fandom_shakespare + Fandom_hetalia + Fandom_attack_on_titan + Fandom_ms_paint_adventures + Fandom_marvel             
-+ Fandom_sailor_moon+ Fandom_one_direction, data=df_bookmarks, method='REML', family='gaussian')
++ Fandom_sailor_moon+ Fandom_one_direction, data=df_kudos, method='REML', family='gaussian')
 
 
 pdf('/Users/a307/Desktop/gam_res.pdf', width=16, height=8)
