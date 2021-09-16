@@ -13,7 +13,10 @@ nlp.add_pipe(language_detector)
 
 
 def detect_Eng(text):
-    doc = nlp(text[0:50])
+	if len(text) > 500:
+	    doc = nlp(text[0:500] + text[-500:])
+	else:
+		doc = nlp(text[0:100] + text[-100:])
     if doc._.languages == ['en']:
     	return True
     return False
@@ -47,4 +50,4 @@ fandoms = [
 for fandom in fandoms:
     df = pd.read_csv('../' + fandom + '_preprocessed.tsv', sep = '\t')
     df = df[df.apply(lambda row: detect_Eng(row['Text']), axis=1)]
-    df.to_csv(fandom + '_preprocessed2.tsv', sep='\t', index=False)
+    df.to_csv(fandom + '_preprocessed_filter_en_20210915.tsv', sep='\t', index=False)
