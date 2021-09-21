@@ -13,12 +13,13 @@ nlp.add_pipe(language_detector)
 
 
 def detect_Eng(text):
-	if len(text) > 500:
-	    doc = nlp(text[0:500] + text[-500:])
-	else:
-		doc = nlp(text[0:100] + text[-100:])
-    if doc._.languages == ['en']:
-    	return True
+    text = text.replace('\\xc2\\xa0', ' ')
+    if len(text) > 500:
+        doc = nlp(text[0:500] + text[-500:])
+    else:
+        doc = nlp(text[0:100] + text[-100:])
+    if 'en' in doc._.languages:
+        return True
     return False
 
 fandoms = [
@@ -26,7 +27,7 @@ fandoms = [
 'star_wars_all_media_types',
 'harry_potter',
 'sherlock_holmes_&_related_fandoms',
-'marvel',
+# 'marvel',
 'shakespare_william_works',
 'bishoujo_senshi_sailor_moon',
 'haikyuu',
@@ -48,6 +49,8 @@ fandoms = [
 ]
 
 for fandom in fandoms:
-    df = pd.read_csv('../' + fandom + '_preprocessed.tsv', sep = '\t')
+    df = pd.read_csv('../../data/preprocessed_data/' + fandom + '_preprocessed.tsv', sep = '\t')
+    print(fandom)
+    print('begin detection..')
     df = df[df.apply(lambda row: detect_Eng(row['Text']), axis=1)]
     df.to_csv(fandom + '_preprocessed_filter_en_20210915.tsv', sep='\t', index=False)
