@@ -31,7 +31,7 @@ def latest_date(cell):
 
 def main(fandom):
     print('working on fandom: ', fandom)
-    df = pd.read_csv('../' + fandom + '_preprocessed2.tsv', sep = '\t')
+    df = pd.read_csv(fandom + '_preprocessed_filter_en_20210915.tsv', sep = '\t')
     df = df.replace([np.inf, -np.inf], np.nan)
     df['Hits'].fillna(0, inplace=True)
     df['Kudos'].fillna(0, inplace=True)
@@ -44,8 +44,8 @@ def main(fandom):
     		 'UpdateDate': lambda x: latest_date(x), 'CompleteDate': lambda x: latest_date(x),\
    			  'Comments': sum, 'URL': np.random.choice})\
 			.reset_index()
-    print(len(grp[grp.Kudos == 0]))
-    grp.to_csv(fandom + '_preprocessed_merged_chs_2.tsv', sep='\t', index=False)
+    # print(len(grp[grp.Kudos == 0]))
+    grp.to_csv(fandom + '_preprocessed_filter_en_merged_chs_20210915.tsv', sep='\t', index=False)
     
 
 

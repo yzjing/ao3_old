@@ -8,8 +8,8 @@ import re
 from gensim import corpora, models, similarities
 from scipy import special, spatial
 import pickle
-from nltk.corpus import wordnet as wn
-from nltk.stem.wordnet import WordNetLemmatizer
+# from nltk.corpus import wordnet as wn
+# from nltk.stem.wordnet import WordNetLemmatizer
 from gensim.models import Phrases
 from gensim.corpora import Dictionary
 
@@ -80,7 +80,7 @@ def JSD(P, Q):
 
 def main(fandom):
     print('working on fandom: ', fandom)
-    df = pd.read_csv('../' + fandom + '_preprocessed_merged_chs_2.tsv', sep = '\t')
+    df = pd.read_csv(fandom + '_preprocessed_filter_en_merged_chs_20210915.tsv', sep = '\t')
     # filter very short documents
     df = df[df.Text.str.split().map(len) >= 500]
 
@@ -115,7 +115,7 @@ def main(fandom):
                 id2word.filter_extremes(no_below=5, no_above=0.9)
                 # print('Number of unique words after removing rare and common words:', len(id2word))
                 corpus = [id2word.doc2bow(doc) for doc in sentences]
-                model = models.LdaMulticore(corpus=corpus,id2word=id2word,num_topics=20,workers=30)               
+                model = models.LdaMulticore(corpus=corpus,id2word=id2word,num_topics=100,workers=30)               
 
                 df_t_curr['Dist'] = df_two['Processed_text'].map(lambda x: get_dist(x, model, id2word))[0:len(df_t_curr)]
                 df_t_prev['Dist'] = df_two['Processed_text'].map(lambda x: get_dist(x, model, id2word))[len(df_t_curr):]
@@ -129,7 +129,7 @@ def main(fandom):
 
     df_all = pd.concat(df_all)
     print(fandom, ' ', len(df_all))
-    df_all.to_csv(fandom + '_temporal_lda_jsd_toprev_with_dist_merged_chs_20_topics.tsv', index = False, sep = '\t')
+    df_all.to_csv(fandom + '_lda_with_dist_merged_chs_20210915.tsv', index = False, sep = '\t')
     print('Done with: ', fandom)
 
 fandoms = [

@@ -39,8 +39,7 @@ def sample_text(text, sample_size):
 
 def main(fandom):
     print('working on fandom: ', fandom)
-    df = pd.read_csv('../' + fandom + '_preprocessed_merged_chs_2.tsv', sep = '\t')
-
+    df = pd.read_csv( fandom + '_preprocessed_filter_en_merged_chs_20210915.tsv', sep = '\t')
     df = df[df.Text.str.split().map(len) >= 500]
 
     timelist = create_timelist(df)
@@ -78,7 +77,7 @@ def main(fandom):
                 transformed_curr_dist = np.apply_along_axis(compute_cosine, 1, transformed_curr_l2, std=prev_std)
               
                 df_t_curr['Cos'] = df_t_curr.apply(lambda row: transformed_curr_dist[row.name], axis=1)
-                df_t_curr['Entropy'] = df_t_curr.apply(lambda row: transformed_curr_ent[row.name], axis=1)
+                # df_t_curr['Entropy'] = df_t_curr.apply(lambda row: transformed_curr_ent[row.name], axis=1)
 
                 del df_t_curr['Text']
 
@@ -86,7 +85,7 @@ def main(fandom):
             
     df_all = pd.concat(df_all)
     print(fandom, ' ', len(df_all))
-    df_all.to_csv(fandom + '_temporal_tfidf_cos_merged_chapters_sampled.tsv', index = False, sep = '\t')
+    df_all.to_csv(fandom + '_temporal_tfidf_cos_merged_chapters_20210915tsv', index = False, sep = '\t')
     print('Done with: ', fandom)
 
 
