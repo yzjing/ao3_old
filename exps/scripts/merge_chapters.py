@@ -39,7 +39,7 @@ def main(fandom):
     df['Comments'].fillna(0, inplace=True)
     grp = df.groupby(['AdditionalTags', 'ArchiveWarnings', 'Author', 'Bookmarks', 'Category',
 					'Chapters', 'Characters', 'Fandoms', 'Hits', 'Kudos', 'Language', 
-					'Rating', 'Relationship', 'Title', 'Words'])\
+					'Rating', 'Relationship', 'Title', 'Words'], dropna=False)\
 			.agg({'Text':' '.join, 'PublishDate': lambda x: earlist_date(x), \
     		 'UpdateDate': lambda x: latest_date(x), 'CompleteDate': lambda x: latest_date(x),\
    			  'Comments': sum, 'URL': np.random.choice})\
